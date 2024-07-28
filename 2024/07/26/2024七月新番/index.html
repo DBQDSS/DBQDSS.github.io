@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/2024%E4%B8%83%E6%9C%88%E6%96%B0%E7%95%AA/%E8%89%BE%E8%8E%891.jpg">
 <meta property="article:published_time" content="2024-07-26T15:44:40.000Z">
-<meta property="article:modified_time" content="2024-07-27T17:08:35.767Z">
+<meta property="article:modified_time" content="2024-07-28T02:06:32.311Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="生活">
 <meta property="article:tag" content="二次元">
@@ -447,14 +447,31 @@
 
             
   
-  
-    <article id="comments" lazyload>
+    
+      <article id="comments" lazyload>
+        
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liXuEe4WAGrLjh32","clientSecret":"1d4d6eb17c006852a29b7ae3c47e67f46a819f87","repo":"DBQDSS.github.io","owner":"DBQDSS","admin":["DBQDSS"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '0b6f86458d2b93c5b619f8bd12c64773'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
       
-
-    </article>
-  
-
-
+        
           </article>
         </div>
       </div>

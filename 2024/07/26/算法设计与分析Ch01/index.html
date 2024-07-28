@@ -1195,14 +1195,31 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â
 
             
   
-  
-    <article id="comments" lazyload>
+    
+      <article id="comments" lazyload>
+        
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liXuEe4WAGrLjh32","clientSecret":"1d4d6eb17c006852a29b7ae3c47e67f46a819f87","repo":"DBQDSS.github.io","owner":"DBQDSS","admin":["DBQDSS"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '265209ee3fdc6299c9573fa99e60eaea'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
       
-
-    </article>
-  
-
-
+        
           </article>
         </div>
       </div>
