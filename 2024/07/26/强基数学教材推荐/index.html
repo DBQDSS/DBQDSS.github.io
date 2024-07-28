@@ -26,13 +26,15 @@
 <meta property="og:site_name" content="DBQDSS&#39;s Blog">
 <meta property="og:description" content="一些数学专业书籍推荐以及部分课程的小攻略。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/%E6%95%99%E6%9D%90%E6%8E%A8%E8%8D%90/%E6%95%99%E6%9D%90%E6%8E%A8%E8%8D%90.png">
 <meta property="article:published_time" content="2024-07-26T05:59:16.000Z">
-<meta property="article:modified_time" content="2024-07-28T03:50:00.267Z">
+<meta property="article:modified_time" content="2024-07-28T05:09:17.291Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="大学">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/%E6%95%99%E6%9D%90%E6%8E%A8%E8%8D%90/%E6%95%99%E6%9D%90%E6%8E%A8%E8%8D%90.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -601,23 +603,40 @@
     
       <article id="comments" lazyload>
         
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"Ov23liXuEe4WAGrLjh32","clientSecret":"1d4d6eb17c006852a29b7ae3c47e67f46a819f87","repo":"DBQDSS.github.io","owner":"DBQDSS","admin":["DBQDSS"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
-          {
-            id: 'd467a1fbf5f124530ffdcbaebc0ecdb4'
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
       </article>
