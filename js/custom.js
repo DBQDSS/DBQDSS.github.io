@@ -7,7 +7,7 @@ var titleTime;
 document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
         $('[rel="icon"]').attr('href', "/funny.ico");
-        document.title = '╭(°A°`)╮ 页面崩溃啦 ~';
+        document.title = '你快回来 ╭(°A°`)╮ 页面崩溃啦 ~';
         clearTimeout(titleTime);
     } else {
         $('[rel="icon"]').attr('href', "/img/newtubiao.png");
