@@ -21,18 +21,18 @@
   
     <meta name="description" content="随手记：李宏毅-ML2021-Note-01">
 <meta property="og:type" content="article">
-<meta property="og:title" content="李宏毅-ML2021-Note-01">
+<meta property="og:title" content="Note-01">
 <meta property="og:url" content="http://dbqdss.github.io/2024/08/04/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/index.html">
 <meta property="og:site_name" content="DBQDSS&#39;s Blog">
 <meta property="og:description" content="随手记：李宏毅-ML2021-Note-01">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90-%E5%BC%A0%E6%81%AD%E5%BA%86.jpg">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/ML2021.png">
 <meta property="article:published_time" content="2024-08-04T03:07:21.000Z">
-<meta property="article:modified_time" content="2024-08-04T11:10:52.004Z">
+<meta property="article:modified_time" content="2024-08-04T14:55:04.325Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90-%E5%BC%A0%E6%81%AD%E5%BA%86.jpg">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/ML2021.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -40,7 +40,7 @@
   
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
   
-  <title>李宏毅-ML2021-Note-01 - DBQDSS&#39;s Blog</title>
+  <title>Note-01 - DBQDSS&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -251,7 +251,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="The best mathematician can notice analogies between theories."></span>
+            <span id="subtitle" data-typed-text="I refuse to say anything beyond five years because I don&#39;t think we can see much beyond five years."></span>
           
         </div>
 
@@ -279,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          409 字
+          396 字
         
       </span>
     
@@ -336,28 +336,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">The best mathematician can notice analogies between theories.</h1>
+            <h1 id="seo-header">I refuse to say anything beyond five years because I don&#39;t think we can see much beyond five years.</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>(网上找到的笔记)[<a target="_blank" rel="noopener" href="https://github.com/unclestrong/DeepLearning_LHY21_Notes">https://github.com/unclestrong/DeepLearning_LHY21_Notes</a>]<br>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLJV_el3uVTsMhtt7_Y6sgTHGHp1Vb2P2J">课程视频</a><br>
+<a target="_blank" rel="noopener" href="https://github.com/unclestrong/DeepLearning_LHY21_Notes">网上找到的笔记</a><br>
 详细笔记请见网上大佬的笔记（见上👆）他好象用语音识别把每句话都记下来了，这里只是一些随手记</p>
 </blockquote>
 <h1>类神经网络的训练方法</h1>
 <h2 id="Lec-03-与-Lec-04">Lec 03 与 Lec 04</h2>
 <p>Q: 如何判断结果不好到底是因为 <strong>模型不够大</strong> 还是 <strong>优化方法不够好</strong> ？</p>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722741789593.png" srcset="/img/loading.gif" lazyload alt="1722741789593"></p>
 <p>A: 比较在 training error 上的表现，如果出现右图，56层网络的效果比20层表现要差，则说明是优化没有做好(说明不是过拟合)。</p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722741789593.png" srcset="/img/loading.gif" lazyload alt="1722741789593"></p>
 <p>优化问题</p>
 <ul>
 <li>从比较中获取见解</li>
 <li>从较浅的网络(或其他模型)开始, 这些网络更容易优化</li>
 <li>如果更深层的网络在训练数据上没有获得更小的损失, 则存在优化方法问题</li>
 </ul>
-<p>Q: 如何解决过拟合<br>
-A:</p>
+<p>Q: 如何应对过拟合问题?</p>
+<p>A:</p>
 <ol>
 <li>Data augmentation：</li>
 <li>限制模型的自由度：
@@ -370,9 +371,8 @@ A:</p>
 </ol>
 </li>
 </ol>
-<p>Q: 梯度消失有可能有什么情况？<br>
-A:</p>
-<p>有可能是局部极大极小、也有可能是鞍点。</p>
+<p>Q: 梯度消失有可能有什么情况？</p>
+<p>A: 有可能是局部极大极小、也有可能是鞍点。</p>
 <p>判断办法：Hessian 矩阵</p>
 <ol>
 <li>Hessian 正定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span> 局部极小</li>
@@ -381,35 +381,35 @@ A:</p>
 </ol>
 <h2 id="Lec-05">Lec 05</h2>
 <p><strong>Batch 和 Momentum</strong></p>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722762707491.png" srcset="/img/loading.gif" lazyload alt="1722762707491"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722762707491.png" srcset="/img/loading.gif" lazyload alt="1722762707491"></p>
 <h2 id="Lec-06">Lec 06</h2>
 <p><strong>客制化 learning rate</strong></p>
 <p>(如果学过最优化的话感觉比较容易理解)</p>
 <h3 id="Adagrad">Adagrad</h3>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722765607845.png" srcset="/img/loading.gif" lazyload alt="1722765607845"></p>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722765713166.png" srcset="/img/loading.gif" lazyload alt="1722765713166"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722765607845.png" srcset="/img/loading.gif" lazyload alt="1722765607845"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722765713166.png" srcset="/img/loading.gif" lazyload alt="1722765713166"></p>
 <p>坡度大走得慢，坡度小走的快。</p>
 <h3 id="RMSProp">RMSProp</h3>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722766003193.png" srcset="/img/loading.gif" lazyload alt="1722766003193"></p>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722766178564.png" srcset="/img/loading.gif" lazyload alt="1722766178564"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722766003193.png" srcset="/img/loading.gif" lazyload alt="1722766003193"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722766178564.png" srcset="/img/loading.gif" lazyload alt="1722766178564"></p>
 <p>参数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> 越小，则新值权重越大。</p>
 <h3 id="Adam">Adam</h3>
 <p>Adam = RMSProp + Momentum</p>
-<p>一般情况下，使用 Pytorch 默认 Adam 优化器即可<br>
-(相关论文)[<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1412.6980.pdf">https://arxiv.org/pdf/1412.6980.pdf</a>]</p>
+<p>一般情况下，使用 Pytorch 默认 Adam 优化器即可</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1412.6980">Adam 相关论文</a></p>
 <h4 id="Learning-rate-scheduling">Learning rate scheduling</h4>
 <ul>
 <li>Learning rate decay</li>
 </ul>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722769249596.png" srcset="/img/loading.gif" lazyload alt="1722769249596"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722769249596.png" srcset="/img/loading.gif" lazyload alt="1722769249596"></p>
 <ul>
 <li>Warm up<br>
 先设学习率为较小值，然后慢慢增大，可以训练的比较好。</li>
 </ul>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722769613464.png" srcset="/img/loading.gif" lazyload alt="1722769613464"></p>
-<p>(Warm up 相关论文)[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.03265">https://arxiv.org/abs/1908.03265</a>]</p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722769613464.png" srcset="/img/loading.gif" lazyload alt="1722769613464"></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.03265">Warm up 相关论文</a></p>
 <h3 id="小结">小结</h3>
-<p><img src="image/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/1722769734059.png" srcset="/img/loading.gif" lazyload alt="1722769734059"></p>
+<p><img src="images/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-%E9%9A%8F%E6%89%8B%E8%AE%B0/Note-01/1722769734059.png" srcset="/img/loading.gif" lazyload alt="1722769734059"></p>
 
                 
               </div>
@@ -433,8 +433,15 @@ A:</p>
   
     <span>></span>
     
-  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021/" class="category-chain-item">李宏毅-ML2021</a>
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-NTU/" class="category-chain-item">机器学习-NTU</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-NTU/ML2021/" class="category-chain-item">ML2021</a>
+  
+  
+
   
 
   
@@ -462,7 +469,7 @@ A:</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>李宏毅-ML2021-Note-01</div>
+      <div>Note-01</div>
       <div>http://dbqdss.github.io/2024/08/04/李宏毅-ML2021-Note-01/</div>
     </div>
     <div class="license-meta">
