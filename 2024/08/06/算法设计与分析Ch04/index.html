@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0.png">
 <meta property="article:published_time" content="2024-08-06T02:37:39.000Z">
-<meta property="article:modified_time" content="2024-08-06T14:07:57.937Z">
+<meta property="article:modified_time" content="2024-08-06T15:00:15.979Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -342,7 +342,7 @@
               <div class="markdown-body">
                 
                 <h1>第四章 分治算法的典型应用</h1>
-<image src="/images/算法设计与分析笔记/Ch04/1722912208649.png" alt="1722912208649" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722912208649.png" alt="1722912208649" width="500" height="">
 <h2 id="选择问题">选择问题</h2>
 <p><strong>输入:</strong> 集合 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> (含 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个不等的实数)<br>
 <strong>输出:</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> 中第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 小元素</p>
@@ -354,9 +354,9 @@
 <h3 id="选最大与最小">选最大与最小</h3>
 <h4 id="选最大">选最大</h4>
 <h5 id="顺序比较">顺序比较</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722912521111.png" alt="1722912521111" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722912521111.png" alt="1722912521111" width="500" height="">
 <h6 id="伪代码">伪代码</h6>
-<image src="/images/算法设计与分析笔记/Ch04/1722912544796.png" alt="1722912544796" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722912544796.png" alt="1722912544796" width="500" height="">
 <h4 id="选最大最小">选最大最小</h4>
 <p><strong>通常算法</strong></p>
 <ol>
@@ -367,16 +367,16 @@
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>+</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo>=</mo><mn>2</mn><mi>n</mi><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">W(n) = n-1 + n-2 = 2n-3
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span></span></p>
 <h5 id="分组算法">分组算法</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722912872613.png" alt="1722912872613" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722912843678.png" alt="1722912843678" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722912872613.png" alt="1722912872613" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722912843678.png" alt="1722912843678" width="400" height="">
 <h6 id="伪代码-2">伪代码</h6>
-<image src="/images/算法设计与分析笔记/Ch04/1722912947921.png" alt="1722912947921" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722912947921.png" alt="1722912947921" width="500" height="">
 <h6 id="最坏情况时间复杂度">最坏情况时间复杂度</h6>
-<image src="/images/算法设计与分析笔记/Ch04/1722913007154.png" alt="1722913007154" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722913007154.png" alt="1722913007154" width="500" height="">
 <h5 id="分治算法">分治算法</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722913160190.png" alt="1722913160190" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722913160190.png" alt="1722913160190" width="500" height="">
 <h6 id="最坏情况时间复杂度-2">最坏情况时间复杂度</h6>
-<image src="/images/算法设计与分析笔记/Ch04/1722913222018.png" alt="1722913222018" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722913222018.png" alt="1722913222018" width="500" height="">
 <h3 id="选第二大">选第二大</h3>
 <p><strong>输入:</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个数的数组 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span><br>
 <strong>输出:</strong> 第二大的数 second</p>
@@ -405,13 +405,13 @@
 <li>检查 max 的链表，从中找到最大的元素，即为 second。</li>
 </ol>
 <h5 id="伪代码-3">伪代码</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722914350882.png" alt="1722914350882" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722914350882.png" alt="1722914350882" width="500" height="">
 <p><strong>实例：</strong></p>
-<image src="/images/算法设计与分析笔记/Ch04/1722914437464.png" alt="1722914437464" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722914437464.png" alt="1722914437464" width="500" height="">
 <h5 id="时间复杂度">时间复杂度</h5>
 <p><strong>命题：</strong></p>
-<image src="/images/算法设计与分析笔记/Ch04/1722914539343.png" alt="1722914539343" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722914588609.png" alt="1722914588609" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722914539343.png" alt="1722914539343" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722914588609.png" alt="1722914588609" width="400" height="">
 <p><strong>计算</strong><br>
 <strong>第一阶段：</strong><br>
 元素数: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span><br>
@@ -428,10 +428,10 @@
 \end{align*}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.75em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.75em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">⌈</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose delimcenter" style="top:0em;">⌉</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">⌈</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose delimcenter" style="top:0em;">⌉</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 <h3 id="一般性的选择问题">一般性的选择问题</h3>
-<image src="/images/算法设计与分析笔记/Ch04/1722927342547.png" alt="1722927342547" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722927342547.png" alt="1722927342547" width="500" height="">
 <h4 id="应用：管道位置">应用：管道位置</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722928070652.png" alt="1722928070652" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722929446681.png" alt="1722929446681" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722928070652.png" alt="1722928070652" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722929446681.png" alt="1722929446681" width="400" height="">
 <h5 id="简单算法">简单算法</h5>
 <p><strong>算法一:</strong></p>
 <ul>
@@ -445,28 +445,28 @@
 </ul>
 <h4 id="分治算法-2">分治算法</h4>
 <h5 id="设计思想">设计思想</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722929734374.png" alt="1722929734374" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722930035974.png" alt="1722930035974" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722929734374.png" alt="1722929734374" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930035974.png" alt="1722930035974" width="400" height="">
 <h5 id="实例">实例</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722930123784.png" alt="1722930123784" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722930158324.png" alt="1722930158324" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930123784.png" alt="1722930123784" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930158324.png" alt="1722930158324" width="400" height="">
 <h5 id="伪代码-4">伪代码</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722930274475.png" alt="1722930274475" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930274475.png" alt="1722930274475" width="500" height="">
 <h5 id="算法分析">算法分析</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722930632100.png" alt="1722930632100" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722930756165.png" alt="1722930756165" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722930898774.png" alt="1722930898774" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930632100.png" alt="1722930632100" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930756165.png" alt="1722930756165" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722930898774.png" alt="1722930898774" width="400" height="">
 <p><strong>最坏情况时间复杂度</strong></p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⩽</mo><mi>W</mi><mo stretchy="false">(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>5</mn><mo stretchy="false">)</mo><mo>+</mo><mi>W</mi><mo stretchy="false">(</mo><mn>7</mn><mi>n</mi><mi mathvariant="normal">/</mi><mn>10</mn><mo stretchy="false">)</mo><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{equation*}
     W(n) \leqslant W(n/5) + W(7n/10) + O(n)
 \end{equation*}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord">/5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord">7</span><span class="mord mathnormal">n</span><span class="mord">/10</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
-<image src="/images/算法设计与分析笔记/Ch04/1722931032350.png" alt="1722931032350" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722931032350.png" alt="1722931032350" width="500" height="">
 <h5 id="讨论">讨论</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722931103203.png" alt="1722931103203" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722931103203.png" alt="1722931103203" width="500" height="">
 <h6 id="3-个一组">3 个一组</h6>
-<image src="/images/算法设计与分析笔记/Ch04/1722931181028.png" alt="1722931181028" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722931294422.png" alt="1722931294422" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722931181028.png" alt="1722931181028" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722931294422.png" alt="1722931294422" width="400" height="">
 <h3 id="小结">小结</h3>
 <ul>
 <li>选最大: 顺序比较, 比较次数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></li>
@@ -514,26 +514,26 @@
 <p>其中</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>c</mi><mi>k</mi></msub><mo>=</mo><munder><mo>∑</mo><mo lspace="0em" rspace="0em"><mover><mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>&lt;</mo><mi>n</mi></mo><mrow><mi>i</mi><mo>+</mo><mi>j</mi><mo>=</mo><mi>n</mi></mrow></mover></mo></munder><msub><mi>a</mi><mi>i</mi></msub><msub><mi>b</mi><mi>j</mi></msub><mo separator="true">,</mo><mspace width="1em"/><mi>k</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mn>2</mn><mi>n</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">c_k = \sum_{\stackrel{i+j=n }{i,j &lt; n}} a_i b_j , \quad k = 0, 1, \cdots, 2n-2
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.0686em;vertical-align:-2.0186em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.284em;margin-left:0em;"><span class="pstrut" style="height:3.0664em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight"><span class="mop op-limits mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5235em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.6094em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.0664em;"><span class="pstrut" style="height:3.0664em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.0186em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></p>
-<image src="/images/算法设计与分析笔记/Ch04/1722932297962.png" alt="1722932297962" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932297962.png" alt="1722932297962" width="500" height="">
 <h5 id="计算实例">计算实例</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722932419824.png" alt="1722932419824" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722932466871.png" alt="1722932466871" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932419824.png" alt="1722932419824" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932466871.png" alt="1722932466871" width="400" height="">
 <h4 id="卷积的应用">卷积的应用</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722932525459.png" alt="1722932525459" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722932617561.png" alt="1722932617561" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932525459.png" alt="1722932525459" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932617561.png" alt="1722932617561" width="400" height="">
 <h5 id="实例-2">实例</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722932672968.png" alt="1722932672968" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722932729200.png" alt="1722932729200" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932672968.png" alt="1722932672968" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932729200.png" alt="1722932729200" width="400" height="">
 <h3 id="卷积的计算">卷积的计算</h3>
 <h4 id="暴力算法">暴力算法</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722932881817.png" alt="1722932881817" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722932965054.png" alt="1722932965054" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722933025457.png" alt="1722933025457" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722933065922.png" alt="1722933065922" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722933104419.png" alt="1722933104419" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932881817.png" alt="1722932881817" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722932965054.png" alt="1722932965054" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722933025457.png" alt="1722933025457" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722933065922.png" alt="1722933065922" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722933104419.png" alt="1722933104419" width="400" height="">
 <h4 id="快速傅里叶变换-FFT">快速傅里叶变换(FFT)</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722934043309.png" alt="1722934043309" width="300" height="">
-<image src="/images/算法设计与分析笔记/Ch04/1722934090680.png" alt="1722934090680" width="300" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722934043309.png" alt="1722934043309" width="400" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722934090680.png" alt="1722934090680" width="400" height="">
 <h5 id="FFT算法的关键">FFT算法的关键</h5>
 <p>给定: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><msub><mi>ω</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>ω</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>ω</mi><mrow><mn>2</mn><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">x = 1, \omega_1, \omega_2, \cdots, \omega_{2n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8528em;vertical-align:-0.2083em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span>，</p>
 <ul>
@@ -544,19 +544,19 @@
 <p><strong>关键: 一个对所有的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 快速多项式求值算法</strong></p>
 <h3 id="FFT-算法">FFT 算法</h3>
 <h4 id="暴力算法-2">暴力算法</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722950300653.png" alt="1722950300653" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722950300653.png" alt="1722950300653" width="500" height="">
 <h4 id="改进算法">改进算法</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722950444205.png" alt="1722950444205" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722950444205.png" alt="1722950444205" width="500" height="">
 <h4 id="分治算法-3">分治算法</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722950592510.png" alt="1722950592510" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722950592510.png" alt="1722950592510" width="500" height="">
 <h5 id="算法设计">算法设计</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722950670082.png" alt="1722950670082" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722950670082.png" alt="1722950670082" width="500" height="">
 <h5 id="算法分析-2">算法分析</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722950761262.png" alt="1722950761262" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722950761262.png" alt="1722950761262" width="500" height="">
 <h5 id="FFT-伪代码">FFT 伪代码</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722950871587.png" alt="1722950871587" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722950871587.png" alt="1722950871587" width="500" height="">
 <h5 id="FFT-算法分析">FFT 算法分析</h5>
-<image src="/images/算法设计与分析笔记/Ch04/1722951167780.png" alt="1722951167780" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722951167780.png" alt="1722951167780" width="500" height="">
 <h3 id="小结-2">小结</h3>
 <ul>
 <li>卷积的定义和应用
@@ -588,16 +588,16 @@
 </ul>
 <h2 id="计算几何——平面点集的凸包">计算几何——平面点集的凸包</h2>
 <h3 id="问题背景">问题背景</h3>
-<image src="/images/算法设计与分析笔记/Ch04/1722951578608.png" alt="1722951578608" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722951578608.png" alt="1722951578608" width="500" height="">
 <h3 id="分治算法-4">分治算法</h3>
 <h4 id="设计思想-2">设计思想</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722951654309.png" alt="1722951654309" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722951654309.png" alt="1722951654309" width="500" height="">
 <h4 id="划分成子问题">划分成子问题</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722951794668.png" alt="1722951794668" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722951794668.png" alt="1722951794668" width="500" height="">
 <h4 id="伪代码-5">伪代码</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722951850852.png" alt="1722951850852" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722951850852.png" alt="1722951850852" width="500" height="">
 <h4 id="算法分析-3">算法分析</h4>
-<image src="/images/算法设计与分析笔记/Ch04/1722952137894.png" alt="1722952137894" width="450" height="">
+<image src="/images/算法设计与分析笔记/Ch04/1722952137894.png" alt="1722952137894" width="500" height="">
 <h2 id="小结-3">小结</h2>
 <p><strong>分治算法的设计</strong></p>
 <ol>
