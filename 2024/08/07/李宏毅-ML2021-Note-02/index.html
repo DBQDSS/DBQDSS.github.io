@@ -19,16 +19,16 @@
   <meta name="author" content="DBQDSS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="随手记：李宏毅-ML2021-Note-01">
+    <meta name="description" content="随手记：李宏毅-ML2021-Note-02">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ML2021 Note-01">
-<meta property="og:url" content="http://dbqdss.github.io/2024/08/04/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-01/index.html">
+<meta property="og:title" content="ML2021 Note-02">
+<meta property="og:url" content="http://dbqdss.github.io/2024/08/07/%E6%9D%8E%E5%AE%8F%E6%AF%85-ML2021-Note-02/index.html">
 <meta property="og:site_name" content="DBQDSS&#39;s Blog">
-<meta property="og:description" content="随手记：李宏毅-ML2021-Note-01">
+<meta property="og:description" content="随手记：李宏毅-ML2021-Note-02">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/ML2021.png">
-<meta property="article:published_time" content="2024-08-04T03:07:21.000Z">
-<meta property="article:modified_time" content="2024-08-07T10:18:25.503Z">
+<meta property="article:published_time" content="2024-08-07T01:53:48.000Z">
+<meta property="article:modified_time" content="2024-08-07T10:18:36.338Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -40,7 +40,7 @@
   
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
   
-  <title>ML2021 Note-01 - DBQDSS&#39;s Blog</title>
+  <title>ML2021 Note-02 - DBQDSS&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -267,8 +267,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-04 11:07" pubdate>
-          2024年8月4日 上午
+        <time datetime="2024-08-07 09:53" pubdate>
+          2024年8月7日 上午
         </time>
       </span>
     
@@ -279,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          401 字
+          687 字
         
       </span>
     
@@ -290,7 +290,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -346,70 +346,78 @@
 <a target="_blank" rel="noopener" href="https://github.com/unclestrong/DeepLearning_LHY21_Notes">网上找到的笔记</a><br>
 详细笔记请见网上大佬的笔记（见上👆）他好像用语音识别把每句话都记下来了，这里只是一些总结性质的随手记</p>
 </blockquote>
-<h1>类神经网络的训练方法</h1>
-<h2 id="Lec-03-与-Lec-04">Lec 03 与 Lec 04</h2>
-<p>Q: 如何判断结果不好到底是因为 <strong>模型不够大</strong> 还是 <strong>优化方法不够好</strong> ？</p>
-<p>A: 比较在 training error 上的表现，如果出现右图，56层网络的效果比20层表现要差，则说明是优化没有做好(说明不是过拟合)。</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722741789593.png" alt="1722741789593" width="500" height="">
-<p>优化问题</p>
+<h2 id="类神经网络（续）">类神经网络（续）</h2>
+<p>Q：为什么分类问题中 Cross-entropy 优于 MSE？</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1722997258260.png" alt="1722997258260" width="500" height="">
+<p>A：若在采用梯度下降法的情况下使用 MSE，则会在 Loss 较大时 stuck（左上角）</p>
+<h3 id="批次标准化-Batch-Normalization">批次标准化 - Batch Normalization</h3>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1722998305077.png" alt="1722998305077" width="500" height="">
+<h4 id="training">training</h4>
+<p>Q：考虑 W 时，到底要对 z 还是 a 做标准化？</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1722998933853.png" alt="1722998933853" width="500" height="">
+<p>A：在实际操作中可能差异不是很大。如果激活函数采用sigmoid，则推荐对 z 做标准化，因为在 0 附近 gradient 比较大。</p>
+<p><strong>batch 需要足够大。</strong></p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1722999567770.png" alt="1722999567770" width="350" height="">
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1722999754929.png" alt="1722999754929" width="350" height="">
+<h4 id="testing">testing</h4>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723002319333.png" alt="1723002319333" width="500" height="">
+<h2 id="Network-架构设计">Network 架构设计</h2>
+<h3 id="CNN">CNN</h3>
+<p>CNN 通常用于图像分类<br>
+假设输入图片大小是固定的（否则 rescale）</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723003958175.png" alt="1723003958175" width="500" height="">
+<h4 id="观察-简化-1">观察 &amp; 简化 1</h4>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723018028301.png" alt="1723018028301" width="500" height="">
+<p>不需要将整张图片作为输入(fully connected network 的做法)，只需要将图片的一小部分作为输入即可找到关键 pattern。</p>
+<p><strong>简化：</strong> 设定 receptive field，每个 Neuron 只接收一个 receptive field 内的输入，并进行计算。</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723018468963.png" alt="1723018468963" width="350" height="">
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723018524378.png" alt="1723018524378" width="350" height="">
+<p>receptive field 可以互相重叠，也可相同，可以是连通的也可以不连通的（例如，可以指定“左上角”与“右下角”，但是这样的receptive field 不一定适合解决通常情况下的问题）</p>
+<p>receptive field 可以大小不一，形状也可以不一（长方形也可），也可以只考虑某些 channels（例如 RGB 三个中只考虑 R）</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723019287227.png" alt="1723019287227" width="500" height="">
+<p><strong>经典 setting</strong></p>
 <ul>
-<li>从比较中获取见解</li>
-<li>从较浅的网络(或其他模型)开始, 这些网络更容易优化</li>
-<li>如果更深层的网络在训练数据上没有获得更小的损失, 则存在优化方法问题</li>
+<li>all channels</li>
+<li>kernel size = receptive field size = 3x3</li>
+<li>一个 receptive field 对应一组 Neurons (e.g. 64 neurons)</li>
+<li>stride = 1 or 2 (自己设置的超参数)，超出部分自行采用合适的补植方案(padding)</li>
 </ul>
-<p>Q: 如何应对过拟合问题?</p>
-<p>A:</p>
-<ol>
-<li>Data augmentation：</li>
-<li>限制模型的自由度：
-<ol>
-<li>减少参数数量、共享参数</li>
-<li>减少 features</li>
-<li>Early stopping</li>
-<li>Dropout</li>
-<li>正则化</li>
-</ol>
-</li>
-</ol>
-<p>Q: 梯度消失有可能有什么情况？</p>
-<p>A: 有可能是局部极大极小、也有可能是鞍点。</p>
-<p>判断办法：Hessian 矩阵</p>
-<ol>
-<li>Hessian 正定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span> 局部极小</li>
-<li>Hessian 负定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span> 局部极大</li>
-<li>Hessian 不定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span> 鞍点</li>
-</ol>
-<h2 id="Lec-05">Lec 05</h2>
-<p><strong>Batch 和 Momentum</strong></p>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722762707491.png" alt="1722762707491" width="500" height="">
-<h2 id="Lec-06">Lec 06</h2>
-<p><strong>客制化 learning rate</strong></p>
-<p>(如果学过最优化的话感觉比较容易理解)</p>
-<h3 id="Adagrad">Adagrad</h3>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722765607845.png" alt="1722765607845" width="400" height="">
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722765713166.png" alt="1722765713166" width="400" height="">
-<p>坡度大走得慢，坡度小走的快。</p>
-<h3 id="RMSProp">RMSProp</h3>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722766003193.png" alt="1722766003193" width="400" height="">
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722766178564.png" alt="1722766178564" width="400" height="">
-<p>参数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> 越小，则新值权重越大。</p>
-<h3 id="Adam">Adam</h3>
-<p>Adam = RMSProp + Momentum</p>
-<p>一般情况下，使用 Pytorch 默认 Adam 优化器即可</p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1412.6980">Adam 相关论文</a></p>
-<h4 id="Learning-rate-scheduling">Learning rate scheduling</h4>
+<h4 id="观察-简化-2">观察 &amp; 简化 2</h4>
+<p><strong>简化：</strong> 不同的 receptive field 共享参数，相同的 receptive field 不同参数(如果共享，则会导致输出完全相同)</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723019801653.png" alt="1723019801653" width="500" height="">
+<p><strong>经典 setting：</strong></p>
 <ul>
-<li>Learning rate decay</li>
+<li>每个 receptive field 上同一组的 neurons 使用不同的 filter，不同 receptive field 对应的不同 Neurons 共享 filter</li>
 </ul>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722769249596.png" alt="1722769249596" width="500" height="">
-<ul>
-<li>Warm up<br>
-先设学习率为较小值，然后慢慢增大，可以训练的比较好。</li>
-</ul>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722769613464.png" alt="1722769613464" width="500" height="">
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.03265">Warm up 相关论文</a></p>
-<h3 id="小结">小结</h3>
-<image src="/images/李宏毅-ML2021-随手记/Note-01/1722769734059.png" alt="1722769734059" width="500" height="">
+<p>（如下图所示，不同 receptive field 的不同 neurons 共享参数 filter1, filter2 …）</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723019986911.png" alt="1723019986911" width="600" height="">
+<h4 id="卷积层">卷积层</h4>
+<p>Convolutional Layer</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723021119089.png" alt="1723021119089" width="600" height="">
+<h5 id="filter-如何运作？">filter 如何运作？</h5>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723021417024.png" alt="1723021417024" width="600" height="">
+<p>使用如下 filter 1，由于 filter 主对角线上全为 1，当输入 receptive field 主对角线全为 1 时出现最大值 3。于是从输出上可以看到在 image 左上、左下位置出现了对角线“三连1”的情形。</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723021589545.png" alt="1723021589545" width="500" height="">
+<h5 id="Multiple-Convolutional-Layer">Multiple Convolutional Layer</h5>
+<p>经过 filter 输出的 称为 feature map，feature map 大小与输入相同，channel 数目与 filter 数目相同。</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022186620.png" alt="1723022186620" width="500" height="">
+<p>只要 network 足够深，就能够监测到足够大的 pattern</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022484535.png" alt="1723022484535" width="500" height="">
+<h4 id="两种角度对比">两种角度对比</h4>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022748681.png" alt="1723022748681" width="600" height="">
+<h4 id="Max-Pooling">Max Pooling</h4>
+<p>有多种 pooling 的方式，max pooling 就是取 每一组中的最大值作为输出。</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022961744.png" alt="1723022961744" width="350" height="">
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023001885.png" alt="1723023001885" width="350" height="">
+<p>Convolutional Layer + Pooling <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span> 实现减少运算量</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023162271.png" alt="1723023162271" width="500" height="">
+<p><strong>基本结构：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 次 convolutional + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 次 pooling。</strong></p>
+<p>但是 pooling 会损失信息，如果算力足够强的话，可以不用 pooling。</p>
+<p>Flatten：将本来排成矩阵的数据拉直为一个向量。</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023450039.png" alt="1723023450039" width="500" height="">
+<h3 id="Alpha-Go">Alpha Go</h3>
+<p>将棋盘看作是 19 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 19 的 image</p>
+<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023800663.png" alt="1723023800663" width="500" height="">
                 
               </div>
             
@@ -468,8 +476,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ML2021 Note-01</div>
-      <div>http://dbqdss.github.io/2024/08/04/李宏毅-ML2021-Note-01/</div>
+      <div>ML2021 Note-02</div>
+      <div>http://dbqdss.github.io/2024/08/07/李宏毅-ML2021-Note-02/</div>
     </div>
     <div class="license-meta">
       
@@ -481,7 +489,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月4日</div>
+          <div>2024年8月7日</div>
         </div>
       
       
@@ -513,18 +521,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/05/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90Ch03/" title="算法设计与分析Ch03">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法设计与分析Ch03</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/03/%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90-Lec-01/" title="泛函分析-Lec-01">
-                        <span class="hidden-mobile">泛函分析-Lec-01</span>
+                      <a href="/2024/08/06/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90Ch04/" title="算法设计与分析Ch04">
+                        <span class="hidden-mobile">算法设计与分析Ch04</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
