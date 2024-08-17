@@ -19,21 +19,20 @@
   <meta name="author" content="DBQDSS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="孤独是致死的疾病。">
+    <meta name="description" content="个人笔记：算法设计与分析Ch05">
 <meta property="og:type" content="article">
-<meta property="og:title" content="狼与香辛料">
-<meta property="og:url" content="http://dbqdss.github.io/2024/08/13/%E7%8B%BC%E4%B8%8E%E9%A6%99%E8%BE%9B%E6%96%99/index.html">
+<meta property="og:title" content="算法设计与分析Ch06">
+<meta property="og:url" content="http://dbqdss.github.io/2024/08/16/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90Ch06/index.html">
 <meta property="og:site_name" content="DBQDSS&#39;s Blog">
-<meta property="og:description" content="孤独是致死的疾病。">
+<meta property="og:description" content="个人笔记：算法设计与分析Ch05">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/%E7%8B%BC%E4%B8%8E%E9%A6%99%E8%BE%9B%E6%96%992.jpg">
-<meta property="article:published_time" content="2024-08-13T14:50:17.000Z">
-<meta property="article:modified_time" content="2024-08-16T14:37:59.709Z">
+<meta property="og:image" content="http://dbqdss.github.io/images/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0.png">
+<meta property="article:published_time" content="2024-08-16T08:32:52.000Z">
+<meta property="article:modified_time" content="2024-08-16T14:38:34.709Z">
 <meta property="article:author" content="DBQDSS">
-<meta property="article:tag" content="二次元">
-<meta property="article:tag" content="动画">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/%E7%8B%BC%E4%B8%8E%E9%A6%99%E8%BE%9B%E6%96%992.jpg">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -41,7 +40,7 @@
   
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
   
-  <title>狼与香辛料 - DBQDSS&#39;s Blog</title>
+  <title>算法设计与分析Ch06 - DBQDSS&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,13 +245,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/images/banner-stack/%E7%8B%BC%E4%B8%8E%E9%A6%99%E8%BE%9B%E6%96%99.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="孤独是致死的疾病。"></span>
+            <span id="subtitle" data-typed-text="Algorithm + Data Structures = Programs"></span>
           
         </div>
 
@@ -268,8 +267,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-13 22:50" pubdate>
-          2024年8月13日 晚上
+        <time datetime="2024-08-16 16:32" pubdate>
+          2024年8月16日 下午
         </time>
       </span>
     
@@ -280,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          243 字
         
       </span>
     
@@ -291,7 +290,7 @@
         
         
         
-          13 分钟
+          3 分钟
         
       </span>
     
@@ -337,7 +336,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">孤独是致死的疾病。</h1>
+            <h1 id="seo-header">Algorithm + Data Structures = Programs</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -350,68 +349,179 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>背景图来自 Pixiv <a target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/118434232">半节</a></p>
-</blockquote>
-<div style="display: flex; flex-direction: column; align-items: center; height: 300px;">
-    <img src="/videos/狼与香辛料/狼与香辛料OST.webp" srcset="/img/loading.gif" lazyload alt="卡哇伊的赫萝酱-Cover" width="200" height="200">
-    <audio controls name="media">
-        <source src="/videos/狼与香辛料/老版OP-旅の途中.mp3" type="audio/mp3">
-    </audio>
+                <h1>第六章 动态规划算法的典型应用</h1>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723797532616.png" alt="本章主要内容" width="500" height="">
+  </div>
 </div>
-<h1>剧情线</h1>
-<h5 id="帕斯罗村">帕斯罗村</h5>
-<p><strong>登场人物：</strong> 罗伦斯、赫萝、</p>
-<h5 id="帕兹欧">帕兹欧</h5>
-<p><strong>登场人物：</strong> 马贺特、怀兹</p>
-<blockquote>
-<p>重要事件：每年一次的北方大远征取消</p>
-</blockquote>
-<h5 id="留宾海根">留宾海根</h5>
-<p><strong>登场人物：</strong> 诺儿菈<br>
-<strong>主线：</strong> 罗伦斯炒军备期货导致破产，<br>
-<strong>暗线：</strong><br>
-<strong>感情线：</strong></p>
-<h3 id="卡梅尔森">卡梅尔森</h3>
-<p><s>无良夫妻行骗记</s></p>
-<h4 id="登场人物">登场人物</h4>
-<p>阿玛提、狄安娜、马克、巴托斯</p>
-<blockquote>
-<p>时间以罗伦斯赫萝到达卡梅尔森的晚上算起</p>
-</blockquote>
-<h4 id="主线">主线</h4>
-<ol>
-<li>【三日】罗伦斯怕赫萝寂寞，又恰巧遇见阿玛提，于是顺着后者的话头，让他带着赫萝四处逛逛（阿玛提送了赫萝一块正方体的黄铁矿，这也成为罗伦斯突破阿玛提计划的起点）</li>
-<li>【四日早上】鱼商人阿玛提因对赫萝一见钟情，于是在这天一早，公开宣布向罗伦斯发起挑战，要在明日傍晚拿出 1000 崔尼银币现金为赫萝“赎身”，要等她恢复自由身后向其求婚（赫萝对阿玛提自称是巡礼修女，因欠罗伦斯 1000 崔尼银币而被迫一起旅行，为罗伦斯祈福）罗伦斯出于对和赫萝亲密关系的信任，并不担心赫萝会离开自己，本着不赚白不赚的想法，签下了契约。</li>
-<li>【四日上午】罗伦斯通过马克的渠道，了解出阿玛提大概有 800 现银，判断出阿玛提必定是在近期有十拿九稳的暴富门路的。通过推理，罗伦斯得知阿玛提能够拿出 1000 崔尼银币现金的底牌就是炒黄铁矿。</li>
-<li>【四日傍晚】在与赫萝出现误会后，罗伦斯到马克的店铺与之商谈。罗伦斯开始慌张，害怕赫萝一气之下真的会离他而去，于是开始着手破坏阿玛提的计划——收购黄铁矿，在明日早上一次性大批量出手，引爆黄铁矿泡沫。</li>
-<li>【四日晚上】期间赫萝故意与阿玛提签署了婚书，约定如果阿玛提能为她“赎身”就嫁给他，并托旅馆一楼的前台交给罗伦斯。（实际上这是赫萝为了刺激罗伦斯，想让他在盛怒之下上楼质问自己顺势解开误会而故意做的）罗伦斯看完之后，决定找阿玛提玩波大的，利用激将法使阿玛提签订期货契约（按现在行市的 500 崔尼银币交货）</li>
-<li>【五日早上】罗伦斯和阿玛提在石商人的店铺前 “决战”。经过一番周折之后，罗伦斯发现自己想错了方向，其实赫萝始终都是站在自己这边的，于是跟赫萝一起同时出手了大量的黄铁矿，黄铁矿价格彻底崩盘，无良夫妻至此行骗成功。</li>
-</ol>
-<h4 id="支线">支线</h4>
-<ol>
-<li>【二日晚上】罗伦斯询问赫萝是否记得故乡附近的城市名，赫萝思索之后想起了纽希拉，并表示当年自己从约伊兹到纽希拉泡温泉，以狼形态需要跑两天。罗伦斯在思考了时间成本之后，下意识说出 “从纽希拉出发，你一个人能回的去吗” 这句话，虽然在出口之后就意识到了赫萝曾说过自己最害怕孤独，罗叔尽力补救，但作死的话已经说了出去。赫萝想起了自己曾做过的梦（赫萝看见罗伦斯在雪地里对自己打招呼，但当自己跑到后者跟前，却只剩下一堆白骨），表示人的寿命比狼神短得多，能够理解罗伦斯的提案，垂着耳朵睡下了。</li>
-<li>【三日】经巴托斯介绍，罗伦斯从年代记作家狄安娜处得知了赫萝故乡约伊兹已被猎月熊摧毁，并得知在雷诺斯曾流传着 “麦束尾之赫萝” 的传说。【四日下午】在此之后，狄安娜写信告诉罗伦斯，这被赫萝问起，秉着 “报喜不报忧” 的想法，罗伦斯只说了赫萝到过雷诺斯，而隐瞒了约伊兹已经毁灭的部分。（主要罗伦斯没想好怎么告诉赫萝约伊兹已经毁灭）赫萝以 “雌性气味的信” 为由留下信件（赫萝在前面曾说自己不识字，想来是假装的），偷看狄安娜给罗伦斯的信件（没有提信里到底写了啥，但是肯定是与猎月熊毁灭约伊兹有关的）【四日傍晚】在罗伦斯外出回来之后，赫萝一时没控制住情绪说出了许多过分的话，冷静后说了句 “抱歉”，罗伦斯一声不吭地出门出去，二人就此出现误会。</li>
-<li>【四日深夜】罗伦斯去找狄安娜求助，想要向其收购炼金术士的黄铁矿，却被告知所有黄铁矿已经被人（赫萝）提前预定了。狄安娜答应罗伦斯，愿意替他去找这人（赫萝）交涉，明早再石商人的摊子前给他答复。罗伦斯在临走之前向她询问，“是否有异教神和人类结为夫妻的传说”，狄安娜笑着回答“有很多”，并小声说“加油”（实际上当时赫萝就在场，全程都听见了）</li>
-</ol>
-<h4 id="感情线">感情线</h4>
-<p>“汝是咱的什么？不，咱是汝的什么？”</p>
-<h3 id="恩贝尔、特列欧">恩贝尔、特列欧</h3>
-<h4 id="登场人物-2">登场人物</h4>
-<p>艾莉莎</p>
-<h4 id="主线-2">主线</h4>
-<h4 id="支线-2">支线</h4>
-<h4 id="感情线-2">感情线</h4>
-<h3 id="雷诺斯">雷诺斯</h3>
-<h4 id="登场人物-3">登场人物</h4>
-<p>艾普</p>
-<h4 id="主线-3">主线</h4>
-<p>雷诺斯传统商品皮草因为“五十人会议”的决定，偷贩私盐的艾普</p>
-<h4 id="支线-3">支线</h4>
-<h4 id="感情线-3">感情线</h4>
-<p>赫萝发现罗伦斯对自己挑逗(?)的抗性越来越高，开始担心与罗伦斯一起的日子会趋于平淡（这种担心甚至超过了她对旅行结束的担心）</p>
-<h5 id="纽希拉">纽希拉</h5>
-
+<h2 id="图像压缩">图像压缩</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723797791052.png" alt="问题介绍" width="500" height="">
+  </div>
+</div>
+<p>如果大片面积为同一颜色，则要如何压缩？</p>
+<h3 id="变位压缩">变位压缩</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723800382865.png" alt="概念" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723800558613.png" alt="建模" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723800674250.png" alt="实例" width="240" height="">
+  </div>
+</div>
+<h3 id="子问题">子问题</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723800741652.png" alt="子问题" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723800809161.png" alt="算法设计" width="350" height="">
+  </div>
+</div>
+<h3 id="伪代码">伪代码</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723801418927.png" alt="伪代码" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723801560000.png" alt="运行过程" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723801647547.png" alt="追踪解" width="240" height="">
+  </div>
+</div>
+<h3 id="小结">小结</h3>
+<ul>
+<li>图像变位存储问题的建模</li>
+<li>子问题边界的界定</li>
+<li>递推方程及初值</li>
+<li>伪码</li>
+<li>标记函数与解的追踪</li>
+<li>时间复杂度</li>
+</ul>
+<h2 id="最大子段和">最大子段和</h2>
+<h3 id="问题介绍">问题介绍</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723801947512.png" alt="问题介绍" width="500" height="">
+  </div>
+</div>
+<h3 id="算法">算法</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802007657.png" alt="三种算法" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802126932.png" alt="暴力算法伪代码" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802374203.png" alt="分治算法" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802459851.png" alt="分治伪代码" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802532409.png" alt="分治算法时间复杂度" width="240" height="">
+  </div>
+</div>
+<h3 id="动态规划">动态规划</h3>
+<h4 id="子问题-2">子问题</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802668435.png" alt="子问题的界定" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723802795789.png" alt="暴力算法伪代码" width="350" height="">
+  </div>
+</div>
+<h4 id="伪代码-2">伪代码</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723803088969.png" alt="动态规划伪代码" width="350" height="">
+  </div>
+</div>
+<h3 id="小结-2">小结</h3>
+<ul>
+<li>三个算法: 暴力，分治，动态规划</li>
+<li>动态归划算法:
+<ul>
+<li>子问题界定</li>
+<li>列优化函数的递推方程和边界条件（不一定是原问题的优化函数）</li>
+<li>自底向上计算，设计备忘录（表格）</li>
+<li>如何根据动态规划的解找原问题的解</li>
+<li>时间复杂度估计</li>
+</ul>
+</li>
+</ul>
+<h2 id="最优二叉检索树">最优二叉检索树</h2>
+<h3 id="概念">概念</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723803292748.png" alt="概念" width="500" height="">
+  </div>
+</div>
+<h4 id="二叉树检索方法">二叉树检索方法</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723803525818.png" alt="方法与实例" width="500" height="">
+  </div>
+</div>
+<h4 id="数据元素存取概率分布">数据元素存取概率分布</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723803614120.png" alt="数据元素存取概率分布" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723803831707.png" alt="实例-输入" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804017828.png" alt="检索的平均时间1" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804194235.png" alt="检索的平均时间2" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804316964.png" alt="计算公式" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804194235.png" alt="检索的平均时间2" width="350" height="">
+  </div>  
+</div>
+<h3 id="问题">问题</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804394693.png" alt="问题" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804490514.png" alt="要点" width="350" height="">
+  </div>
+</div>
+<h3 id="子问题-3">子问题</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804749333.png" alt="划分" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804845893.png" alt="归约" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723804936130.png" alt="子问题概率之和" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723805031870.png" alt="优化函数的递推方程" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723805100549.png" alt="公式的证明" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723805378465.png" alt="优化函数的递推方程" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723805100549.png" alt="公式的证明" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723805378465.png" alt="优化函数的递推方程" width="350" height="">
+  </div>
+</div>
+<h3 id="伪代码-3">伪代码</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723797532616.png" alt="本章主要内容" width="500" height="">
+  </div>
+</div>
+<h2 id="RNA-二级结构预测">RNA 二级结构预测</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723797532616.png" alt="本章主要内容" width="500" height="">
+  </div>
+</div>
+<h2 id="序列比对">序列比对</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723173234845.png" alt="1723173234845" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723173335473.png" alt="1723173335473" width="240" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723174153410.png" alt="1723174153410" width="240" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723174208323.png" alt="1723174208323" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723174292223.png" alt="1723174292223" width="350" height="">
+  </div>
+  <div style="margin: 10px;">
+    <image src="/images/算法设计与分析笔记/Ch05/1723174363122.png" alt="1723174363122" width="350" height="">
+    <image src="/images/算法设计与分析笔记/Ch05/1723174446453.png" alt="1723174446453" width="350" height="">
+  </div>
+</div>
                 
               </div>
             
@@ -429,12 +539,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACGN/" class="category-chain-item">ACGN</a>
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">个人学习笔记</a>
   
   
     <span>></span>
     
-  <a href="/categories/ACGN/Animation/" class="category-chain-item">Animation</a>
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="category-chain-item">算法设计与分析</a>
   
   
 
@@ -451,9 +561,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%BA%8C%E6%AC%A1%E5%85%83/" class="print-no-link">#二次元</a>
-      
-        <a href="/tags/%E5%8A%A8%E7%94%BB/" class="print-no-link">#动画</a>
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
       
     </div>
   
@@ -465,8 +573,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>狼与香辛料</div>
-      <div>http://dbqdss.github.io/2024/08/13/狼与香辛料/</div>
+      <div>算法设计与分析Ch06</div>
+      <div>http://dbqdss.github.io/2024/08/16/算法设计与分析Ch06/</div>
     </div>
     <div class="license-meta">
       
@@ -478,7 +586,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月13日</div>
+          <div>2024年8月16日</div>
         </div>
       
       
@@ -505,6 +613,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/12/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90Ch05/" title="算法设计与分析Ch05">
+                        <span class="hidden-mobile">算法设计与分析Ch05</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
