@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0.png">
 <meta property="article:published_time" content="2024-08-02T01:50:58.000Z">
-<meta property="article:modified_time" content="2024-08-07T10:17:37.473Z">
+<meta property="article:modified_time" content="2024-08-25T09:08:18.998Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -341,7 +341,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月7日 晚上
+                    本文最后更新于 2024年8月25日 下午
                   
                 
               </p>
@@ -350,7 +350,7 @@
               <div class="markdown-body">
                 
                 <h1>第二章 算法分析的数学基础</h1>
-<img src="/images/算法设计与分析笔记/Ch02/1721533644073.png" srcset="/img/loading.gif" lazyload alt="1721533644073" width="500" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbBAe.md.png" srcset="/img/loading.gif" lazyload alt="本章重点" width="500" height="">
 <h2 id="序列求和的方法">序列求和的方法</h2>
 <p><strong>数列求和公式</strong>：等差、等比数列与调和级数</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>k</mi></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac><mo separator="true">,</mo><mspace width="2em"/><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mi>a</mi><msup><mi>q</mi><mi>k</mi></msup><mo>=</mo><mfrac><mrow><mi>a</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msup><mi>q</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>q</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\sum_{k=1}^{n} a_k = \frac{n(a_1+a_n)}{2},\qquad\sum_{k=0}^{n} aq^k = \frac{a(1-q^{n+1})}{1-q}
@@ -377,12 +377,12 @@
 <p>给定关于序列 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{a_n\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span> 的递推方程和若干初值，计算 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">a_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>例子：Fibonacci 数列</p>
 <h4 id="Hanoi塔问题">Hanoi塔问题</h4>
-<img src="/images/算法设计与分析笔记/Ch02/1722565097059.png" srcset="/img/loading.gif" lazyload alt="1722565097059" width="350" height="">
-<img src="/images/算法设计与分析笔记/Ch02/1722565260697.png" srcset="/img/loading.gif" lazyload alt="1722565260697" width="350" height="">
-<img src="/images/算法设计与分析笔记/Ch02/1722565330205.png" srcset="/img/loading.gif" lazyload alt="1722565330205" width="400" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbd0O.png" srcset="/img/loading.gif" lazyload alt="汉诺塔" width="350" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbNX6.md.png" srcset="/img/loading.gif" lazyload alt="递归算法" width="350" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbw7D.png" srcset="/img/loading.gif" lazyload alt="算法分析" width="400" height="">
 <h4 id="插入排序">插入排序</h4>
-<img src="/images/算法设计与分析笔记/Ch02/1722565378720.png" srcset="/img/loading.gif" lazyload alt="1722565378720" width="350" height="">
-<img src="/images/算法设计与分析笔记/Ch02/1722565617998.png" srcset="/img/loading.gif" lazyload alt="1722565617998" width="350" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbanK.png" srcset="/img/loading.gif" lazyload alt="插入排序" width="350" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbDtH.md.png" srcset="/img/loading.gif" lazyload alt="算法分析" width="350" height="">
 <h3 id="小结">小结</h3>
 <ul>
 <li>递推方程的定义及初值</li>
@@ -399,7 +399,7 @@
 <li>将初值代入并对和式求和</li>
 <li>可用数学归纳法验证解的正确性</li>
 </ul>
-<img src="/images/算法设计与分析笔记/Ch02/1722565865873.png" srcset="/img/loading.gif" lazyload alt="1722565865873" width="350" height="">
+<img src="https://s21.ax1x.com/2024/08/25/pAFbrhd.md.png" srcset="/img/loading.gif" lazyload alt="Hanoi塔算法" width="350" height="">
 <img src="/images/算法设计与分析笔记/Ch02/1722565617998.png" srcset="/img/loading.gif" lazyload alt="1722565617998" width="350" height="">
 <h4 id="换元迭代">换元迭代</h4>
 <ul>
