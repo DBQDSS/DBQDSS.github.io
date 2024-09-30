@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0.png">
 <meta property="article:published_time" content="2024-08-12T10:52:27.000Z">
-<meta property="article:modified_time" content="2024-08-12T10:52:53.273Z">
+<meta property="article:modified_time" content="2024-09-30T16:27:16.672Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -341,7 +341,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月12日 晚上
+                    本文最后更新于 2024年10月1日 凌晨
                   
                 
               </p>
@@ -352,7 +352,7 @@
                 <h1>第五章 动态规划算法</h1>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1722994301991.png" alt="1722994301991" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356904.png" alt="本章总结" width="500" height="">
   </div>
 </div>
 <h2 id="动态规划算法的例子">动态规划算法的例子</h2>
@@ -368,17 +368,17 @@
 <p><strong>输出:</strong> 一条从起点到终点的最短路径</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723173234845.png" alt="1723173234845" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723173335473.png" alt="1723173335473" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723174153410.png" alt="1723174153410" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356834.png" alt="一个实例" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356729.png" alt="算法设计" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356663.png" alt="动态规划求解" width="240" height="">
   </div>
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723174208323.png" alt="1723174208323" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723174292223.png" alt="1723174292223" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356582.png" alt="子问题界定" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410010024733.png" alt="依赖关系" width="350" height="">
   </div>
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723174363122.png" alt="1723174363122" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723174446453.png" alt="1723174446453" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356446.png" alt="优化原则" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356358.png" alt="一个反例" width="350" height="">
   </div>
 </div>
 <h3 id="小结">小结</h3>
@@ -397,35 +397,31 @@
 <li>是否满足优化原则？</li>
 <li>最小子问题怎样界定？其优化函数值，即初值等于什么？</li>
 </ol>
-<h4 id="矩阵链相乘">矩阵链相乘</h4>
+<h3 id="矩阵链相乘">矩阵链相乘</h3>
 <p><strong>问题:</strong> 设 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>A</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A_1, A_2, \cdots, A_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为矩阵链序列,<br>
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">A_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>×</mo><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">P_{i-1} × P_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 阶矩阵, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i = 1, 2, \cdots, n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>.<br>
 试确定矩阵的乘法顺序, 使得元素相乘的总次数最少.<br>
 <strong>输入:</strong> 向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mo>&lt;</mo><msub><mi>P</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>P</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>P</mi><mi>n</mi></msub><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">P = &lt;P_0, P_1, ..., P_n&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>P</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>P</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">P_0, P_1, \cdots, P_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>  为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 个矩阵的行数和列数<br>
 <strong>输出:</strong> 矩阵链乘法加括号的位置.</p>
-<h5 id="矩阵相乘基本运算次数">矩阵相乘基本运算次数</h5>
+<h3 id="矩阵相乘基本运算次数">矩阵相乘基本运算次数</h3>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723175230290.png" alt="1723175230290" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723176481349.png" alt="1723176481349" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410010025632.png" alt="矩阵相乘基本运算次数" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356195.png" alt="实例" width="350" height="">
   </div>
 </div>
-<h6 id="暴力算法">暴力算法</h6>
+<h3 id="两种算法的复杂度">两种算法的复杂度</h3>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723449688314.png" alt="1723449688314" width="500" height="">  </div>
-</div>
-<h6 id="动态规划算法">动态规划算法</h6>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723449789796.png" alt="设计思想" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450244972.png" alt="递推方程" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356092.png" alt="暴力算法的复杂度" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356026.png" alt="动态规划-设计思想" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356952.png" alt="动态规划-递推方程" width="240" height="">
   </div>
 </div>
-<h4 id="小结-2">小结</h4>
+<h3 id="小结-2">小结</h3>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450314611.png" alt="小结" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356889.png" alt="小结" width="500" height="">
   </div>
 </div>
 <h3 id="两种实现">两种实现</h3>
@@ -433,21 +429,21 @@
 <h5 id="伪代码">伪代码</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450503210.png" alt="递归实现的伪代码" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356806.png" alt="递归实现的伪代码" width="500" height="">
   </div>
 </div>
 <h5 id="时间复杂度分析">时间复杂度分析</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450586889.png" alt="时间复杂度" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450636898.png" alt="推导" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356714.png" alt="时间复杂度" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356665.png" alt="推导" width="350" height="">
   </div>
 </div>
 <p>为什么会出现指数数量级的复杂度？</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450775048.png" alt="递归树" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723450815804.png" alt="计数" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356573.png" alt="递归树" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356493.png" alt="计数" width="350" height="">
   </div>
 </div>
 <p>原因：同一个子问题被重复计算，导致算法的复杂度上升。</p>
@@ -478,39 +474,37 @@
 <h5 id="子问题以及计算顺序">子问题以及计算顺序</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723451729286.png" alt="子问题" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723451781798.png" alt="迭代顺序" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723451835524.png" alt="计算顺序" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356395.png" alt="子问题" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356287.png" alt="迭代顺序" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356193.png" alt="计算顺序" width="240" height="">
   </div>
 </div>
 <h5 id="伪代码-2">伪代码</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452157547.png" alt="伪代码" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356096.png" alt="伪代码" width="500" height="">
   </div>
 </div>
 <p>m 记录所有子问题的最少乘法次数；s 记录的是所有子问题的分界位置</p>
 <h5 id="时间复杂度分析-2">时间复杂度分析</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452366912.png" alt="时间复杂度分析" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356000.png" alt="时间复杂度分析" width="500" height="">
   </div>
 </div>
 <p><strong>实例</strong></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452422516.png" alt="实例" width="500" height="">
-  </div>
-  <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452619731.png" alt="备忘录 m 的具体计算过程" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452841542.png" alt="备忘录 s 的具体计算过程" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356908.png" alt="实例" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410010026007.png" alt="备忘录 m 的具体计算过程" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356741.png" alt="备忘录 s 的具体计算过程" width="240" height="">
   </div>
 </div>
 <h4 id="小结-4">小结</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452897022.png" alt="两种实现方法的比较" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723452938379.png" alt="动态规划算法要素总结" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356642.png" alt="两种实现方法的比较" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356528.png" alt="动态规划算法要素总结" width="350" height="">
   </div>
 </div>
 <h2 id="应用">应用</h2>
@@ -584,27 +578,27 @@
 <h4 id="子问题">子问题</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723453487090.png" alt="子问题界定和计算顺序" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723453616205.png" alt="优化函数的递推方程" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356460.png" alt="子问题界定和计算顺序" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356370.png" alt="优化函数的递推方程" width="350" height="">
   </div>
 </div>
 <p><strong>实例：</strong></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723453735506.png" alt="$k$ = 1" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723453854626.png" alt="$k$ = 2" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356305.png" alt="$k$ = 1" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356226.png" alt="$k$ = 2" width="350" height="">
   </div>
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723454149509.png" alt="备忘录-1" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723454205943.png" alt="备忘录-2" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723454116466.png" alt="备忘录-3" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356136.png" alt="备忘录-1" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356046.png" alt="备忘录-2" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356986.png" alt="备忘录-3" width="240" height="">
   </div>
 </div>
 <h4 id="时间复杂度分析-3">时间复杂度分析</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723454299345.png" alt="分析-1" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723454352195.png" alt="分析-2" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356909.png" alt="分析-1" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356839.png" alt="分析-2" width="350" height="">
   </div>
 </div>
 <h4 id="小结-5">小结</h4>
@@ -620,42 +614,37 @@
 <h4 id="建模-2">建模</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723455589442.png" alt="问题描述" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723456713872.png" alt="建模" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356753.png" alt="问题描述" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356661.png" alt="建模" width="350" height="">
   </div>
 </div>
 <h4 id="子问题-2">子问题</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723456793865.png" alt="子问题" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723456999595.png" alt="递推方程" width="240" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723457305493.png" alt="标记函数" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356608.png" alt="子问题" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356501.png" alt="递推方程" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356431.png" alt="标记函数" width="240" height="">
   </div>
 </div>
 <p><strong>区别：</strong> 上面写法的时间复杂度比较低，因为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_k(y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> 表达式里面的数值都可以查到，故只需要常数时间；下面的写法需要遍历 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">x_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 所有可能的值，当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">x_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 比较大的时候，复杂度超过常数时间。</p>
 <p><strong>实例：</strong></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723457383845.png" alt="表" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723457530211.png" alt="追踪解" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356355.png" alt="表" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356272.png" alt="追踪解" width="350" height="">
   </div>
 </div>
-<h4 id="伪代码-3">伪代码</h4>
+<h4 id="算法分析">算法分析</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723457806766.png" alt="伪代码" width="500" height="">
-  </div>
-</div>
-<h4 id="时间复杂度分析-4">时间复杂度分析</h4>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723457849196.png" alt="时间复杂度" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356204.png" alt="伪代码" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356130.png" alt="时间复杂度" width="350" height="">
   </div>
 </div>
 <h4 id="背包问题的推广">背包问题的推广</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723457948656.png" alt="推广" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356061.png" alt="推广" width="500" height="">
   </div>
 </div>
 <h4 id="小结-6">小结</h4>
@@ -670,49 +659,42 @@
 <h4 id="问题描述">问题描述</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723458158533.png" alt="问题描述-1" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723458217540.png" alt="问题描述-2" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356980.png" alt="问题描述-1" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356893.png" alt="问题描述-2" width="350" height="">
   </div>
 </div>
-<h4 id="暴力算法-2">暴力算法</h4>
+<h4 id="暴力算法">暴力算法</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723458580994.png" alt="暴力算法" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356811.png" alt="暴力算法" width="500" height="">
   </div>
 </div>
-<h4 id="动态规划算法-2">动态规划算法</h4>
+<h4 id="动态规划算法">动态规划算法</h4>
 <h5 id="子问题-3">子问题</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723458701817.png" alt="子问题界定" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723458878354.png" alt="依赖关系" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356719.png" alt="子问题界定" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356556.png" alt="依赖关系" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356518.png" alt="优化函数的递推方程" width="240" height="">
   </div>
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723458936882.png" alt="优化函数的递推方程" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459075066.png" alt="标记函数-情形1" width="350" height="">
-  </div>
-  <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459129985.png" alt="标记函数-情形2" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459147202.png" alt="标记函数-情形3" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356476.png" alt="标记函数-情形1" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356405.png" alt="标记函数-情形2" width="240" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356354.png" alt="标记函数-情形3" width="240" height="">
   </div>
 </div>
-<h5 id="伪代码-4">伪代码</h5>
+<h5 id="伪代码-3">伪代码</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459232955.png" alt="伪代码" width="350" height="">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459299848.png" alt="追踪解" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356328.png" alt="伪代码" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356302.png" alt="追踪解" width="350" height="">
   </div>
 </div>
 <h5 id="实例">实例</h5>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459408462.png" alt="实例" width="500" height="">
-  </div>
-</div>
-<h5 id="时空复杂度">时空复杂度</h5>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <div style="margin: 10px;">
-    <image src="/images/算法设计与分析笔记/Ch05/1723459513361.png" alt="时空复杂度" width="500" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356257.png" alt="实例" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202409302356196.png" alt="时空复杂度" width="350" height="">
   </div>
 </div>
 <p>空间复杂度在于备忘录的构建。</p>
