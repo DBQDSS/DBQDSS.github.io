@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/ML2021.png">
 <meta property="article:published_time" content="2024-08-07T01:53:48.000Z">
-<meta property="article:modified_time" content="2024-08-07T10:18:36.338Z">
+<meta property="article:modified_time" content="2024-10-02T14:10:28.339Z">
 <meta property="article:author" content="DBQDSS">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -341,7 +341,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月7日 晚上
+                    本文最后更新于 2024年10月2日 晚上
                   
                 
               </p>
@@ -356,33 +356,69 @@
 </blockquote>
 <h2 id="类神经网络（续）">类神经网络（续）</h2>
 <p>Q：为什么分类问题中 Cross-entropy 优于 MSE？</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1722997258260.png" alt="1722997258260" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157844.png" alt="1722997258260" width="500" height="">
+  </div>
+</div>
 <p>A：若在采用梯度下降法的情况下使用 MSE，则会在 Loss 较大时 stuck（左上角）</p>
 <h3 id="批次标准化-Batch-Normalization">批次标准化 - Batch Normalization</h3>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1722998305077.png" alt="1722998305077" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157778.png" alt="1722998305077" width="500" height="">
+  </div>
+</div>
 <h4 id="training">training</h4>
 <p>Q：考虑 W 时，到底要对 z 还是 a 做标准化？</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1722998933853.png" alt="1722998933853" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157713.png" alt="1722998933853" width="500" height="">
+  </div>
+</div>
 <p>A：在实际操作中可能差异不是很大。如果激活函数采用sigmoid，则推荐对 z 做标准化，因为在 0 附近 gradient 比较大。</p>
 <p><strong>batch 需要足够大。</strong></p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1722999567770.png" alt="1722999567770" width="350" height="">
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1722999754929.png" alt="1722999754929" width="350" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157649.png" alt="1722999567770" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157589.png" alt="1722999754929" width="350" height="">
+  </div>
+</div>
 <h4 id="testing">testing</h4>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723002319333.png" alt="1723002319333" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157534.png" alt="1723002319333" width="500" height="">
+  </div>
+</div>
 <h2 id="Network-架构设计">Network 架构设计</h2>
 <h3 id="CNN">CNN</h3>
 <p>CNN 通常用于图像分类<br>
 假设输入图片大小是固定的（否则 rescale）</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723003958175.png" alt="1723003958175" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157477.png" alt="1723003958175" width="500" height="">
+  </div>
+</div>
 <h4 id="观察-简化-1">观察 &amp; 简化 1</h4>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723018028301.png" alt="1723018028301" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157410.png" alt="1723018028301" width="500" height="">
+  </div>
+</div>
 <p>不需要将整张图片作为输入(fully connected network 的做法)，只需要将图片的一小部分作为输入即可找到关键 pattern。</p>
 <p><strong>简化：</strong> 设定 receptive field，每个 Neuron 只接收一个 receptive field 内的输入，并进行计算。</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723018468963.png" alt="1723018468963" width="350" height="">
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723018524378.png" alt="1723018524378" width="350" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157348.png" alt="1723018468963" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157296.png" alt="1723018524378" width="350" height="">
+  </div>
+</div>
 <p>receptive field 可以互相重叠，也可相同，可以是连通的也可以不连通的（例如，可以指定“左上角”与“右下角”，但是这样的receptive field 不一定适合解决通常情况下的问题）</p>
 <p>receptive field 可以大小不一，形状也可以不一（长方形也可），也可以只考虑某些 channels（例如 RGB 三个中只考虑 R）</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723019287227.png" alt="1723019287227" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157237.png" alt="1723019287227" width="500" height="">
+  </div>
+</div>
 <p><strong>经典 setting</strong></p>
 <ul>
 <li>all channels</li>
@@ -392,40 +428,88 @@
 </ul>
 <h4 id="观察-简化-2">观察 &amp; 简化 2</h4>
 <p><strong>简化：</strong> 不同的 receptive field 共享参数，相同的 receptive field 不同参数(如果共享，则会导致输出完全相同)</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723019801653.png" alt="1723019801653" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157176.png" alt="1723019801653" width="500" height="">
+  </div>
+</div>
 <p><strong>经典 setting：</strong></p>
 <ul>
 <li>每个 receptive field 上同一组的 neurons 使用不同的 filter，不同 receptive field 对应的不同 Neurons 共享 filter</li>
 </ul>
 <p>（如下图所示，不同 receptive field 的不同 neurons 共享参数 filter1, filter2 …）</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723019986911.png" alt="1723019986911" width="600" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157115.png" alt="1723019986911" width="600" height="">
+  </div>
+</div>
 <h4 id="卷积层">卷积层</h4>
 <p>Convolutional Layer</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723021119089.png" alt="1723021119089" width="600" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157054.png" alt="1723021119089" width="600" height="">
+  </div>
+</div>
 <h5 id="filter-如何运作？">filter 如何运作？</h5>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723021417024.png" alt="1723021417024" width="600" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157997.png" alt="1723021417024" width="600" height="">
+  </div>
+</div>
 <p>使用如下 filter 1，由于 filter 主对角线上全为 1，当输入 receptive field 主对角线全为 1 时出现最大值 3。于是从输出上可以看到在 image 左上、左下位置出现了对角线“三连1”的情形。</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723021589545.png" alt="1723021589545" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157951.png" alt="1723021589545" width="500" height="">
+  </div>
+</div>
 <h5 id="Multiple-Convolutional-Layer">Multiple Convolutional Layer</h5>
 <p>经过 filter 输出的 称为 feature map，feature map 大小与输入相同，channel 数目与 filter 数目相同。</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022186620.png" alt="1723022186620" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157899.png" alt="1723022186620" width="500" height="">
+  </div>
+</div>
 <p>只要 network 足够深，就能够监测到足够大的 pattern</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022484535.png" alt="1723022484535" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157843.png" alt="1723022484535" width="500" height="">
+  </div>
+</div>
 <h4 id="两种角度对比">两种角度对比</h4>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022748681.png" alt="1723022748681" width="600" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157781.png" alt="1723022748681" width="600" height="">
+  </div>
+</div>
 <h4 id="Max-Pooling">Max Pooling</h4>
 <p>有多种 pooling 的方式，max pooling 就是取 每一组中的最大值作为输出。</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723022961744.png" alt="1723022961744" width="350" height="">
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023001885.png" alt="1723023001885" width="350" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157721.png" alt="1723022961744" width="350" height="">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157661.png" alt="1723023001885" width="350" height="">
+  </div>
+</div>
 <p>Convolutional Layer + Pooling <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇒</span></span></span></span> 实现减少运算量</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023162271.png" alt="1723023162271" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157606.png" alt="1723023162271" width="500" height="">
+  </div>
+</div>
 <p><strong>基本结构：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 次 convolutional + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 次 pooling。</strong></p>
 <p>但是 pooling 会损失信息，如果算力足够强的话，可以不用 pooling。</p>
 <p>Flatten：将本来排成矩阵的数据拉直为一个向量。</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023450039.png" alt="1723023450039" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157553.png" alt="1723023450039" width="500" height="">
+  </div>
+</div>
 <h3 id="Alpha-Go">Alpha Go</h3>
 <p>将棋盘看作是 19 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 19 的 image</p>
-<image src="/images/李宏毅-ML2021-随手记/Note-02/1723023800663.png" alt="1723023800663" width="500" height="">
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;">
+    <image src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202410022157505.png" alt="1723023800663" width="500" height="">
+  </div>
+</div>
                 
               </div>
             
