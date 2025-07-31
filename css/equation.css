@@ -1,0 +1,19 @@
+.equation {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+.equation-number {
+  float: right;
+  margin-right: 10px;
+}
+
+.equation-ref {
+  color: #7cfa91ff;
+  text-decoration: none;
+}
+
+.equation-ref:hover {
+  text-decoration: underline;
+}
