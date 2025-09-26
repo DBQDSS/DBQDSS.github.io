@@ -28,9 +28,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/CS336.png">
 <meta property="article:published_time" content="2025-09-26T09:31:27.000Z">
-<meta property="article:modified_time" content="2025-09-26T09:40:38.330Z">
+<meta property="article:modified_time" content="2025-09-26T09:47:06.849Z">
 <meta property="article:author" content="失去理想的獾">
 <meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/CS336.png">
   
@@ -519,7 +520,7 @@ Components: tokenization, model architecture, training</p>
 <p>分词器 (Tokenizers) 的作用：在字符串和整数序列 (tokens) 之间进行转换。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261645293.png" srcset="/img/loading.gif" lazyload alt="Tokenizer 示意图" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261645293.png" srcset="/img/loading.gif" lazyload alt="Tokenizer 示意图" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     Tokenizer 示意图
@@ -534,7 +535,7 @@ Components: tokenization, model architecture, training</p>
 <p>Starting point: original Transformer <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">[Vaswani+ 2017]</a></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261647112.png" srcset="/img/loading.gif" lazyload alt="Transformer 架构示意图" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261647112.png" srcset="/img/loading.gif" lazyload alt="Transformer 架构示意图" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     Transformer 架构示意图
@@ -631,7 +632,7 @@ Components：kernels, parallelism, inference.</p>
 <h4 id="Parallelism">Parallelism</h4>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261651604.png" srcset="/img/loading.gif" lazyload alt="并行计算示意图" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261651604.png" srcset="/img/loading.gif" lazyload alt="并行计算示意图" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     并行计算示意图
@@ -650,7 +651,7 @@ Components：kernels, parallelism, inference.</p>
 <p>推理分为两个阶段：预填充阶段 (prefill) 和解码阶段 (decode)</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261652894.png" srcset="/img/loading.gif" lazyload alt="推理过程示意图" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261652894.png" srcset="/img/loading.gif" lazyload alt="推理过程示意图" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     推理过程示意图
@@ -680,7 +681,7 @@ Components：kernels, parallelism, inference.</p>
 <p>计算最优的缩放法则可参考 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2001.08361">[Kaplan+ 2020]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.15556">[Hoffmann+ 2022]</a></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261654815.png" srcset="/img/loading.gif" lazyload alt="Scaling Laws论文结果" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261654815.png" srcset="/img/loading.gif" lazyload alt="Scaling Laws论文结果" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     Scaling Laws 论文结果
@@ -703,7 +704,7 @@ Components：kernels, parallelism, inference.</p>
 <p>要明确我们希望模型具备哪些能力：是多语言能力？还是代码相关能力？或者数学方面的能力？</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261657788.png" srcset="/img/loading.gif" lazyload alt="不同数据来源的比例" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261657788.png" srcset="/img/loading.gif" lazyload alt="不同数据来源的比例" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     不同数据来源的比例
@@ -815,7 +816,7 @@ Components：kernels, parallelism, inference.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">indices = tokenizer.encode(string) <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices) <span class="hljs-comment"># @inspect reconstructed_string</span><br><span class="hljs-keyword">assert</span> string == reconstructed_string<br>compression_ratio = get_compression_ratio(string, indices) <span class="hljs-comment"># @inspect compression_ratio</span><br></code></pre></td></tr></table></figure>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261659086.png" srcset="/img/loading.gif" lazyload alt="GPT-2 分词器样例" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261659086.png" srcset="/img/loading.gif" lazyload alt="GPT-2 分词器样例" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     GPT-2 分词器样例
@@ -836,7 +837,7 @@ Components：kernels, parallelism, inference.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = CharacterTokenizer()<br>string = <span class="hljs-string">&quot;Hello, 🌍! 你好!&quot;</span>  <span class="hljs-comment"># @inspect string</span><br>indices = tokenizer.encode(string)  <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices)  <span class="hljs-comment"># @inspect reconstructed_string</span><br><span class="hljs-keyword">assert</span> string == reconstructed_string<br><br>vocabulary_size = <span class="hljs-built_in">max</span>(indices) + <span class="hljs-number">1</span>  <span class="hljs-comment"># 这是一个下限 @inspect vocabulary_size</span><br>compression_ratio = get_compression_ratio(string, indices)  <span class="hljs-comment"># @inspect compression_ratio</span><br></code></pre></td></tr></table></figure>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261702472.png" srcset="/img/loading.gif" lazyload alt="Character-based tokenizer 可视化结果" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261702472.png" srcset="/img/loading.gif" lazyload alt="Character-based tokenizer 可视化结果" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     Character-based tokenizer 可视化结果
@@ -863,7 +864,7 @@ Components：kernels, parallelism, inference.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = ByteTokenizer()<br>string = <span class="hljs-string">&quot;Hello, 🌍! 你好!&quot;</span>  <span class="hljs-comment"># @inspect string</span><br>indices = tokenizer.encode(string)  <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices)  <span class="hljs-comment"># @inspect reconstructed_string</span><br></code></pre></td></tr></table></figure>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261706671.png" srcset="/img/loading.gif" lazyload alt="Byte-based tokenizer 可视化结果" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261706671.png" srcset="/img/loading.gif" lazyload alt="Byte-based tokenizer 可视化结果" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     Byte-based tokenizer 可视化结果
@@ -881,7 +882,7 @@ Components：kernels, parallelism, inference.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">string = <span class="hljs-string">&quot;I&#x27;ll say supercalifragilisticexpialidocious!&quot;</span><br><br>segments = regex.findall(<span class="hljs-string">r&quot;\w+|.&quot;</span>, string)  <span class="hljs-comment"># @inspect segments</span><br></code></pre></td></tr></table></figure>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261708900.png" srcset="/img/loading.gif" lazyload alt="Word-based tokenizer 可视化结果" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261708900.png" srcset="/img/loading.gif" lazyload alt="Word-based tokenizer 可视化结果" width="720" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     Word-based tokenizer 可视化结果
@@ -917,16 +918,16 @@ Components：kernels, parallelism, inference.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">train_bpe</span>(<span class="hljs-params">string: <span class="hljs-built_in">str</span>, num_merges: <span class="hljs-built_in">int</span></span>) -&gt; BPEtokenizerParams:  <span class="hljs-comment"># @inspect string, @inspect num_merges</span><br>    <span class="hljs-comment"># Start with the list of bytes of string.</span><br><br>    indices = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, string.encode(<span class="hljs-string">&quot;utf-8&quot;</span>)))  <span class="hljs-comment"># @inspect indices</span><br>    merges: <span class="hljs-built_in">dict</span>[<span class="hljs-built_in">tuple</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>], <span class="hljs-built_in">int</span>] = &#123;&#125;  <span class="hljs-comment"># index1, index2 =&gt; merged index</span><br>    vocab: <span class="hljs-built_in">dict</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">bytes</span>] = &#123;x: <span class="hljs-built_in">bytes</span>([x]) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>)&#125;  <span class="hljs-comment"># index -&gt; bytes</span><br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_merges):<br>        <span class="hljs-comment"># Count the number of occurrences of each pair of tokens</span><br>        counts = defaultdict(<span class="hljs-built_in">int</span>)<br>        <span class="hljs-keyword">for</span> index1, index2 <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(indices, indices[<span class="hljs-number">1</span>:]):  <span class="hljs-comment"># For each adjacent pair</span><br>            counts[(index1, index2)] += <span class="hljs-number">1</span>  <span class="hljs-comment"># @inspect counts</span><br><br>        <span class="hljs-comment"># Find the most common pair.</span><br>        pair = <span class="hljs-built_in">max</span>(counts, key=counts.get)  <span class="hljs-comment"># @inspect pair</span><br>        index1, index2 = pair<br><br>        <span class="hljs-comment"># Merge that pair.</span><br>        new_index = <span class="hljs-number">256</span> + i  <span class="hljs-comment"># @inspect new_index</span><br>        merges[pair] = new_index  <span class="hljs-comment"># @inspect merges</span><br>        vocab[new_index] = vocab[index1] + vocab[index2]  <span class="hljs-comment"># @inspect vocab</span><br>        indices = merge(indices, pair, new_index)  <span class="hljs-comment"># @inspect indices</span><br><br>    <span class="hljs-keyword">return</span> BPEtokenizerParams(vocab=vocab, merges=merges)<br></code></pre></td></tr></table></figure>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261716360.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-1" width="" height="210">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261716258.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-2" width="" height="210">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261716360.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-1" width="" height="300">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261716258.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-2" width="" height="300">
     <br>
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719352.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-3" width="" height="180">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719727.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-4" width="" height="180">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719352.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-3" width="" height="250">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719727.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-4" width="" height="250">
     <br>
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719042.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-5" width="" height="180">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261722979.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-6" width="" height="180">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719042.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-5" width="" height="230">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261722979.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-6" width="" height="230">
     <br>
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261722379.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-7" width="" height="180">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261722379.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-7" width="" height="230">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     BPE 算法的可视化过程
@@ -999,6 +1000,8 @@ Components：kernels, parallelism, inference.</p>
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
       
     </div>
   
