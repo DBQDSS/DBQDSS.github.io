@@ -1,0 +1,928 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="失去理想的獾">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="顺手把LaTeX会用到的常用功能也记录下来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beamer常用功能合集">
+<meta property="og:url" content="http://dbqdss.github.io/2025/06/12/%E6%9D%82%E7%AF%87/Little%20Tricks/Beamer%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E5%90%88%E9%9B%86/index.html">
+<meta property="og:site_name" content="失去理想的獾 の Blog">
+<meta property="og:description" content="顺手把LaTeX会用到的常用功能也记录下来。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/20250612Beamer.png">
+<meta property="article:published_time" content="2025-06-12T12:43:25.000Z">
+<meta property="article:modified_time" content="2025-10-23T15:20:01.413Z">
+<meta property="article:author" content="失去理想的獾">
+<meta property="article:tag" content="LaTeX">
+<meta property="article:tag" content="Beamer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/20250612Beamer.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>Beamer常用功能合集 - 失去理想的獾 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/mouse.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/equation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbqdss.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1, h2, h3, h4, h5, h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="失去理想的獾 の Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>失去理想的獾 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/cv/my-cv.pdf" target="_self">
+                    <i class="iconfont icon-addrcard"></i>
+                    <span>简历</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="动态更新中..."></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        失去理想的獾
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-12 20:43" pubdate>
+          2025年6月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">动态更新中...</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年10月23日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>此处用于存档xjtuthesis模板的Beamer常用功能合集。<a target="_blank" rel="noopener" href="https://www.overleaf.com/latex/templates/xjtu-beamer-theme/ddhzxgwqbvsy">Overleaf上的xjtuthesis模板</a></p>
+</blockquote>
+<h2 id="逐帧展示">逐帧展示</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;&#123;用Beamer很高大上？&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;itemize&#125;[&lt;+-| alert@+&gt;] <span class="hljs-comment">% 当然，除了alert，手动在里面插 \pause 也行</span><br>        <span class="hljs-keyword">\item</span> 大家都会<span class="hljs-keyword">\LaTeX</span>&#123;&#125;，好多学校都有自己的Beamer主题<br>        <span class="hljs-keyword">\item</span> 中文支持请选择 Xe<span class="hljs-keyword">\LaTeX</span>&#123;&#125; 编译选项<br>    <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<p>使用alert可以自动生成逐帧显示。</p>
+<h2 id="超链接与引用">超链接与引用</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span> 有一些 <span class="hljs-keyword">\LaTeX</span>&#123;&#125; 自带的<br>        <span class="hljs-keyword">\item</span> 有一些Tsinghua的<br>        <span class="hljs-keyword">\item</span> 本模板来源自THU Beamer Theme<br>        <span class="hljs-keyword">\item</span> 但是最初的 <span class="hljs-keyword">\href</span>&#123;<span class="hljs-link">http://far.tooold.cn/post/latex/beamertsinghua</span>&#125;&#123;<span class="hljs-keyword">\color</span>&#123;purple&#125;&#123;link&#125;&#125; <span class="hljs-keyword">\cite</span>&#123;origin&#125;已经失效了<br>        <span class="hljs-keyword">\item</span> 这是原作者在16-17年做的一些ppt：<span class="hljs-keyword">\href</span>&#123;<span class="hljs-link">https://github.com/Trinkle23897/oi_slides</span>&#125;&#123;<span class="hljs-keyword">\color</span>&#123;blue&#125;&#123;戳我&#125;&#125;<br>    <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;&#123;这一份主题与原始的THU Beamer Theme区别在于&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span> 顶栏的小点变成一行而不是多行<br>        <span class="hljs-keyword">\item</span> 中文采用楷书<br>        <span class="hljs-keyword">\item</span> 修改了主题色为南邮校徽颜色<br>        <span class="hljs-keyword">\item</span> 参考文献格式按照毕设标准进行了修改<br>        <span class="hljs-keyword">\item</span> 更多该模板的功能可以参考 <span class="hljs-keyword">\url</span>&#123;<span class="hljs-link">https://www.latexstudio.net/archives/4051.html</span>&#125;<br>        <span class="hljs-keyword">\item</span> 下面列举出了一些Beamer的用法，部分节选自 <span class="hljs-keyword">\url</span>&#123;<span class="hljs-link">https://tuna.moe/event/2018/latex/</span>&#125;<br>    <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="二分表格示例">二分表格示例</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;&#123;Why Beamer&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span> <span class="hljs-keyword">\LaTeX</span> 广泛用于学术界，期刊会议论文模板<br>    <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;table&#125;[h]<br>        <span class="hljs-keyword">\centering</span><br>        <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;c|c&#125;<br>            Microsoft<span class="hljs-keyword">\textsuperscript</span>&#123;<span class="hljs-keyword">\textregistered</span>&#125;  Word <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\LaTeX</span> <span class="hljs-keyword">\\</span><br>            <span class="hljs-keyword">\hline</span><br>            文字处理工具 <span class="hljs-built_in">&amp;</span> 专业排版软件 <span class="hljs-keyword">\\</span><br>            容易上手，简单直观 <span class="hljs-built_in">&amp;</span> 容易上手 <span class="hljs-keyword">\\</span><br>            所见即所得 <span class="hljs-built_in">&amp;</span> 所见即所想，所想即所得 <span class="hljs-keyword">\\</span><br>            高级功能不易掌握 <span class="hljs-built_in">&amp;</span> 进阶难，但一般用不到 <span class="hljs-keyword">\\</span><br>            处理长文档需要丰富经验 <span class="hljs-built_in">&amp;</span> 和短文档处理基本无异 <span class="hljs-keyword">\\</span><br>            花费大量时间调格式 <span class="hljs-built_in">&amp;</span> 无需担心格式，专心作者内容 <span class="hljs-keyword">\\</span><br>            公式排版差强人意 <span class="hljs-built_in">&amp;</span> 尤其擅长公式排版 <span class="hljs-keyword">\\</span><br>            二进制格式，兼容性差 <span class="hljs-built_in">&amp;</span> 文本文件，易读、稳定 <span class="hljs-keyword">\\</span><br>            付费商业许可 <span class="hljs-built_in">&amp;</span> 自由免费使用 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;table&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="无编号公式">无编号公式</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;&#123;排版举例&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;exampleblock&#125;&#123;无编号公式&#125; <span class="hljs-comment">% 加 * </span><br>        <span class="hljs-keyword">\begin</span>&#123;equation*&#125;<br>            J(<span class="hljs-keyword">\theta</span>) = <span class="hljs-keyword">\mathbb</span>&#123;E&#125;<span class="hljs-built_in">_</span>&#123;<span class="hljs-keyword">\pi</span><span class="hljs-built_in">_</span><span class="hljs-keyword">\theta</span>&#125;[G<span class="hljs-built_in">_</span>t] = <span class="hljs-keyword">\sum</span><span class="hljs-built_in">_</span>&#123;s<span class="hljs-keyword">\in</span><span class="hljs-keyword">\mathcal</span>&#123;S&#125;&#125; d<span class="hljs-built_in">^</span><span class="hljs-keyword">\pi</span> (s)V<span class="hljs-built_in">^</span><span class="hljs-keyword">\pi</span>(s)=<span class="hljs-keyword">\sum</span><span class="hljs-built_in">_</span>&#123;s<span class="hljs-keyword">\in</span><span class="hljs-keyword">\mathcal</span>&#123;S&#125;&#125; d<span class="hljs-built_in">^</span><span class="hljs-keyword">\pi</span>(s)<span class="hljs-keyword">\sum</span><span class="hljs-built_in">_</span>&#123;a<span class="hljs-keyword">\in</span><span class="hljs-keyword">\mathcal</span>&#123;A&#125;&#125;<span class="hljs-keyword">\pi</span><span class="hljs-built_in">_</span><span class="hljs-keyword">\theta</span>(a|s)Q<span class="hljs-built_in">^</span><span class="hljs-keyword">\pi</span>(s,a)<br>        <span class="hljs-keyword">\end</span>&#123;equation*&#125;<br>    <span class="hljs-keyword">\end</span>&#123;exampleblock&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;exampleblock&#125;&#123;多行多列公式<span class="hljs-keyword">\footnote</span>&#123;如果公式中有文字出现，请用 <span class="hljs-built_in">$</span><span class="hljs-keyword">\backslash</span><span class="hljs-built_in">$</span>mathrm<span class="hljs-keyword">\&#123;</span><span class="hljs-keyword">\&#125;</span> 或者 <span class="hljs-built_in">$</span><span class="hljs-keyword">\backslash</span><span class="hljs-built_in">$</span>text<span class="hljs-keyword">\&#123;</span><span class="hljs-keyword">\&#125;</span> 包含，不然就会变成 <span class="hljs-built_in">$</span>clip<span class="hljs-built_in">$</span>，在公式里看起来比 <span class="hljs-built_in">$</span><span class="hljs-keyword">\mathrm</span>&#123;clip&#125;<span class="hljs-built_in">$</span> 丑非常多。&#125;&#125;<br>        <span class="hljs-comment">% 使用 &amp; 分隔</span><br>        <span class="hljs-keyword">\begin</span>&#123;align&#125;<br>            Q<span class="hljs-built_in">_</span><span class="hljs-keyword">\mathrm</span>&#123;target&#125;<span class="hljs-built_in">&amp;</span>=r+<span class="hljs-keyword">\gamma</span> Q<span class="hljs-built_in">^</span><span class="hljs-keyword">\pi</span>(s<span class="hljs-built_in">^</span><span class="hljs-keyword">\prime</span>, <span class="hljs-keyword">\pi</span><span class="hljs-built_in">_</span><span class="hljs-keyword">\theta</span>(s<span class="hljs-built_in">^</span><span class="hljs-keyword">\prime</span>)+<span class="hljs-keyword">\epsilon</span>)<span class="hljs-keyword">\\</span><br>            <span class="hljs-keyword">\epsilon</span><span class="hljs-built_in">&amp;</span><span class="hljs-keyword">\sim</span><span class="hljs-keyword">\mathrm</span>&#123;clip&#125;(<span class="hljs-keyword">\mathcal</span>&#123;N&#125;(0, <span class="hljs-keyword">\sigma</span>), -c, c)<span class="hljs-keyword">\nonumber</span><br>        <span class="hljs-keyword">\end</span>&#123;align&#125;<br>    <span class="hljs-keyword">\end</span>&#123;exampleblock&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="编号多行公式">编号多行公式</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;exampleblock&#125;&#123;编号多行公式&#125;<br>        <span class="hljs-comment">% Taken from Mathmode.tex</span><br>        <span class="hljs-keyword">\begin</span>&#123;multline&#125;<br>            A=<span class="hljs-keyword">\lim</span><span class="hljs-built_in">_</span>&#123;n<span class="hljs-keyword">\rightarrow</span><span class="hljs-keyword">\infty</span>&#125;<span class="hljs-keyword">\Delta</span> x<span class="hljs-keyword">\left</span>(a<span class="hljs-built_in">^</span>&#123;2&#125;+<span class="hljs-keyword">\left</span>(a<span class="hljs-built_in">^</span>&#123;2&#125;+2a<span class="hljs-keyword">\Delta</span> x+<span class="hljs-keyword">\left</span>(<span class="hljs-keyword">\Delta</span> x<span class="hljs-keyword">\right</span>)<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\right</span>)<span class="hljs-keyword">\right</span>.<span class="hljs-keyword">\label</span>&#123;eq:reset&#125;<span class="hljs-keyword">\\</span><br>            +<span class="hljs-keyword">\left</span>(a<span class="hljs-built_in">^</span>&#123;2&#125;+2<span class="hljs-keyword">\cdot</span>2a<span class="hljs-keyword">\Delta</span> x+2<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\left</span>(<span class="hljs-keyword">\Delta</span> x<span class="hljs-keyword">\right</span>)<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\right</span>)<span class="hljs-keyword">\\</span><br>            +<span class="hljs-keyword">\left</span>(a<span class="hljs-built_in">^</span>&#123;2&#125;+2<span class="hljs-keyword">\cdot</span>3a<span class="hljs-keyword">\Delta</span> x+3<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\left</span>(<span class="hljs-keyword">\Delta</span> x<span class="hljs-keyword">\right</span>)<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\right</span>)<span class="hljs-keyword">\\</span><br>            +<span class="hljs-keyword">\ldots</span><span class="hljs-keyword">\\</span><br>            <span class="hljs-keyword">\left</span>.+<span class="hljs-keyword">\left</span>(a<span class="hljs-built_in">^</span>&#123;2&#125;+2<span class="hljs-keyword">\cdot</span>(n-1)a<span class="hljs-keyword">\Delta</span> x+(n-1)<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\left</span>(<span class="hljs-keyword">\Delta</span> x<span class="hljs-keyword">\right</span>)<span class="hljs-built_in">^</span>&#123;2&#125;<span class="hljs-keyword">\right</span>)<span class="hljs-keyword">\right</span>)<span class="hljs-keyword">\\</span><br>            =<span class="hljs-keyword">\frac</span>&#123;1&#125;&#123;3&#125;<span class="hljs-keyword">\left</span>(b<span class="hljs-built_in">^</span>&#123;3&#125;-a<span class="hljs-built_in">^</span>&#123;3&#125;<span class="hljs-keyword">\right</span>)<br>        <span class="hljs-keyword">\end</span>&#123;multline&#125;<br>    <span class="hljs-keyword">\end</span>&#123;exampleblock&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="分栏功能">分栏功能</h2>
+<p>文字分栏</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;&#123;应用：如何让人笑起来&#125;<br>	<span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.45<span class="hljs-keyword">\linewidth</span>&#125;<br>		<span class="hljs-keyword">\begin</span>&#123;footnotesize&#125;<br>		    训练过程<br>		<span class="hljs-keyword">\end</span>&#123;footnotesize&#125;<br>		<span class="hljs-keyword">\scriptsize</span><br>		<span class="hljs-keyword">\begin</span>&#123;enumerate&#125;<br>			<span class="hljs-keyword">\item</span> 收集不笑脸数据集、笑脸数据集；<br>			<span class="hljs-keyword">\item</span> 分别计算不笑脸数据集、笑脸数据集中图片的<span class="hljs-built_in">$</span>z<span class="hljs-built_in">$</span>值，再分别计算两个数据集的均值<span class="hljs-built_in">$</span>z<span class="hljs-built_in">_</span>1,z<span class="hljs-built_in">_</span>2<span class="hljs-built_in">$</span>，可得<span class="hljs-built_in">$</span>z<span class="hljs-built_in">_</span>&#123;smile&#125;=z<span class="hljs-built_in">_</span>2 - z<span class="hljs-built_in">_</span>1<span class="hljs-built_in">$</span><br>		<span class="hljs-keyword">\end</span>&#123;enumerate&#125;<br>	<span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>	<span class="hljs-keyword">\hfill</span><br>	<span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.45<span class="hljs-keyword">\linewidth</span>&#125;<br>		<span class="hljs-keyword">\begin</span>&#123;footnotesize&#125;<br>			生成过程<br>		<span class="hljs-keyword">\end</span>&#123;footnotesize&#125;<br>    	<span class="hljs-keyword">\scriptsize</span><br>        <span class="hljs-keyword">\begin</span>&#123;enumerate&#125;<br>			<span class="hljs-keyword">\item</span> 拿到待处理图片<span class="hljs-built_in">$</span>x<span class="hljs-built_in">$</span>，经过<span class="hljs-built_in">$</span>G<span class="hljs-built_in">^</span>&#123;-1&#125;<span class="hljs-built_in">$</span>，得到<span class="hljs-built_in">$</span>z=G<span class="hljs-built_in">^</span>&#123;-1&#125;(x)<span class="hljs-built_in">$</span>；<br>			<span class="hljs-keyword">\item</span> 计算<span class="hljs-built_in">$</span>z<span class="hljs-built_in">^</span><span class="hljs-keyword">\prime</span> = z + z<span class="hljs-built_in">_</span>&#123;smile&#125;<span class="hljs-built_in">$</span><br>			<span class="hljs-keyword">\item</span> 生成<span class="hljs-built_in">$</span>x<span class="hljs-built_in">^</span><span class="hljs-keyword">\prime</span> = G(z<span class="hljs-built_in">^</span><span class="hljs-keyword">\prime</span>)<span class="hljs-built_in">$</span><br>	    <span class="hljs-keyword">\end</span>&#123;enumerate&#125;<br>	<span class="hljs-keyword">\end</span>&#123;minipage&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<p>图片的分栏功能。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.5<span class="hljs-keyword">\linewidth</span>&#125;<br>	<span class="hljs-keyword">\begin</span>&#123;figure&#125;[htpb]<br>		<span class="hljs-keyword">\captionsetup</span>&#123;font=&#123;tiny&#125;&#125;<br>		<span class="hljs-keyword">\centering</span><br>		<span class="hljs-keyword">\includegraphics</span>[width=<span class="hljs-keyword">\linewidth</span>]&#123;pic/伪代码-2.png&#125;<br>	<span class="hljs-keyword">\end</span>&#123;figure&#125;<br><span class="hljs-keyword">\end</span>&#123;minipage&#125;<br><span class="hljs-keyword">\hfill</span><br><span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.45<span class="hljs-keyword">\linewidth</span>&#125;<br>	<span class="hljs-keyword">\begin</span>&#123;figure&#125;[htpb]<br>		<span class="hljs-keyword">\captionsetup</span>&#123;font=&#123;tiny&#125;&#125;<br>		<span class="hljs-keyword">\centering</span><br>		<span class="hljs-keyword">\includegraphics</span>[width=<span class="hljs-keyword">\linewidth</span>]&#123;pic/伪代码-3.png&#125;<br>	<span class="hljs-keyword">\end</span>&#123;figure&#125;	<br><span class="hljs-keyword">\end</span>&#123;minipage&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="横线样式表格">横线样式表格</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;[fragile]&#123;<span class="hljs-keyword">\LaTeX</span>&#123;&#125; 常用命令&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;exampleblock&#125;&#123;命令&#125;<br>        <span class="hljs-keyword">\centering</span><br>        <span class="hljs-keyword">\footnotesize</span><br>        <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;llll&#125;<br>            <span class="hljs-keyword">\cmd</span>&#123;chapter&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;section&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;subsection&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;paragraph&#125; <span class="hljs-keyword">\\</span><br>            章 <span class="hljs-built_in">&amp;</span> 节 <span class="hljs-built_in">&amp;</span> 小节 <span class="hljs-built_in">&amp;</span> 带题头段落 <span class="hljs-keyword">\\</span><span class="hljs-keyword">\hline</span><br>            <span class="hljs-keyword">\cmd</span>&#123;centering&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;emph&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;verb&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;url&#125; <span class="hljs-keyword">\\</span><br>            居中对齐 <span class="hljs-built_in">&amp;</span> 强调 <span class="hljs-built_in">&amp;</span> 原样输出 <span class="hljs-built_in">&amp;</span> 超链接 <span class="hljs-keyword">\\</span><span class="hljs-keyword">\hline</span><br>            <span class="hljs-keyword">\cmd</span>&#123;footnote&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;item&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;caption&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;includegraphics&#125; <span class="hljs-keyword">\\</span><br>            脚注 <span class="hljs-built_in">&amp;</span> 列表条目 <span class="hljs-built_in">&amp;</span> 标题 <span class="hljs-built_in">&amp;</span> 插入图片 <span class="hljs-keyword">\\</span><span class="hljs-keyword">\hline</span><br>            <span class="hljs-keyword">\cmd</span>&#123;label&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;cite&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\cmd</span>&#123;ref&#125; <span class="hljs-keyword">\\</span><br>            标号 <span class="hljs-built_in">&amp;</span> 引用参考文献 <span class="hljs-built_in">&amp;</span> 引用图表公式等<span class="hljs-keyword">\\</span><span class="hljs-keyword">\hline</span><br>        <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;exampleblock&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;exampleblock&#125;&#123;环境&#125;<br>        <span class="hljs-keyword">\centering</span><br>        <span class="hljs-keyword">\footnotesize</span><br>        <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;lll&#125;<br>            <span class="hljs-keyword">\env</span>&#123;table&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\env</span>&#123;figure&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\env</span>&#123;equation&#125;<span class="hljs-keyword">\\</span><br>            表格 <span class="hljs-built_in">&amp;</span> 图片 <span class="hljs-built_in">&amp;</span> 公式 <span class="hljs-keyword">\\</span><span class="hljs-keyword">\hline</span><br>            <span class="hljs-keyword">\env</span>&#123;itemize&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\env</span>&#123;enumerate&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\env</span>&#123;description&#125;<span class="hljs-keyword">\\</span><br>            无编号列表 <span class="hljs-built_in">&amp;</span> 编号列表 <span class="hljs-built_in">&amp;</span> 描述 <span class="hljs-keyword">\\</span><span class="hljs-keyword">\hline</span><br>        <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;exampleblock&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="代码环境示例">代码环境示例</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;[fragile]&#123;<span class="hljs-keyword">\LaTeX</span>&#123;&#125; 环境命令举例&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.5<span class="hljs-keyword">\linewidth</span>&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;[language=TeX]<br><span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>  <span class="hljs-keyword">\item</span> A <span class="hljs-keyword">\item</span> B<br>  <span class="hljs-keyword">\item</span> C<br>  <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\item</span> C-1<br>  <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<span class="hljs-keyword">\hspace</span>&#123;1cm&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.3<span class="hljs-keyword">\linewidth</span>&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>            <span class="hljs-keyword">\item</span> A<br>            <span class="hljs-keyword">\item</span> B<br>            <span class="hljs-keyword">\item</span> C<br>            <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>                <span class="hljs-keyword">\item</span> C-1<br>            <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>    <span class="hljs-keyword">\medskip</span><br>    <span class="hljs-keyword">\pause</span><br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.5<span class="hljs-keyword">\linewidth</span>&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;[language=TeX]<br><span class="hljs-keyword">\begin</span>&#123;enumerate&#125;<br>  <span class="hljs-keyword">\item</span> 巨佬 <span class="hljs-keyword">\item</span> 大佬<br>  <span class="hljs-keyword">\item</span> 萌新<br>  <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\item</span>[n+e] 瑟瑟发抖<br>  <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;enumerate&#125;<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<span class="hljs-keyword">\hspace</span>&#123;1cm&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;0.3<span class="hljs-keyword">\linewidth</span>&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;enumerate&#125;<br>            <span class="hljs-keyword">\item</span> 巨佬<br>            <span class="hljs-keyword">\item</span> 大佬<br>            <span class="hljs-keyword">\item</span> 萌新<br>            <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>                <span class="hljs-keyword">\item</span>[n+e] 瑟瑟发抖<br>            <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\end</span>&#123;enumerate&#125;<br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="数学公式和代码环境示例">数学公式和代码环境示例</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;[fragile]&#123;<span class="hljs-keyword">\LaTeX</span>&#123;&#125; 数学公式&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;columns&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;column&#125;&#123;.55<span class="hljs-keyword">\textwidth</span>&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;[language=TeX]<br><span class="hljs-built_in">$</span>V = <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;3&#125;<span class="hljs-keyword">\pi</span> r<span class="hljs-built_in">^</span>3<span class="hljs-built_in">$</span><br><br><span class="hljs-keyword">\[</span><br>  V = <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;3&#125;<span class="hljs-keyword">\pi</span> r<span class="hljs-built_in">^</span>3<br><span class="hljs-keyword">\]</span><br><br><span class="hljs-keyword">\begin</span>&#123;equation&#125;<br>  <span class="hljs-keyword">\label</span>&#123;eq:vsphere&#125;<br>  V = <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;3&#125;<span class="hljs-keyword">\pi</span> r<span class="hljs-built_in">^</span>3<br><span class="hljs-keyword">\end</span>&#123;equation&#125;<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br>        <span class="hljs-keyword">\end</span>&#123;column&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;column&#125;&#123;.4<span class="hljs-keyword">\textwidth</span>&#125;<br>            <span class="hljs-built_in">$</span>V = <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;3&#125;<span class="hljs-keyword">\pi</span> r<span class="hljs-built_in">^</span>3<span class="hljs-built_in">$</span><br>            <span class="hljs-keyword">\[</span><br>                V = <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;3&#125;<span class="hljs-keyword">\pi</span> r<span class="hljs-built_in">^</span>3<br>            <span class="hljs-keyword">\]</span><br>            <span class="hljs-keyword">\begin</span>&#123;equation&#125;<br>                <span class="hljs-keyword">\label</span>&#123;eq:vsphere&#125;<br>                V = <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;3&#125;<span class="hljs-keyword">\pi</span> r<span class="hljs-built_in">^</span>3<br>            <span class="hljs-keyword">\end</span>&#123;equation&#125;<br>        <span class="hljs-keyword">\end</span>&#123;column&#125;<br>    <span class="hljs-keyword">\end</span>&#123;columns&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span> 更多内容请看 <span class="hljs-keyword">\href</span>&#123;<span class="hljs-link">https://zh.wikipedia.org/wiki/Help:数学公式</span>&#125;&#123;<span class="hljs-keyword">\color</span>&#123;purple&#125;&#123;这里&#125;&#125;<br>    <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="表格示例">表格示例</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;[fragile]<br>    <span class="hljs-keyword">\begin</span>&#123;columns&#125;<br>        <span class="hljs-keyword">\column</span>&#123;.6<span class="hljs-keyword">\textwidth</span>&#125;<br><span class="hljs-keyword">\begin</span>&#123;lstlisting&#125;[language=TeX]<br>    <span class="hljs-keyword">\begin</span>&#123;table&#125;[htbp]<br>      <span class="hljs-keyword">\caption</span>&#123;编号与含义&#125;<br>      <span class="hljs-keyword">\label</span>&#123;tab:number&#125;<br>      <span class="hljs-keyword">\centering</span><br>      <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;cl&#125;<br>        <span class="hljs-keyword">\toprule</span><br>        编号 <span class="hljs-built_in">&amp;</span> 含义 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\midrule</span><br>        1 <span class="hljs-built_in">&amp;</span> 4.0 <span class="hljs-keyword">\\</span><br>        2 <span class="hljs-built_in">&amp;</span> 3.7 <span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\bottomrule</span><br>      <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\end</span>&#123;table&#125;<br>    公式~(<span class="hljs-keyword">\ref</span>&#123;eq:vsphere&#125;) 的<br>    编号与含义请参见<br>    表~<span class="hljs-keyword">\ref</span>&#123;tab:number&#125;。<br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br>        <span class="hljs-keyword">\column</span>&#123;.4<span class="hljs-keyword">\textwidth</span>&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;table&#125;[htpb]<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\caption</span>&#123;编号与含义&#125;<br>            <span class="hljs-keyword">\label</span>&#123;tab:number&#125;<br>            <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;cl&#125;<span class="hljs-keyword">\toprule</span><br>                编号 <span class="hljs-built_in">&amp;</span> 含义 <span class="hljs-keyword">\\</span><span class="hljs-keyword">\midrule</span><br>                1 <span class="hljs-built_in">&amp;</span> 4.0<span class="hljs-keyword">\\</span><br>                2 <span class="hljs-built_in">&amp;</span> 3.7<span class="hljs-keyword">\\</span><span class="hljs-keyword">\bottomrule</span><br>            <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>        <span class="hljs-keyword">\end</span>&#123;table&#125;<br>        <span class="hljs-keyword">\normalsize</span> 公式~(<span class="hljs-keyword">\ref</span>&#123;eq:vsphere&#125;)的编号与含义请参见表~<span class="hljs-keyword">\ref</span>&#123;tab:number&#125;。<br>    <span class="hljs-keyword">\end</span>&#123;columns&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="矢量图示例">矢量图示例</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;&#123;作图&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span> 矢量图 eps, ps, pdf<br>        <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>            <span class="hljs-keyword">\item</span> METAPOST, pstricks, pgf <span class="hljs-built_in">$</span><span class="hljs-keyword">\ldots</span><span class="hljs-built_in">$</span><br>            <span class="hljs-keyword">\item</span> Xfig, Dia, Visio, Inkscape <span class="hljs-built_in">$</span><span class="hljs-keyword">\ldots</span><span class="hljs-built_in">$</span><br>            <span class="hljs-keyword">\item</span> Matlab / Excel 等保存为 pdf<br>        <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span> 标量图 png, jpg, tiff <span class="hljs-built_in">$</span><span class="hljs-keyword">\ldots</span><span class="hljs-built_in">$</span><br>        <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>            <span class="hljs-keyword">\item</span> 提高清晰度，避免发虚<br>            <span class="hljs-keyword">\item</span> 应尽量避免使用<br>        <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;figure&#125;[htpb]<br>        <span class="hljs-keyword">\centering</span><br>        <span class="hljs-keyword">\includegraphics</span>[width=0.2<span class="hljs-keyword">\linewidth</span>]&#123;pic/xjut<span class="hljs-built_in">_</span>Logo.png&#125;<br>        <span class="hljs-keyword">\caption</span>&#123;这个校徽就是矢量图，虽然看起来不像，但确实是矢量图格式&#125;<br>    <span class="hljs-keyword">\end</span>&#123;figure&#125;<br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="参考文献示例">参考文献示例</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;frame&#125;[allowframebreaks]<br>    <span class="hljs-keyword">\bibliography</span>&#123;ref&#125;<br>    <span class="hljs-keyword">\bibliographystyle</span>&#123;xjut&#125;<br>    <span class="hljs-comment">% 如果参考文献太多的话，可以像下面这样调整字体：</span><br>    <span class="hljs-comment">% \tiny\bibliographystyle&#123;alpha&#125;</span><br><span class="hljs-keyword">\end</span>&#123;frame&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="公式字号大小调整">公式字号大小调整</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\tiny</span><br><span class="hljs-keyword">\scriptsize</span><br><span class="hljs-keyword">\footnotesize</span><br><span class="hljs-keyword">\small</span><br><span class="hljs-keyword">\normalsize</span><br><span class="hljs-keyword">\large</span><br><span class="hljs-keyword">\Large</span><br><span class="hljs-keyword">\LARGE</span><br><span class="hljs-keyword">\huge</span><br><span class="hljs-keyword">\Huge</span><br><br><span class="hljs-keyword">\begin</span>&#123;footnotesize&#125;<br>    <span class="hljs-keyword">\begin</span>&#123;equation*&#125;<br>        x<span class="hljs-built_in">^</span>2 + y<span class="hljs-built_in">^</span>2 = z<span class="hljs-built_in">^</span>2<br>    <span class="hljs-keyword">\end</span>&#123;equation*&#125;<br><span class="hljs-keyword">\end</span>&#123;footnotesize&#125;<br><br><span class="hljs-comment">% 比\tiny更小的字号示例</span><br><span class="hljs-keyword">\fontsize</span>&#123;5.5pt&#125;&#123;5pt&#125;<span class="hljs-keyword">\selectfont</span> <span class="hljs-comment">% 设置5.5pt字号，5pt行距</span><br><span class="hljs-keyword">\begin</span>&#123;equation*&#125;<br>    x<span class="hljs-built_in">^</span>2 + y<span class="hljs-built_in">^</span>2 = z<span class="hljs-built_in">^</span>2<br><span class="hljs-keyword">\end</span>&#123;equation*&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="数学证明QED">数学证明QED</h2>
+<p>在 LaTeX 中，证毕符号（即右下角的方框）通常有以下几种实现方式，你可以根据自己的需求选择合适的方法：</p>
+<ol>
+<li>使用 <code>\qed</code> 命令（最常用）：自动放在证明环境的末尾。</li>
+</ol>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;proof&#125;<br>    这里是你的证明内容...<br>    最后一步得出结论。<br>    <span class="hljs-keyword">\qed</span><br><span class="hljs-keyword">\end</span>&#123;proof&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>说明</strong>：
+<ul>
+<li>如果使用 <code>\usepackage&#123;amsthm&#125;</code> 包，<code>proof</code> 环境会自动在末尾添加 <code>\qed</code>，无需手动输入。</li>
+<li>若想手动调整位置（如在行间公式后），可直接用 <code>\qed</code>。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>使用 <code>\qedsymbol</code> 命令：手动放置证毕符号（不依赖证明环境）。</li>
+</ol>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">证明完成，结论成立。 <span class="hljs-keyword">\qedsymbol</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>说明</strong>：
+<ul>
+<li><code>\qedsymbol</code> 会生成一个实心方框（□），可放在任意位置。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>使用 <code>\hfill\ensuremath&#123;\square&#125;</code>：自定义证毕符号（如使用空心方框）。</li>
+</ol>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">证明完毕。<span class="hljs-keyword">\hfill</span><span class="hljs-built_in">$</span><span class="hljs-keyword">\square</span><span class="hljs-built_in">$</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>说明</strong>：
+<ul>
+<li><code>\hfill</code> 将符号推到行末，<code>$\square$</code> 生成空心方框（◻）。</li>
+<li>若需要实心方框，可使用 <code>$\blacksquare$</code>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="符号的正上-下文本">符号的正上/下文本</h2>
+<h4 id="overset">overset</h4>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">X <span class="hljs-keyword">\stackrel</span>&#123;<span class="hljs-keyword">\text</span>&#123;def&#125;&#125;&#123;=&#125; Y <span class="hljs-keyword">\quad</span> Z <span class="hljs-keyword">\stackrel</span>&#123;i.i.d.&#125;&#123;<span class="hljs-keyword">\sim</span>&#125; N(0,1)<br></code></pre></td></tr></table></figure>
+<h4 id="长等号">长等号</h4>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>&#123;amsmath&#125;<br><span class="hljs-comment">%...</span><br>A <span class="hljs-keyword">\xlongequal</span>&#123;<span class="hljs-keyword">\text</span>&#123;def&#125;&#125; B<br></code></pre></td></tr></table></figure>
+<h4 id="顶部底部注释">顶部底部注释</h4>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\underbrace</span>&#123;a + b + c&#125;<span class="hljs-built_in">_</span>&#123;n <span class="hljs-keyword">\text</span>&#123; 项&#125;&#125; <span class="hljs-keyword">\quad</span> <span class="hljs-keyword">\overbrace</span>&#123;x <span class="hljs-keyword">\cdot</span> x <span class="hljs-keyword">\cdots</span> x&#125;<span class="hljs-built_in">^</span>&#123;n <span class="hljs-keyword">\text</span>&#123; 次&#125;&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="创建子图">创建子图</h2>
+<h4 id="横向子图">横向子图</h4>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;figure&#125;[htbp]<br>	<span class="hljs-keyword">\centering</span><br>	<span class="hljs-keyword">\begin</span>&#123;minipage&#125;[t]&#123;0.45<span class="hljs-keyword">\textwidth</span>&#125;<br>		<span class="hljs-keyword">\centering</span><br>		<span class="hljs-keyword">\includegraphics</span>[width=<span class="hljs-keyword">\textwidth</span>]&#123;pic/coupling layer-stacking1.png&#125;<br>		<span class="hljs-comment">%\caption&#123;111&#125;</span><br>		<span class="hljs-comment">%\label&#123;fig:sub1&#125;</span><br>	<span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>	<span class="hljs-keyword">\begin</span>&#123;minipage&#125;[t]&#123;0.45<span class="hljs-keyword">\textwidth</span>&#125;<br>		<span class="hljs-keyword">\centering</span><br>		<span class="hljs-keyword">\includegraphics</span>[width=<span class="hljs-keyword">\textwidth</span>]&#123;pic/coupling layer-stacking2.png&#125;<br>		<span class="hljs-comment">%\caption&#123;222&#125;</span><br>		<span class="hljs-comment">%\label&#123;fig:sub2&#125;</span><br>	<span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>	<span class="hljs-keyword">\caption</span>&#123;耦合层堆叠(stacking)示意图&#125;<br><span class="hljs-keyword">\end</span>&#123;figure&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="修改图片注释大小">修改图片注释大小</h2>
+<p>问题描述：如果我使用’\caption{\tiny}'，这只能改变caption中内容的字号大小，而无法改变“图11”字样的大小</p>
+<h4 id="全局修改">全局修改</h4>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>&#123;caption&#125;<br><span class="hljs-keyword">\captionsetup</span>&#123;font=&#123;tiny&#125;,labelsep=colon&#125; <span class="hljs-comment">% labelsep 可按需选 colon（冒号）、period（句点）等样式</span><br></code></pre></td></tr></table></figure>
+<h4 id="局部修改">局部修改</h4>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;figure&#125;[htpb]<br>	<span class="hljs-keyword">\captionsetup</span>&#123;font=&#123;tiny&#125;&#125;<br>	<span class="hljs-keyword">\centering</span><br>	<span class="hljs-keyword">\includegraphics</span>[width=0.45<span class="hljs-keyword">\linewidth</span>]&#123;pic/Glow示意图.png&#125;<br>	<span class="hljs-keyword">\caption</span>&#123;<span class="hljs-keyword">\tiny</span> Glow中<span class="hljs-built_in">$</span>1<span class="hljs-keyword">\times</span>1<span class="hljs-built_in">$</span> Convolution示意图&#125;<br><span class="hljs-keyword">\end</span>&#123;figure&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="积分上下限的竖线">积分上下限的竖线</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs latex">|          <span class="hljs-comment">% 普通竖线（尺寸较小）</span><br><span class="hljs-keyword">\big</span>|      <span class="hljs-comment">% 大竖线</span><br><span class="hljs-keyword">\bigg</span>|     <span class="hljs-comment">% 更大的竖线</span><br><span class="hljs-keyword">\Big</span>|      <span class="hljs-comment">% 比\big|稍大</span><br><span class="hljs-keyword">\Bigg</span>|     <span class="hljs-comment">% 最大的竖线</span><br></code></pre></td></tr></table></figure>
+<h2 id="罗马数字">罗马数字</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\uppercase</span><span class="hljs-keyword">\expandafter</span>&#123;<span class="hljs-keyword">\romannumeral</span>2&#125;<br>后面可以输入不同的数字，例如输入2，得到大写罗马数字2，<br><br><span class="hljs-keyword">\romannumeral</span>2<br>后面可以输入不同的数字，例如输入2，得到小写罗马数字2。<br></code></pre></td></tr></table></figure>
+<h2 id="Beamer中插入空行">Beamer中插入空行</h2>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\vspace</span>&#123;0.3cm&#125; <span class="hljs-comment">% 插入 0.3cm 空行 </span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82%E7%AF%87/" class="category-chain-item">杂篇</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%9D%82%E7%AF%87/Little-Tricks/" class="category-chain-item">Little Tricks</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LaTeX/" class="print-no-link">#LaTeX</a>
+      
+        <a href="/tags/Beamer/" class="print-no-link">#Beamer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Beamer常用功能合集</div>
+      <div>http://dbqdss.github.io/2025/06/12/杂篇/Little Tricks/Beamer常用功能合集/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>失去理想的獾</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/15/%E6%9D%82%E7%AF%87/Little%20Tricks/Python%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/" title="Python中的常用功能">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python中的常用功能</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/02/%E4%BA%8C%E6%AC%A1%E5%85%83/%E6%B8%B8%E6%88%8F/%E5%B0%BC%E5%B0%94%E7%B3%BB%E5%88%97/%E5%B0%BC%E5%B0%94-%E6%9C%BA%E6%A2%B0%E7%BA%AA%E5%85%83/" title="尼尔-机械纪元">
+                        <span class="hidden-mobile">尼尔-机械纪元</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+    
+      <article id="comments" lazyload>
+        
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
+      
+        
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="waifu" id="waifu" style="z-index: 1000;"> <div class="waifu-tips" style="opacity: 1;"></div> <canvas id="live2d" width="280" height="250" class="live2d"></canvas> <div class="waifu-tool"> <span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span> </div> </div> <script src="/assets/live2d.min.js"></script> <script src="/assets/waifu-tips.js"></script> <script type="text/javascript"> initModel() </script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-copyright"></i>
+<a href="https://github.com/DBQDSS" target="_blank" rel="nofollow noopener"><span>失去理想的獾</span></a>
+|  Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+<div style="font-size: 0.85rem">
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script src="/vvd_js/duration.js"></script>
+  <br>
+  <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    本页总阅读量 <span id="busuanzi_page_pv">加载中...</span> 次
+  <!-- 不蒜子统计图标代码 如果更换域名记得替换Start -->
+    <a href="https://www.busuanzi.cc/count.php?search=dbqdss.github.io" title="不蒜子统计" target="_blank">
+        <img style="width:85px;height:25px;" src="https://www.busuanzi.cc/static/images/bsz-tongji.png" srcset="/img/loading.gif" lazyload>
+    </a>
+  <!-- 不蒜子统计图标代码 End -->
+</div>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="/js/yinghua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

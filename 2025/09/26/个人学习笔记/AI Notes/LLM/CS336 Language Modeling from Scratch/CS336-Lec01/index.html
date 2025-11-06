@@ -1,0 +1,1428 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="失去理想的獾">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Lec01 的课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS336 Lec01">
+<meta property="og:url" content="http://dbqdss.github.io/2025/09/26/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/CS336%20Language%20Modeling%20from%20Scratch/CS336-Lec01/index.html">
+<meta property="og:site_name" content="失去理想的獾 の Blog">
+<meta property="og:description" content="Lec01 的课堂笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/CS336.png">
+<meta property="article:published_time" content="2025-09-26T09:31:27.000Z">
+<meta property="article:modified_time" content="2025-10-26T01:40:10.611Z">
+<meta property="article:author" content="失去理想的獾">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/CS336.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>CS336 Lec01 - 失去理想的獾 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/mouse.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/equation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbqdss.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1, h2, h3, h4, h5, h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="失去理想的獾 の Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>失去理想的獾 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/cv/my-cv.pdf" target="_self">
+                    <i class="iconfont icon-addrcard"></i>
+                    <span>简历</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="🥰 Thank you, Stanford! 🥰"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        失去理想的獾
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-26 17:31" pubdate>
+          2025年9月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">🥰 Thank you, Stanford! 🥰</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年10月26日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>9.24 - 9.26 凌晨1点</p>
+<p>以下内容均来自于 CS336 课堂教学与课后讲稿，仅供学习参考。如有错误，请在下方评论区指出，谢谢！</p>
+</blockquote>
+<h2 id="引子">引子</h2>
+<p>Algorithms 的效率很重要！</p>
+<h3 id="回顾-Language-Models-的发展历程">回顾 Language Models 的发展历程</h3>
+<ul>
+<li>
+<p>Pre-neural（Before 2010s）</p>
+<ul>
+<li>基于熵的语言模型 <a target="_blank" rel="noopener" href="https://www.princeton.edu/~wbialek/rome/refs/shannon_51.pdf">[Shannon 1950]</a></li>
+<li>n-gram language models（用于机器翻译、语音识别）的大量研究 <a target="_blank" rel="noopener" href="https://aclanthology.org/D07-1090.pdf">[Brants+ 2007]</a></li>
+</ul>
+</li>
+<li>
+<p>Neural ingredients（2010s）</p>
+<ul>
+<li>首个神经语言模型 <a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf">[Bengio+ 2003]</a></li>
+<li>Seq2Seq 建模（用于机器翻译） <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.3215.pdf">[Sutskever+ 2014]</a></li>
+<li>Adam 优化器 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1412.6980">[Kingma+ 2014]</a></li>
+<li>Attention mechanism 注意力机制（用于机器翻译） <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.0473">[Bahdanau+ 2014]</a></li>
+<li>Transformer 架构（用于机器翻译） <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">[Vaswani+ 2017]</a></li>
+<li>混合专家模型(Mixture of experts, MoE) <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1701.06538">[Shazeer+ 2017]</a></li>
+<li>模型并行(parallelism) <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1811.06965">[Huang+ 2018]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.02054">[Rajbhandari+ 2019]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.08053">[Shoeybi+ 2019]</a></li>
+</ul>
+</li>
+<li>
+<p>Early foundation models（late 2010s）</p>
+<ul>
+<li>ELMo：使用长短期记忆网络（LSTMs）进行预训练，微调对任务有帮助 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.08053">[Peters+ 2018]</a></li>
+<li>BERT：使用 Transformer 进行预训练，微调对任务有帮助 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.08053">[Devlin+ 2018]</a></li>
+<li>Google’s T5（11B）：将所有任务转化为 text-to-text 的形式 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.10683">[Raffel+ 2019]</a></li>
+</ul>
+</li>
+<li>
+<p>Embracing scaling, more closed</p>
+<ul>
+<li>OpenAI’s GPT-2（1.5B）：文本流畅，出现零样本能力的初步迹象，分阶段发布 <a target="_blank" rel="noopener" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">[Radford+ 2019]</a></li>
+<li>Scaling laws：为规模扩张提供希望与可预测性 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2001.08361">[Kaplan+ 2020]</a></li>
+<li>OpenAI’s GPT-3（175B）：上下文学习，闭源 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.14165">[Brown+ 2020]</a></li>
+<li>Google’s PaLM（540B）：规模庞大，训练不充分 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.02311">[Chowdhery+ 2022]</a></li>
+<li>DeepMind’s Chinchilla（70B）：计算最优的缩放定律 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.15556">[Hoffmann+ 2022]</a></li>
+</ul>
+</li>
+<li>
+<p>Open models</p>
+<ul>
+<li>EleutherAI’s 开源数据集（The Pile）与模型（GPT-J） <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00027">[Gao+ 2020]</a> <a target="_blank" rel="noopener" href="https://arankomatsuzaki.wordpress.com/2021/06/04/gpt-j/">[Wang+ 2021]</a></li>
+<li>Meta’s OPT（175B）：复刻 GPT-3，存在大量硬件问题 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2205.01068">[Zhang+ 2022]</a></li>
+<li>Hugging Face / BigScience’s BLOOM：聚焦数据来源 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.05100">[Workshop+ 2022]</a></li>
+<li>Meta’s Llama <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2302.13971">[Touvron+ 2023]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2307.09288">[Touvron+ 2023]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2307.09288">[Grattafiori+ 2024]</a></li>
+<li>Alibaba’s Qwen models <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2307.09288">[Qwen+ 2024]</a></li>
+<li>DeepSeek’s models <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2401.02954">[DeepSeek-AI+ 2024]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2401.02954">[DeepSeek-AI+ 2024]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2412.19437">[DeepSeek-AI+ 2024]</a></li>
+<li>AI2’s OLMo 2 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2402.00838">[Groeneveld+ 2024]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2402.00838">[OLMo+ 2024]</a></li>
+</ul>
+</li>
+<li>
+<p>Levels of openness</p>
+<ul>
+<li>Closed models (e.g. GPT-4o): 仅支持 API 访问 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.08774">[OpenAI+ 2023]</a></li>
+<li>开放权重模型（e.g. DeepSeek）：权重可获取，论文包含架构细节、部分细节，但无数据细节 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2412.19437">[DeepSeek-AI+ 2024]</a></li>
+<li>开源模型（e.g. OLMo）：权重和数据均可获取，论文包含大部分细节（但不包含原理阐释、失败的实验） <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2402.00838">[Groeneveld+ 2024]</a></li>
+</ul>
+</li>
+<li>
+<p>Today’s frontier models</p>
+<ul>
+<li>OpenAI’s o3 <a target="_blank" rel="noopener" href="https://openai.com/index/openai-o3-mini/">https://openai.com/index/openai-o3-mini/</a></li>
+<li>Anthropic’s Claude Sonnet 3.7 <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/claude-3-7-sonnet">https://www.anthropic.com/news/claude-3-7-sonnet</a></li>
+<li>xAI’s Grok 3 <a target="_blank" rel="noopener" href="https://x.ai/news/grok-3">https://x.ai/news/grok-3</a></li>
+<li>Google’s Gemini 2.5 <a target="_blank" rel="noopener" href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/">https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/</a></li>
+<li>Meta’s Llama 3.3 <a target="_blank" rel="noopener" href="https://ai.meta.com/blog/meta-llama-3/">https://ai.meta.com/blog/meta-llama-3/</a></li>
+<li>DeepSeek’s r1 [DeepSeek-AI+ 2025]</li>
+<li>Alibaba’s Qwen 2.5 Max <a target="_blank" rel="noopener" href="https://qwenlm.github.io/blog/qwen2.5-max/">https://qwenlm.github.io/blog/qwen2.5-max/</a></li>
+<li>Tencent’s Hunyuan-T1 <a target="_blank" rel="noopener" href="https://tencent.github.io/llm.hunyuan.T1/README_EN.html">https://tencent.github.io/llm.hunyuan.T1/README_EN.html</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="课程设计">课程设计</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261642956.png" srcset="/img/loading.gif" lazyload alt="课程设计" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    课程设计
+    </span>
+  </div>
+</div>
+<ol>
+<li>
+<p>Basics 涉及大模型训练的基础要素：</p>
+<ol>
+<li>Tokenization（分词，将文本切分为模型可处理的单元）</li>
+<li>Architecture（模型架构，如Transformer等结构）</li>
+<li>Loss function（损失函数，衡量模型预测与真实值的差距）</li>
+<li>Optimizer（优化器，用于更新模型参数以降低损失）</li>
+<li>Learning rate（学习率，控制参数更新的步长）</li>
+</ol>
+</li>
+<li>
+<p>Systems 聚焦大模型的系统工程与效率优化：</p>
+<ol>
+<li>Kernels（内核，底层计算核心）</li>
+<li>Parallelism（并行计算，加速训练/推理的手段）</li>
+<li>Quantization（量化，压缩模型以提升效率）</li>
+<li>Activation checkpointing（激活检查点，节省内存的技术）</li>
+<li>CPU offloading（CPU卸载，将部分计算转移到CPU以优化资源）</li>
+<li>Inference（推理，模型完成训练后做预测的过程）</li>
+</ol>
+</li>
+<li>
+<p>Scaling laws 研究“模型规模/数据量与性能关系”的规律：</p>
+<ol>
+<li>Scaling sequence（缩放序列，模型/数据缩放的顺序逻辑）</li>
+<li>Model complexity（模型复杂度，模型的表达能力）</li>
+<li>Loss metric（损失度量，衡量性能的损失指标）</li>
+<li>Parametric form（参数形式，缩放规律的数学表达形式）</li>
+</ol>
+</li>
+<li>
+<p>Data 围绕训练数据的处理与优化：</p>
+<ol>
+<li>Evaluation（评估，数据质量等的评估）</li>
+<li>Curation（整理，数据的筛选与组织）</li>
+<li>Transformation（转换，数据格式/分布的转换）</li>
+<li>Filtering（过滤，去除低质量数据）</li>
+<li>Deduplication（去重，消除重复数据）</li>
+<li>Mixing（混合，多来源数据的融合）</li>
+</ol>
+</li>
+<li>
+<p>Alignment 让模型行为符合人类预期的技术：</p>
+<ol>
+<li>Supervised fine-tuning（有监督微调，用标注数据优化模型）</li>
+<li>Reinforcement learning（强化学习，通过“奖励/惩罚”引导模型）</li>
+<li>Preference data（偏好数据，反映人类偏好的数据集）</li>
+<li>Synthetic data（合成数据，人工生成的训练数据）</li>
+<li>Verifiers（验证器，检验模型对齐效果的模块）</li>
+</ol>
+</li>
+</ol>
+<h3 id="Basics">Basics</h3>
+<p>Goal：跑通 pipeline。<br>
+Components: tokenization, model architecture, training</p>
+<h4 id="Tokenization">Tokenization</h4>
+<p>分词器 (Tokenizers) 的作用：在字符串和整数序列 (tokens) 之间进行转换。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261645293.png" srcset="/img/loading.gif" lazyload alt="Tokenizer 示意图" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Tokenizer 示意图
+    </span>
+  </div>
+</div>
+<p>直观上，就是将长字符串拆分成常用词片段(segments)。这样做的想法就是，将整数序列对应于输入到实际模型中的内容，而这个模型必须是固定维度的。</p>
+<p>CS336 使用的是 Byte-Pair Encoding (BPE) tokenizer <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.19223">[Sennrich+ 2015]</a>，它是一种基于统计的分词方法。</p>
+<p>Tokenizer-free approaches：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2105.13626">[Xue+ 2021]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.07185">[Yu+ 2023]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2412.09871">[Pagnoni+ 2024]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.19223">[Deiseroth+ 2024]</a></p>
+<p>这些方法会直接处理原始字节，而不进行分词来处理数据，并开发一种特定架构，直接接受原始字节。这种方式很有前景，但尚未扩展应用到前沿领域。</p>
+<h4 id="Architecture">Architecture</h4>
+<p>Starting point: original Transformer <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762">[Vaswani+ 2017]</a></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261647112.png" srcset="/img/loading.gif" lazyload alt="Transformer 架构示意图" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Transformer 架构示意图
+    </span>
+  </div>
+</div>
+<p>Variants:</p>
+<ul>
+<li>激活函数(Activation functions): ReLU, SwiGLU <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.05202">[Shazeer 2020]</a>
+<ul>
+<li>选取 ReLU、SwiGLU 这类非线性激活函数。</li>
+</ul>
+</li>
+<li>位置编码(Positional encodings): sinusoidal, RoPE <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.09864">[Su+ 2021]</a>
+<ul>
+<li>一些新的位置编码，旋转位置编码(Rotary Positional Embeddings, RoPE)等。</li>
+</ul>
+</li>
+<li>归一化(Normalization): LayerNorm, RMSNorm <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1607.06450">[Ba+ 2016]</a><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1607.06450">[Zhang+ 2019]</a>
+<ul>
+<li>使用 RMS 归一化等。</li>
+</ul>
+</li>
+<li>归一化的位置(Placement of normalization): pre-norm versus post-norm <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.04745">[Xiong+ 2020]</a>
+<ul>
+<li>规划放在哪里？</li>
+</ul>
+</li>
+<li>MLP: dense, mixture of experts <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1701.06538">[Shazeer+ 2017]</a>
+<ul>
+<li>使用混合专家模型(Mixture of experts, MoE)来替换MLP</li>
+</ul>
+</li>
+<li>注意力机制(Attention): full, sliding window, linear <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2310.06825">[Jiang+ 2023]</a><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2310.06825">[Katharopoulos+ 2020]</a>
+<ul>
+<li>全注意力(full)、滑动窗口注意力(sliding window)、线性注意力(linear)等来防止二次增长(quadratic blow-up)</li>
+</ul>
+</li>
+<li>低维注意力(Lower-dimensional attention): group-query attention (GQA), multi-head latent attention (MLA) <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.13245">[Ainslie+ 2023]</a><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.13245">[DeepSeek-AI+ 2024]</a>
+<ul>
+<li>低维版本的注意力机制，如分组查询注意力(group-query attention, GQA)、多头潜在注意力(multi-head latent attention, MLA)，更高效</li>
+</ul>
+</li>
+<li>状态空间模型(State-space models): Hyena <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.13245">[Poli+ 2023]</a>
+<ul>
+<li>不使用注意力机制。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Training">Training</h4>
+<ul>
+<li>Optimizer (e.g., AdamW, Muon, SOAP) <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1412.6980">[Kingma+ 2014]</a><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.05101">[Loshchilov+ 2017]</a><a target="_blank" rel="noopener" href="https://kellerjordan.github.io/posts/muon/">[Keller 2024]</a><a target="_blank" rel="noopener" href="https://kellerjordan.github.io/posts/muon/">[Vyas+ 2024]</a></li>
+<li>Learning rate schedule (e.g., cosine, WSD) <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1608.03983">[Loshchilov+ 2016]</a><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2404.06395">[Hu+ 2024]</a></li>
+<li>Batch size (e…g, critical batch size) <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1812.06162">[McCandlish+ 2018]</a></li>
+<li>Regularization (e.g., dropout, weight decay)</li>
+<li>Hyperparameters (number of heads, hidden dimension): grid search</li>
+</ul>
+<h3 id="Assignment-1">Assignment 1</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/assignment1-basics">[作业1 の repo]</a>、<a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/assignment1-basics/blob/main/cs336_spring2025_assignment1_basics.pdf">[作业1 の 说明PDF]</a></p>
+<ul>
+<li>实现 BPE 分词器</li>
+<li>实现 Transformer模型，交叉熵损失函数、AdamW优化器，以及训练循环；</li>
+<li>在 TinyStories 和 OpenWebText 这两个文本数据集上训练模型；</li>
+<li>Leaderboard：用H100显卡训练90分钟，尽可能降低模型在OpenWebText数据集上的“困惑度”(perplexity)。<a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment1-basics-leaderboard">[往年榜单]</a></li>
+</ul>
+<h3 id="Systems">Systems</h3>
+<p>Goal：最大限度地利用硬件。<br>
+Components：kernels, parallelism, inference.</p>
+<h4 id="Kernels">Kernels</h4>
+<p>GPU长什么样？</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261649881.png" srcset="/img/loading.gif" lazyload alt="GPU 结构示意图" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    GPU 结构示意图
+    </span>
+  </div>
+</div>
+<p>内存在芯片外面，芯片中有 L1 cache 和 L2 cache。计算是在芯片中执行的，而数据可能在别的地方。如何才能有效组织计算，以实现更高的效率？</p>
+<p>下图就是一个简单的类比：</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261648123.png" srcset="/img/loading.gif" lazyload alt="手绘示意图" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    老师的手绘示意图
+    </span>
+  </div>
+</div>
+<p>内存就如同仓库一样，可以存储数据模型的参数；而计算单元就如同工厂，可以执行计算任务。在此过程中，主要的瓶颈就是数据移动的成本。</p>
+<p>Trick：合理安排计算，最小化数据移动成本，最大化GPUs的利用率。</p>
+<p>通过 CUDA/Triton/CUTLASS/ThunderKittens 等工具，编写更高效的 kernels。</p>
+<h4 id="Parallelism">Parallelism</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261651604.png" srcset="/img/loading.gif" lazyload alt="并行计算示意图" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    并行计算示意图
+    </span>
+  </div>
+</div>
+<p>GPU之间传输数据的速度更慢，但“尽量减少数据移动”的原则仍然适用。</p>
+<ol>
+<li>采用集合操作 (collection operations)（e.g., gather, reduce, all-reduce）；</li>
+<li>把参数 (parameters)、激活值 (activations)、梯度 (gradients)、优化器状态 (optimizer states) 等在多个GPU之间进行分片处理；</li>
+<li>拆分 (split) 作并行计算：data, tensor, pipeline, sequence</li>
+</ol>
+<h4 id="Inference">Inference</h4>
+<p>Goal：给定 prompt，生成 tokens。</p>
+<p>推理在强化学习 (reinforcement learning)、测试时 (test-time) 的计算以及评估 (evaluation) 中都很重要。</p>
+<p>推理分为两个阶段：预填充阶段 (prefill) 和解码阶段 (decode)</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261652894.png" srcset="/img/loading.gif" lazyload alt="推理过程示意图" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    推理过程示意图
+    </span>
+  </div>
+</div>
+<p>预填充阶段：接收 prompt，运行模型得到激活值；天生就是并行的，能一次性处理所有 tokens，受计算能力限制；</p>
+<p>解码阶段：逐个进行自回归生成 token；因为一次生成一个 token，很难充分利用所有的 GPU，会受到内存限制（因为要不断移动数据）。</p>
+<p>加速解码的方法有这些：</p>
+<ol>
+<li>用更轻量的 (cheaper) 模型（通过模型剪枝 (pruning)、量化 (quantization)、蒸馏 (distillation) 来实现）；</li>
+<li>推测解码 (Speculative Decoding)：先用更轻量的“草稿”模型 (draft model) 生成多个 tokens，再用完整模型并行给这些 tokens 打分（精确解码）；</li>
+<li>系统优化 (Systems Optimizations) 手段：KV 缓存 (KV caching)、批处理 (batching)</li>
+</ol>
+<h4 id="Assignment-2">Assignment 2</h4>
+<p><a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment2-systems">[作业2 の repo]</a>、<a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment2-systems/blob/master/cs336_spring2024_assignment2_systems.pdf">[作业2 の 说明PDF]</a></p>
+<p>要完成的任务如下：</p>
+<ol>
+<li>在 Triton 里实现一个 Fused RMSNorm Kernel；</li>
+<li>实现分布式数据并行训练；</li>
+<li>实现优化器状态分片；</li>
+<li>对这些实现进行基准测试 (Benchmark) 和性能分析。</li>
+</ol>
+<h3 id="Scaling-Laws">Scaling Laws</h3>
+<p>Goal：进行小规模的实验，并以此预测大规模下的超参数和损失情况。</p>
+<p>Question：给定计算量 (FLOPs) 预算 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">C</mi></mrow><annotation encoding="application/x-tex">\mathbf{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord mathbf">C</span></span></span></span> 时，到底是使用更大的模型（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">N</mi></mrow><annotation encoding="application/x-tex">\mathbf{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord mathbf">N</span></span></span></span>），还是在更多的 tokens（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">D</mi></mrow><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord mathbf">D</span></span></span></span>）上训练？</p>
+<p>计算最优的缩放法则可参考 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2001.08361">[Kaplan+ 2020]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.15556">[Hoffmann+ 2022]</a></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261654815.png" srcset="/img/loading.gif" lazyload alt="Scaling Laws论文结果" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Scaling Laws 论文结果
+    </span>
+  </div>
+</div>
+<p>简单来说就是：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="bold">D</mi><mo>∗</mo></msup><mo>=</mo><mn mathvariant="bold">20</mn><msup><mi mathvariant="bold">N</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">\mathbf{D^* = 20 N^*}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathbf">20</span><span class="mord"><span class="mord mathbf">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span></span>（比如 1.4B 参数的模型，应该用 28B 个 tokens 来训练）。不过，这个结论没把推理时的成本考虑进去。</p>
+<p>注：这是经验公式。</p>
+<h4 id="Assignment-3">Assignment 3</h4>
+<p><a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment3-scaling">[作业3 の repo]</a>、<a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment3-scaling/blob/master/cs336_spring2024_assignment3_scaling.pdf">[作业3 の 说明PDF]</a></p>
+<p>要完成的任务如下：</p>
+<ol>
+<li>基于之前的运行结果，定义一个训练API（输入超参数，输出损失）。</li>
+<li>提交“训练任务”（在计算量预算限制下），并收集数据点。</li>
+<li>用这些数据点拟合出一个 scaling law。</li>
+<li>提交放大后的超参数对应的预测。</li>
+<li>Leaderboard：在计算量预算下，让损失最小化。</li>
+</ol>
+<h3 id="Data">Data</h3>
+<p>要明确我们希望模型具备哪些能力：是多语言能力？还是代码相关能力？或者数学方面的能力？</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261657788.png" srcset="/img/loading.gif" lazyload alt="不同数据来源的比例" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    不同数据来源的比例
+    </span>
+  </div>
+</div>
+<h4 id="Evaluation">Evaluation</h4>
+<ol>
+<li>困惑度 (perplexity)：是语言模型的经典评估方式。</li>
+<li>标准化测试：比如 MMLU、HellaSwag、GSM8K 这类测试。</li>
+<li>指令遵循（评估）：例如 AlpacaEval、IFEval、WildBench 这些相关评估。</li>
+<li>测试时计算的扩展：像思维链 (chain-of-thought, CoT)、集成 (ensembling) 等方法。</li>
+<li>用语言模型当评判：评估生成类任务。</li>
+<li>对整个系统评估：检索增强生成 (Retrieval-Augmented Generation, RAG)、智能体（agents）。</li>
+</ol>
+<h4 id="Data-curation">Data curation</h4>
+<ol>
+<li>数据不是平白无故就有的，需要主动去获取。比如可以关注网络数据。</li>
+<li>数据来源：从互联网抓取的网页、书籍、arXiv上的论文、GitHub上的代码等。</li>
+<li>能不能依据“合理使用”原则，用有版权的数据来训练模型？<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.15715.pdf">[Henderson+ 2023]</a>。</li>
+<li>有时候可能得给数据授权 <a target="_blank" rel="noopener" href="https://www.reuters.com/technology/reddit-ai-content-licensing-deal-with-google-sources-say-2024-02-22/">[Google与Reddit的合作]</a>。</li>
+<li>数据格式常见的有 HTML、PDF、计算机文件/代码的目录 (directories)（不是简单的纯文本格式）。</li>
+</ol>
+<h4 id="Data-processing">Data processing</h4>
+<ol>
+<li>转换 (Transformation)：将HTML、PDF格式转换为文本（保留内容、部分结构，还可能需要改写）；</li>
+<li>过滤 (Filtering)：保留高质量数据，去除有害内容（借助分类器实现）；</li>
+<li>去重 (Deduplication)：节省计算资源、避免模型记忆重复信息；可使用 Bloom filters 或 MinHash 算法。</li>
+</ol>
+<h4 id="Assignment-4">Assignment 4</h4>
+<p><a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment4-data">[作业4 の repo]</a>、<a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment4-data/blob/master/cs336_spring2024_assignment4_data.pdf">[作业4 の 说明PDF]</a></p>
+<p>要完成的任务如下：</p>
+<ol>
+<li>将 Common Crawl 的 HTML 转换为文本。</li>
+<li>训练分类器，筛选出优质且无害的内容。</li>
+<li>用 MinHash 进行去重操作。</li>
+<li>Leaderboard：在给定的标记预算下，最小化困惑度。</li>
+</ol>
+<h3 id="Alignment">Alignment</h3>
+<p>到目前为止，基础模型 (base model) 只是有原始潜力，很擅长预测下一个标记。而 <strong>对齐</strong> (alignment) 能让模型真正变得有用。</p>
+<p>对齐的目标包括：</p>
+<ol>
+<li>让语言模型能遵循指令；</li>
+<li>调整风格（像格式、长度、语气这类方面）；</li>
+<li>融入安全性（比如对有害问题拒绝回答）。</li>
+</ol>
+<p>对齐有两个阶段：</p>
+<ol>
+<li>有监督微调 (supervised fine-tuning, SFT)；</li>
+<li>从反馈中学习 (learning from feedback, LFF)</li>
+</ol>
+<h4 id="SFT">SFT</h4>
+<ol>
+<li>数据类型 (Instruction data)：用的是（prompt, response）的成对指令数据（这类数据往往需要人工标注）</li>
+<li>直觉上：基础模型本身已有相关能力，只需少量例子就能“唤醒”这些能力 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.11206">[Zhou+ 2023]</a></li>
+<li>通过有监督学习微调模型，让 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mtext>response</mtext><mi mathvariant="normal">∣</mi><mtext>prompt</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(\text{response} | \text{prompt})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord text"><span class="mord">response</span></span><span class="mord">∣</span><span class="mord text"><span class="mord">prompt</span></span><span class="mclose">)</span></span></span></span> 最大化。</li>
+</ol>
+<h4 id="LFF">LFF</h4>
+<p>想法：目前已有一个初步能遵循指令的模型，要在不花费高昂标注成本的情况下优化它。</p>
+<h5 id="Preference-data">Preference data</h5>
+<p>数据：从一个给定的 prompt，生成多个回答 [A, B]</p>
+<p>用户提供偏好：A &lt; B 或 A &gt; B。</p>
+<h5 id="Verifiers">Verifiers</h5>
+<ol>
+<li>形式化验证器 (Formal Verifiers)：适用于代码、数学等严谨领域，能严格验证结果对错。</li>
+<li>学习型验证器 (Learned Verifiers)：通过 LM-as-a-judge 的方式对抗学习</li>
+</ol>
+<h5 id="Algorithms">Algorithms</h5>
+<ol>
+<li>近端策略优化 (Proximal Policy Optimization, PPO)：来自强化学习领域 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1707.06347.pdf">[Schulman+ 2017]</a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.02155">[Ouyang+ 2022]</a></li>
+<li>直接策略优化 (Direct Policy Optimization, DPO)：用于偏好数据，特点是更简单 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.18290">[Rafailov+ 2023]</a></li>
+<li>组相对偏好优化 (Group Relative Preference Optimization, GRPO)：移除价值函数 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2402.03300">[Shao+ 2024]</a></li>
+</ol>
+<h4 id="Assignment-5">Assignment 5</h4>
+<p><a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment5-alignment">[作业5 の repo]</a>、<a target="_blank" rel="noopener" href="https://github.com/stanford-cs336/spring2024-assignment5-alignment/blob/master/cs336_spring2024_assignment5_alignment.pdf">[作业5 の 说明PDF]</a></p>
+<p>要完成的任务如下：</p>
+<ol>
+<li>实现有监督微调；</li>
+<li>实现直接偏好优化 (Direct Preference Optimization, DPO)；</li>
+<li>实现组相对偏好优化 (Group Relative Preference Optimization, GRPO)。</li>
+</ol>
+<h2 id="第一部分-Tokenization">第一部分-Tokenization</h2>
+<blockquote>
+<p>This unit was inspired by Andrej Karpathy’s video on tokenization; check it out！<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zduSFxRajkE">[video]</a></p>
+</blockquote>
+<h3 id="1-1-Intro-to-Tokenization">1.1 Intro to Tokenization</h3>
+<p>原始文本一般用 <strong>Unicode字符串</strong> 表示</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">string</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello， 🌍！你好！&quot;</span><br></code></pre></td></tr></table></figure>
+<p>语言模型对 <strong>token序列</strong>（token通常用整数索引表示）赋予概率分布。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">indices</span> = [<span class="hljs-number">15496</span>, <span class="hljs-number">11</span>, <span class="hljs-number">995</span>, <span class="hljs-number">0</span>]<br></code></pre></td></tr></table></figure>
+<p>因此我们不仅需要 “encodes strings into tokens”，还需要 “decodes tokens back into strings” 的程序。</p>
+<ul>
+<li><strong>Tokenizer</strong> 是一个类，专门实现 encode 和 decode 这两种方法；</li>
+<li><strong>vocabulary size</strong> 指的是 “可能的 token 的总数量”。</li>
+</ul>
+<h3 id="1-2-Tokenization-Examples">1.2 Tokenization Examples</h3>
+<blockquote>
+<p>To get a feel for how tokenizers work, play with this <a target="_blank" rel="noopener" href="https://tiktokenizer.vercel.app/?encoder=gpt2">interactive site</a></p>
+</blockquote>
+<h4 id="Observation">Observation</h4>
+<ul>
+<li>一个单词和它前面的空格是同一个token的一部分（例如，<code>&quot; world&quot;</code>）。</li>
+<li>开头的单词和中间的单词表示方式不同（例如，<code>&quot;hello hello&quot;</code>）。</li>
+<li>数字会被每几位拆分成一个token。</li>
+</ul>
+<p>下面是OpenAI的GPT - 2分词器（tiktoken）的实际操作演示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = get_gpt2_tokenizer()<br>string = <span class="hljs-string">&quot;Hello, 🌍! 你好!&quot;</span> <span class="hljs-comment"># @inspect string</span><br></code></pre></td></tr></table></figure>
+<p>验证 encode() 和 decode() 的往返一致性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">indices = tokenizer.encode(string) <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices) <span class="hljs-comment"># @inspect reconstructed_string</span><br><span class="hljs-keyword">assert</span> string == reconstructed_string<br>compression_ratio = get_compression_ratio(string, indices) <span class="hljs-comment"># @inspect compression_ratio</span><br></code></pre></td></tr></table></figure>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261659086.png" srcset="/img/loading.gif" lazyload alt="GPT-2 分词器样例" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    GPT-2 分词器样例
+    </span>
+  </div>
+</div>
+<p>注释：每个词元代表1.6字节的数据</p>
+<h3 id="1-3-Character-Tokenizer">1.3 Character Tokenizer</h3>
+<h4 id="Character-based-tokenization">Character based tokenization</h4>
+<blockquote>
+<p>基于字符的分词</p>
+</blockquote>
+<p>Unicode 字符串是 Unicode 字符的序列。每个字符都可以通过函数 <code>ord</code> 转换为码点 (code point)（整数）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">assert</span> <span class="hljs-built_in">ord</span>(<span class="hljs-string">&quot;a&quot;</span>) == <span class="hljs-number">97</span><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">ord</span>(<span class="hljs-string">&quot;🌍&quot;</span>) == <span class="hljs-number">127757</span><br></code></pre></td></tr></table></figure>
+<p>它可以通过 <code>chr</code> 函数转换回来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">assert</span> <span class="hljs-built_in">chr</span>(<span class="hljs-number">97</span>) == <span class="hljs-string">&quot;a&quot;</span><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">chr</span>(<span class="hljs-number">127757</span>) == <span class="hljs-string">&quot;🌍&quot;</span><br></code></pre></td></tr></table></figure>
+<p>现在让我们构建一个分词器并确保它能往返转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = CharacterTokenizer()<br>string = <span class="hljs-string">&quot;Hello, 🌍! 你好!&quot;</span>  <span class="hljs-comment"># @inspect string</span><br>indices = tokenizer.encode(string)  <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices)  <span class="hljs-comment"># @inspect reconstructed_string</span><br><span class="hljs-keyword">assert</span> string == reconstructed_string<br><br>vocabulary_size = <span class="hljs-built_in">max</span>(indices) + <span class="hljs-number">1</span>  <span class="hljs-comment"># 这是一个下限 @inspect vocabulary_size</span><br>compression_ratio = get_compression_ratio(string, indices)  <span class="hljs-comment"># @inspect compression_ratio</span><br></code></pre></td></tr></table></figure>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261702472.png" srcset="/img/loading.gif" lazyload alt="Character-based tokenizer 可视化结果" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Character-based tokenizer 可视化结果
+    </span>
+  </div>
+</div>
+<p>大约有 15 万个 Unicode 字符。<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_Unicode_characters">[Wikipedia]</a></p>
+<p>上述做法会产生两个问题：</p>
+<ol>
+<li>问题1：这是一个非常大的词汇表。</li>
+<li>问题2：许多字符非常罕见（例如，🌍），这是对词汇表的低效使用。</li>
+</ol>
+<h3 id="1-4-Byte-Tokenizer">1.4 Byte Tokenizer</h3>
+<h4 id="Byte-based-tokenization">Byte based tokenization</h4>
+<blockquote>
+<p>基于字节的分词</p>
+</blockquote>
+<p>Unicode 字符串可以表示为字节序列，字节可以用 0 到 255 之间的整数表示。最常见的 Unicode 编码是 UTF-8</p>
+<p>一些Unicode字符由一个字节表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">assert</span> <span class="hljs-built_in">bytes</span>(<span class="hljs-string">&quot;a&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) == <span class="hljs-string">b&quot;a&quot;</span><br></code></pre></td></tr></table></figure>
+<p>其他字符需要多个字节：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">assert</span> <span class="hljs-built_in">bytes</span>(<span class="hljs-string">&quot;🌍&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) == <span class="hljs-string">b&quot;\xf0\x9f\x8c\x8d&quot;</span><br></code></pre></td></tr></table></figure>
+<p>现在让我们构建一个分词器并确保它能往返转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = ByteTokenizer()<br>string = <span class="hljs-string">&quot;Hello, 🌍! 你好!&quot;</span>  <span class="hljs-comment"># @inspect string</span><br>indices = tokenizer.encode(string)  <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices)  <span class="hljs-comment"># @inspect reconstructed_string</span><br></code></pre></td></tr></table></figure>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261706671.png" srcset="/img/loading.gif" lazyload alt="Byte-based tokenizer 可视化结果" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Byte-based tokenizer 可视化结果
+    </span>
+  </div>
+</div>
+<p>词汇表很不错且很小：一个字节可以表示 256 个值。</p>
+<p>压缩率很糟糕，这意味着序列会太长。考虑到 Transformer 的上下文长度是有限的（因为注意力是二次方复杂度的），所以这样不太好。</p>
+<h3 id="1-5-Word-Tokenizer">1.5 Word Tokenizer</h3>
+<h4 id="Word-based-tokenization">Word based tokenization</h4>
+<blockquote>
+<p>基于词的分词</p>
+</blockquote>
+<p>另一种方法（更接近 NLP 领域的传统做法）是将字符串拆分为单词。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">string = <span class="hljs-string">&quot;I&#x27;ll say supercalifragilisticexpialidocious!&quot;</span><br><br>segments = regex.findall(<span class="hljs-string">r&quot;\w+|.&quot;</span>, string)  <span class="hljs-comment"># @inspect segments</span><br></code></pre></td></tr></table></figure>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261708900.png" srcset="/img/loading.gif" lazyload alt="Word-based tokenizer 可视化结果" width="720" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Word-based tokenizer 可视化结果
+    </span>
+  </div>
+</div>
+<p>这个正则表达式会将所有字母数字字符组合在一起（形成单词）。</p>
+<p>这里有一个更精巧的版本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">pattern = GPT2_TOKENIZER_REGEX  <span class="hljs-comment"># @inspect pattern</span><br>segments = regex.findall(pattern, string)  <span class="hljs-comment"># @inspect segments</span><br></code></pre></td></tr></table></figure>
+<p>要将其转化为一个分词器 (Tokenizer)，我们需要把这些片段 (segments) 映射为整数。然后，我们可以建立每个片段到整数的映射。</p>
+<p>但存在一些问题：</p>
+<ol>
+<li>单词的数量极其庞大（类似 Unicode 字符的情况）。</li>
+<li>很多单词十分罕见，模型无法从它们身上学到太多东西。</li>
+<li>这显然无法提供固定的词汇表大小。</li>
+</ol>
+<p>在训练阶段没见过的新单词会被赋予一个特殊的 UNK 标记，这很不优雅，还会搞乱困惑度(perplexity) 的计算。</p>
+<h3 id="1-6-BPE-Tokenizer">1.6 BPE Tokenizer</h3>
+<h4 id="Byte-Pair-Encoding-BPE">Byte Pair Encoding (BPE)</h4>
+<blockquote>
+<p>字节对编码 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Byte-pair_encoding">[维基百科]</a></p>
+</blockquote>
+<p>BPE算法由Philip Gage于1994年提出，用于数据压缩。<a target="_blank" rel="noopener" href="http://www.pennelynn.com/Documents/CUJ/HTML/94HTML/19940045.HTM">[article]</a></p>
+<p>它被应用于 NLP 领域的神经机器翻译。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1508.07909">[Sennrich+ 2015]</a>（在此之前，论文一直使用 word-based tokenization）</p>
+<p>BPE 随后被 GPT-2 使用。<a target="_blank" rel="noopener" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">[Radford+ 2019]</a></p>
+<p>Basic idea：在原始文本上训练分词器，以自动确定词汇表。</p>
+<p>Intuition：常见的字符序列由单个 token 表示，罕见的序列由多个 token 表示。</p>
+<p>为了效率，GPT-2 论文使用 word-based tokenization 将文本拆分为初始片段，然后在每个片段上运行原始 BPE 算法。</p>
+<p>大致流程：从每个字节作为一个 token 开始，逐步合并出现频率最高的相邻 token 对。</p>
+<h4 id="Training-the-tokenizer">Training the tokenizer</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">string = <span class="hljs-string">&quot;the cat in the hat&quot;</span>  <span class="hljs-comment"># @inspect string</span><br>params = train_bpe(string, num_merges=<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">train_bpe</span>(<span class="hljs-params">string: <span class="hljs-built_in">str</span>, num_merges: <span class="hljs-built_in">int</span></span>) -&gt; BPEtokenizerParams:  <span class="hljs-comment"># @inspect string, @inspect num_merges</span><br>    <span class="hljs-comment"># Start with the list of bytes of string.</span><br><br>    indices = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, string.encode(<span class="hljs-string">&quot;utf-8&quot;</span>)))  <span class="hljs-comment"># @inspect indices</span><br>    merges: <span class="hljs-built_in">dict</span>[<span class="hljs-built_in">tuple</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>], <span class="hljs-built_in">int</span>] = &#123;&#125;  <span class="hljs-comment"># index1, index2 =&gt; merged index</span><br>    vocab: <span class="hljs-built_in">dict</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">bytes</span>] = &#123;x: <span class="hljs-built_in">bytes</span>([x]) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>)&#125;  <span class="hljs-comment"># index -&gt; bytes</span><br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_merges):<br>        <span class="hljs-comment"># Count the number of occurrences of each pair of tokens</span><br>        counts = defaultdict(<span class="hljs-built_in">int</span>)<br>        <span class="hljs-keyword">for</span> index1, index2 <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(indices, indices[<span class="hljs-number">1</span>:]):  <span class="hljs-comment"># For each adjacent pair</span><br>            counts[(index1, index2)] += <span class="hljs-number">1</span>  <span class="hljs-comment"># @inspect counts</span><br><br>        <span class="hljs-comment"># Find the most common pair.</span><br>        pair = <span class="hljs-built_in">max</span>(counts, key=counts.get)  <span class="hljs-comment"># @inspect pair</span><br>        index1, index2 = pair<br><br>        <span class="hljs-comment"># Merge that pair.</span><br>        new_index = <span class="hljs-number">256</span> + i  <span class="hljs-comment"># @inspect new_index</span><br>        merges[pair] = new_index  <span class="hljs-comment"># @inspect merges</span><br>        vocab[new_index] = vocab[index1] + vocab[index2]  <span class="hljs-comment"># @inspect vocab</span><br>        indices = merge(indices, pair, new_index)  <span class="hljs-comment"># @inspect indices</span><br><br>    <span class="hljs-keyword">return</span> BPEtokenizerParams(vocab=vocab, merges=merges)<br></code></pre></td></tr></table></figure>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261716360.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-1" width="" height="300">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261716258.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-2" width="" height="300">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719352.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-3" width="" height="250">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719727.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-4" width="" height="250">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261719042.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-5" width="" height="230">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261722979.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-6" width="" height="230">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202509261722379.png" srcset="/img/loading.gif" lazyload alt="BPE算法可视化-7" width="" height="230">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    BPE 算法的可视化过程
+    </span>
+  </div>
+</div>
+<h4 id="Using-the-tokenizer">Using the tokenizer</h4>
+<p>现在，给定一个新文本，我们可以对其进行编码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = BPEtokenizer(params)<br>string = <span class="hljs-string">&quot;the quick brown fox&quot;</span>  <span class="hljs-comment"># @inspect string</span><br>indices = tokenizer.encode(string)  <span class="hljs-comment"># @inspect indices</span><br>reconstructed_string = tokenizer.decode(indices)  <span class="hljs-comment"># @inspect reconstructed_string</span><br></code></pre></td></tr></table></figure>
+<p>上述算法非常简单，所以也很低效。在作业1中，需要通过以下方式进一步拓展：</p>
+<ul>
+<li><code>encode()</code> 目前会遍历所有合并操作，事实上只需要遍历有影响的合并操作。</li>
+<li>检测并保留特殊 token（例如，<code>&lt;|endoftext|&gt;</code>）。</li>
+<li>使用预分词（例如，GPT-2分词器正则表达式）。</li>
+<li>尽量让实现尽可能快。</li>
+</ul>
+<h3 id="1-7-Summary">1.7 Summary</h3>
+<h3 id="总结">总结</h3>
+<ul>
+<li>分词器 (Tokenizer)：strings &lt;-&gt; tokens (indices)</li>
+<li>Character-based, Byte-based, Word-based tokenization 都非常不优</li>
+<li>BPE 是一种有效的启发式方法，它会参考语料库的统计信息 (corpus statistics)，以自适应地分配 tokens</li>
+<li>Tokenization 是一种“必要之恶”，也许有一天我们可以直接基于字节来做这件事……</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">个人学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/" class="category-chain-item">AI Notes</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/LLM/" class="category-chain-item">LLM</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/LLM/CS336-Language-Modeling-from-Scratch/" class="category-chain-item">CS336 Language Modeling from Scratch</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CS336 Lec01</div>
+      <div>http://dbqdss.github.io/2025/09/26/个人学习笔记/AI Notes/LLM/CS336 Language Modeling from Scratch/CS336-Lec01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>失去理想的獾</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/18/%E8%AF%BB%E8%AE%BA%E6%96%87/A-Survey-on-DLMs/" title="A Survey on DLMs">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">A Survey on DLMs</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/24/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Math%20Notes/SDE%E8%AE%A8%E8%AE%BA%E7%8F%AD/SDE-Lec01-1/" title="SDE 讨论班 Lec 01-1">
+                        <span class="hidden-mobile">SDE 讨论班 Lec 01-1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+    
+      <article id="comments" lazyload>
+        
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
+      
+        
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="waifu" id="waifu" style="z-index: 1000;"> <div class="waifu-tips" style="opacity: 1;"></div> <canvas id="live2d" width="280" height="250" class="live2d"></canvas> <div class="waifu-tool"> <span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span> </div> </div> <script src="/assets/live2d.min.js"></script> <script src="/assets/waifu-tips.js"></script> <script type="text/javascript"> initModel() </script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-copyright"></i>
+<a href="https://github.com/DBQDSS" target="_blank" rel="nofollow noopener"><span>失去理想的獾</span></a>
+|  Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+<div style="font-size: 0.85rem">
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script src="/vvd_js/duration.js"></script>
+  <br>
+  <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    本页总阅读量 <span id="busuanzi_page_pv">加载中...</span> 次
+  <!-- 不蒜子统计图标代码 如果更换域名记得替换Start -->
+    <a href="https://www.busuanzi.cc/count.php?search=dbqdss.github.io" title="不蒜子统计" target="_blank">
+        <img style="width:85px;height:25px;" src="https://www.busuanzi.cc/static/images/bsz-tongji.png" srcset="/img/loading.gif" lazyload>
+    </a>
+  <!-- 不蒜子统计图标代码 End -->
+</div>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="/js/yinghua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
