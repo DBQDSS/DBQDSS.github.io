@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
 <meta property="article:published_time" content="2026-07-20T16:03:50.000Z">
-<meta property="article:modified_time" content="2026-07-20T16:04:41.994Z">
+<meta property="article:modified_time" content="2026-07-20T16:25:34.082Z">
 <meta property="article:author" content="失去理想的獾">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
@@ -380,9 +380,7 @@
 <blockquote>
 <p>（人工智能）是制造智能机器，特别是智能计算机程序的科学和工程。它与使用计算机理解人类智能的任务相似，但人工智能不必局限于生物学上可观察到的那些方法。</p>
 </blockquote>
-<p>语言人工智能是人工智能的一个子领域，专注于开发能够理解、处理和生成人类语言的技<br>
-术。随着机器学习方法在解决语言处理问题方面取得持续成功，语言人工智能这个术语与<br>
-自然语言处理（natural language processing，NLP）经常可以互换使用。</p>
+<p>语言人工智能是人工智能的一个子领域，专注于开发能够理解、处理和生成人类语言的技术。随着机器学习方法在解决语言处理问题方面取得持续成功，语言人工智能这个术语与自然语言处理（natural language processing，NLP）经常可以互换使用。</p>
 <h2 id="1-2-GPT及其之前的语言人工智能发展史">1.2 GPT及其之前的语言人工智能发展史</h2>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
@@ -1085,8 +1083,7 @@ BERT 类模型通常用于 <em>迁移学习</em>（transfer learning）：首先
 <p>大型社区的支持进一步突出了这一优势，比如 Hugging Face，展示了基于开源模型开展社区合作的可能性。</p>
 <p>缺点：</p>
 <ul>
-<li>需要强大的硬件来运行，在训练或微调时甚至需要更强大的硬<br>
-件。</li>
+<li>需要强大的硬件来运行，在训练或微调时甚至需要更强大的硬件。</li>
 <li>配置和使用这些模型需要特定的知识。</li>
 </ul>
 <p>我们通常倾向于尽可能使用开源 LLM。这种方式带来了更高的自由度，可以尝试各种选<br>
@@ -1113,7 +1110,7 @@ BERT 类模型通常用于 <em>迁移学习</em>（transfer learning）：首先
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 提示词（用户输入/查询）</span><br>messages = [<br> &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Create a funny joke about chickens.&quot;</span>&#125;<br>]<br><span class="hljs-comment"># 生成输出</span><br>output = generator(messages) <br><span class="hljs-built_in">print</span>(output[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;generated_text&quot;</span>])<br></code></pre></td></tr></table></figure>
 <p>运行上述代码，将生成一个笑话，并打印出来。</p>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">Why don<span class="hljs-symbol">&#x27;t</span> chickens like <span class="hljs-keyword">to</span> go <span class="hljs-keyword">to</span> the gym? Because they can<span class="hljs-symbol">&#x27;t</span> crack the egg-sistence <span class="hljs-keyword">of</span> it!<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Why don&#x27;t chickens like to go to the gym? Because they can&#x27;t crack the egg-sistence of it!<br></code></pre></td></tr></table></figure>
 <p>笑点解析：egg-sistence 通 existence，crack the existence of sth 表示看透、接受某事。</p>
 <p>所以上面意为，</p>
 <ul>
