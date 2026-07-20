@@ -22,13 +22,13 @@
     <meta name="description" content="何为是 LLM？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大语言模型简介">
-<meta property="og:url" content="http://dbqdss.github.io/2026/07/13/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Lec01/index.html">
+<meta property="og:url" content="http://dbqdss.github.io/2026/07/21/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Lec01/index.html">
 <meta property="og:site_name" content="失去理想的獾 の Blog">
 <meta property="og:description" content="何为是 LLM？">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
-<meta property="article:published_time" content="2026-07-13T01:13:50.000Z">
-<meta property="article:modified_time" content="2026-07-20T12:57:10.105Z">
+<meta property="article:published_time" content="2026-07-20T16:03:50.000Z">
+<meta property="article:modified_time" content="2026-07-20T16:04:41.994Z">
 <meta property="article:author" content="失去理想的獾">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
@@ -272,7 +272,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="读书笔记。"></span>
+            <span id="subtitle" data-typed-text="从零开始的 LLM 底层知识学习之旅。"></span>
           
         </div>
 
@@ -288,8 +288,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-07-13 09:13" pubdate>
-          2026年7月13日 上午
+        <time datetime="2026-07-21 00:03" pubdate>
+          2026年7月21日 凌晨
         </time>
       </span>
     
@@ -300,7 +300,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k 字
+          10k 字
         
       </span>
     
@@ -311,7 +311,7 @@
         
         
         
-          42 分钟
+          86 分钟
         
       </span>
     
@@ -357,12 +357,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">读书笔记。</h1>
+            <h1 id="seo-header">从零开始的 LLM 底层知识学习之旅。</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2026年7月20日 晚上
+                    本文最后更新于 2026年7月21日 凌晨
                   
                 
               </p>
@@ -771,15 +771,17 @@
     </span>
   </div>
 </div>
+<p>Transformer 中的编码器块由两部分组成：<strong>自注意力</strong>（self-<strong>attention）和前馈神经网络</strong>（feed-forward neural network）。与之前的注意力方法相比，自注意力可以关注单个序列内部的不同位置，从而更高效且准确地表示输入序列。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547591.png" srcset="/img/loading.gif" lazyload alt="自注意力机制" width="500" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    自注意力机制
+    自注意力机制可以一次性查看整个序列，而不是一次处理一个 token。
     </span>
   </div>
 </div>
+<p>与编码器相比，解码器多了一个注意力层，用于关注编码器的输出（以便找到输入中相关的部分）。如图 1-19 所示，这个过程类似于我们之前讨论过的 RNN 注意力解码器。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547234.png" srcset="/img/loading.gif" lazyload alt="Transformer 解码块示意图" width="500" height="">
@@ -789,37 +791,90 @@
     </span>
   </div>
 </div>
+<p>如图 1-20 所示，解码器中的自注意力层会掩码未来的位置，这样在生成输出时就只会关注之前的位置，从而避免信息泄露。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547700.png" srcset="/img/loading.gif" lazyload alt="自注意力机制2" width="500" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    自注意力机制2
+    解码器会遮盖上三角的位置
     </span>
   </div>
 </div>
+<p>编码器、解码器这些模块共同构成了 Transformer 架构，它是语言人工智能中许多影响深远的模型（如 BERT 和 GPT-1）的基础。在第 2 章和第 3 章中，本书将深入探讨 Transformer 模型如此成功的诸多原因，包括 <strong>多头注意力</strong>（multi-head attention）、<strong>位置嵌入</strong>（positional embeddings）和 <strong>层归一化</strong>（layer normalization）。</p>
 <h3 id="1-2-4-Encoder-Only">1.2.4 Encoder-Only</h3>
+<p>原始的 Transformer 模型是一个 Encoder-Decoder 架构，虽然非常适合翻译任务，但难以用于其他任务，比如文本分类。</p>
+<blockquote>
+<p>Jacob Devlin et al. “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding”</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a></p>
+</blockquote>
+<p>2018 年，研究人员提出了一种名为 BERT（bidirectional encoder representations from Transformers，基于 Transformer 的双向编码器表示）的新架构，它可以应用于各种任务，并在未来几年成为语言人工智能的基石。如图 1-21 所示，BERT 是一个 Encoder-Only 架构，专注于语言表示。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548749.png" srcset="/img/loading.gif" lazyload alt="BERT 基座模型架构" width="500" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    BERT 基座模型架构
+    BERT 基座模型架构：它只使用编码器，完全移除了解码器。
     </span>
   </div>
 </div>
+<p>这些编码器模块与我们之前看到的相同：在自注意力层之后，接上前馈神经网络。输入中包含一个附加词元 [CLS]（Classification Token，分类词元）<span style="color:lightgreen">用于表示整个输入。</span>通常，我们使用 [CLS] 词元作为 <em>输入嵌入</em>（input embedding），用于在特定任务（如分类）上进行模型微调。</p>
+<p>这些堆叠起来的编码器很难训练，因此 BERT 采用了一种被称为 <em>掩码语言建模</em>（masked language modeling）的技术来解决这个问题（见第 2 章和第 11 章）。如图 1-22 所示，该方法会<span style="color:lightgreen">掩码部分输入，让模型预测被掩码的部分。</span>这样的预测任务虽然困难，但能让 BERT 为输入序列创建更准确的（中间）表示。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548063.png" srcset="/img/loading.gif" lazyload alt="使用掩码语言建模方法的 BERT 模型1" width="500" height="">
-    <br>
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548462.png" srcset="/img/loading.gif" lazyload alt="使用掩码语言建模方法的 BERT 模型2" width="500" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     使用掩码语言建模方法的 BERT 模型
     </span>
   </div>
 </div>
+<p>这种架构和训练过程使 BERT 及相关架构在表示依赖上下文的文本方面表现十分出色。<br>
+BERT 类模型通常用于 <em>迁移学习</em>（transfer learning）：首先针对语言建模进行 <em>预训练</em>（pretraining），然后针对特定任务进行 <em>微调</em>（fine-tuning）。例如，通过在整个维基百科的文本数据上训练 BERT，它学会了理解文本的语义和上下文性质。然后，如图 1-23 所示，我们可以使用该预训练模型，针对特定任务（如文本分类）进行微调。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548462.png" srcset="/img/loading.gif" lazyload alt="预训练与微调" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    预训练与微调
+    </span>
+  </div>
+</div>
+<p>特征提取（Frozen）	把 BERT 当作固定编码器，只取它的输出向量，然后接自己的简单分类器	用 [CLS] 的嵌入向量直接训练一个 SVM 做情感分</p>
+<p>预训练模型的一个 <strong>巨大优势</strong> 是<span style="color:lightgreen">大部分训练工作已经完成。针对特定任务的微调通常计算量较小，且需要的数据更少。</span>此外，BERT 类模型架构在处理过程中的几乎每一步都会生成嵌入，这使得 BERT 模型成为通用特征提取器，无须针对特定任务进行微调。</p>
+<blockquote>
+<p>上面说无需微调的原因是：BERT 中每一层的 Transformer 都会输出一个向量序列，不同深度层的输出向量序列会有不同作用。</p>
+<ul>
+<li>低层（1-4 层）：侧重句法、语法、局部表层特征
+<ul>
+<li>词性、依存关系、短语边界、标点、局部搭配，适合句法分析、分词、词性标注。</li>
+</ul>
+</li>
+<li>中层（5-8 层）：兼顾句法 + 浅层语义
+<ul>
+<li>实体边界、指代初步信息，适合命名实体识别（Named Entity Recognition, NER）、关系抽取任务。</li>
+</ul>
+</li>
+<li>高层（9-12 层）：高度抽象全局语义、句子整体含义
+<ul>
+<li>上下文推理、句间逻辑、完整语义，适合文本分类、情感分析、语义匹配。</li>
+</ul>
+</li>
+<li>最后一层（第 12 层）：适配预训练目标
+<ul>
+<li>最贴合掩码语言建模（Masked Language Modeling，MLM）、下一句预测任务（Next Sentence Prediction，NSP），但会丢失部分细粒度句法信息</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>像 BERT 这样的 Encoder-Only 模型将在本书的多个章节中使用。多年以来，它们一直被用于常见任务，包括分类任务（见第 4 章）、聚类任务（见第 5 章）和语义搜索（见第 8 章）。</p>
+<p>在本书中，我们将 Encoder-Only 模型称为 <em>表示模型</em>（representation model），将 Decoder-Only 模型称为 <em>生成模型</em>（generative model）。需要注意的是，表示模型和生成模型的主要区别并不在于底层架构和工作方式。表示模型主要关注语言的表示，例如创建嵌入，而通常不生成文本；相比之下，生成模型主要关注生成文本，通常不会被训练用于生成嵌入。</p>
 <h3 id="1-2-5-Decoder-Only">1.2.5 Decoder-Only</h3>
+<blockquote>
+<p>Alec Radford et al. “Improving Language Understanding by Generative Pre-Training”.</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a></p>
+</blockquote>
+<p>与 BERT 的 Encoder-Only 架构类似，2018 年出现了一种用于处理生成任务的 Decoder-Only 架构——生成式预训练 Transformer（Generative Pre-trained Transformer，GPT）。如图 1-24 所示，GPT-1 与 BERT 编码器堆叠架构类似，堆叠了多个解码器块。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548794.png" srcset="/img/loading.gif" lazyload alt="GPT-1 架构" width="500" height="">
@@ -829,6 +884,17 @@
     </span>
   </div>
 </div>
+<p>GPT-1 在 7000 本图书和 Common Crawl（一个大型网页数据集）上进行训练。最终模型包含 117M 个参数。每个参数都是一个数值，代表着模型对语言的理解。</p>
+<blockquote>
+<p>Alec Radford et al. “Language Models are Unsupervised Multitask Learners.”</p>
+<p>GPT-2 论文链接：<a target="_blank" rel="noopener" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a></p>
+</blockquote>
+<p>假设其他条件相同，我们预计更多的参数能显著提升语言模型的能力和性能。考虑到这一<br>
+点，我们已经看到新发布的模型越来越大，模型规模稳步提升。如图 1-25 所示，GPT-2 有 1.5B 个参数，GPT-3 则有 175B 参数。</p>
+<blockquote>
+<p>Tom Brown et al. “Language Models are Few-Shot Learners.” NeurIPS 2020.</p>
+<p>GPT-3 论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a></p>
+</blockquote>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548032.png" srcset="/img/loading.gif" lazyload alt="GPT 的规模" width="500" height="">
@@ -838,18 +904,34 @@
     </span>
   </div>
 </div>
+<p>这些生成式 Decoder-Only 模型，特别是“更大”的模型，通常被称为大语言模型（LLM）。正如我们将在本章后面讨论的，LLM 这个术语不仅仅指代生成模型，也包括表示模型。生成式 LLM 作为一种 <em>序列到序列</em>（sequence-to-sequence，Seq2Seq）的文本生成系统，其核心机制是接收文本输入并尝试自动补全。尽管自动补全功能很实用，但这类模型真正的强大之处在于经过训练成为聊天机器人。与其只是补全文本，不如将它们训练得能够回答问题。通过微调这些模型，我们可以创建能够遵循人类指示的 <em>指令模型</em>（instruct model）或 <em>对话模型</em>（chat model）。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548312.png" srcset="/img/loading.gif" lazyload alt="LLM 的问答机制" width="500" height="">
-    <br>
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548936.png" srcset="/img/loading.gif" lazyload alt="上下文长度" width="500" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     LLM 的问答机制
     </span>
   </div>
 </div>
+<p>如图 1-26 所示，由此创建的模型接收用户查询（提示词，prompt），输出最可能符合该提示词的响应。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548936.png" srcset="/img/loading.gif" lazyload alt="上下文长度" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    上下文
+    </span>
+  </div>
+</div>
+<p>这些补全模型的一个要素是所谓的 <em>上下文长度</em>（context length），也称为 <em>上下文窗口</em>（context window）。如图 1-27 所示，上下文长度代表模型可以处理的最大 token 数量。如果我们有较大的上下文长度，就可以将整个文档传递给 LLM。需要注意的是，由于这些模型的 <strong>自回归特性</strong>，当生成新的 token 时，当前的上下文长度会增加。</p>
 <h3 id="1-2-6-生成式-AI-元年">1.2.6 生成式 AI 元年</h3>
+<p>LLM 对 AI 领域产生了巨大影响，随着 ChatGPT（GPT-3.5）的发布、普及和媒体关注，一些人将 2023 年称为“生成式 AI 元年”。当我们提到 ChatGPT 时，我们实际上指的是这款产品而非其底层模型。它最初由 GPT-3.5 LLM 驱动，此后又发展出了几个性能更强的版本，如 GPT-4。</p>
+<blockquote>
+<p>OpenAI “GPT-4 Technical Report.” 2023</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.08774">https://arxiv.org/abs/2303.08774</a></p>
+</blockquote>
+<p>在生成式 AI 元年，产生影响力的模型不只是 GPT-3.5。如图 1-28 所示，开源和专有的 LLM 都以惊人的速度走入大众视野。这些开源基座模型通常被称为 <em>基础模型</em>（foundation model），可以针对特定任务，比如遵循指令进行微调。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337759.png" srcset="/img/loading.gif" lazyload alt="生成式 AI 的发展" width="500" height="">
@@ -860,24 +942,124 @@
   </div>
 </div>
 <h2 id="1-3-LLM-的训练范式与应用">1.3 LLM 的训练范式与应用</h2>
+<p>在我们回顾语言人工智能的近期历史时，我们观察到主要是生成式 Decoder-Only 模型被称为 LLM。很多人认为 LLM 的关键特点就是“大”，但在实践中，这样的描述显然有局限性。</p>
+<p>如果我们创建一个与 GPT-3 能力相当但参数量减少到原来的 1/10 的模型，这样的模型是否就不属于“LLM”的范畴了？同样，如果我们发布一个与 GPT-4 同等规模的模型，它能够进行准确的文本分类，但没有生成能力，那么它还能被称为“LLM”吗？即使它的主要功能不是语言生成，但它仍然可以表示文本。</p>
+<p>这类定义的问题在于我们排除了一些能力很强的模型。无论我们给某个模型起什么名字，<br>
+都不会改变它的行为方式。由于“LLM”这个术语的定义随着新模型的发布而不断演变，我们需要明确说明它在本书中的含义。“大”的定义是相对的，今天被认为“大”的模型，明天可能就显得很小了。目前同一事物有很多不同的称呼，对我们来说，“LLM”也包括那些不生成文本且可以在消费级硬件上运行的模型。</p>
+<p>因此，除了涵盖生成模型，本书还将介绍参数少于 1B 且不生成文本的模型。我们将探索如何使用其他模型，如嵌入模型、表示模型，甚至词袋模型，来增强 LLM 的能力。</p>
 <h3 id="1-3-1-LLM-的训练范式">1.3.1 LLM 的训练范式</h3>
+<p>传统机器学习通常是为特定任务（如分类）训练模型。如图 1-29 所示，我们认为这是一个单步过程。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337418.png" srcset="/img/loading.gif" lazyload alt="LLM 的训练范式1" width="500" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337418.png" srcset="/img/loading.gif" lazyload alt="传统模型的训练范式" width="500" height="">
     <br>
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337502.png" srcset="/img/loading.gif" lazyload alt="LLM 的训练范式2" width="500" height="">
+    <span style="color: lightpink; font-size: 16px;">
+    传统模型的训练范式
+    </span>
+  </div>
+</div>
+<p>相比之下，创建 LLM 通常包含至少两个步骤。</p>
+<ul>
+<li>语言建模
+<ul>
+<li>第一步称为 <strong>预训练</strong>，占用了创建 LLM 过程中的大部分算力和训练时间。LLM 在海量互联网文本语料库上进行训练，使模型能够学习语法、上下文和语言模式。这个宽泛的训练阶段并不是针对特定任务或应用的，而仅仅用于预测下一个词。由此产生的模型通常被称为基础模型或基座模型。这些模型通常不会遵循指令。</li>
+</ul>
+</li>
+<li>微调
+<ul>
+<li>第二步是 <strong>微调</strong>，有时也称为 <em>后训练</em>（post-training），包括使用先前训练好的模型，并在更具体的任务上进行进一步训练。这使得 LLM 能够适应特定任务或展现符合人们期望的行为。例如，我们可以微调一个基座模型，使其在分类任务上表现良好或遵循指令。这可以节省大量资源，因为预训练阶段成本相当高，通常需要大多数人和组织难以企及的数据和计算资源。</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337502.png" srcset="/img/loading.gif" lazyload alt="LLM 的训练范式" width="500" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     LLM 的训练范式
     </span>
   </div>
 </div>
+<p>对于任何经过第一步（预训练）的模型，我们都称之为预训练模型。对于基座模型，我们可以添加微调步骤来进一步使模型与用户偏好对齐。</p>
 <h3 id="1-3-2-LLM-的应用">1.3.2 LLM 的应用</h3>
-<h3 id="1-3-3-LLM-的分类">1.3.3 LLM 的分类</h3>
+<p>借助文本生成能力和提示词，LLM 适用于广泛的任务，似乎限制它应用范围的只有人的想象力。让我们探索一些常见任务和技术来说明这一点。</p>
+<ul>
+<li>检测客户评论是正面的还是负面的
+<ul>
+<li>这是（有监督的）分类任务，可以使用 Encoder-Only 和 Decoder-Only 模型来处理，既可以使用预训练模型（参见第 4 章），也可以使用微调模型（参见第 11 章）来完成。</li>
+</ul>
+</li>
+<li>开发一个系统，找出主题相同的工单问题
+<ul>
+<li>这是（无监督的）分类任务，没有预定义的标签。我们可以利用 Encoder-Only 模型来执行分类本身，并使用 Decoder-Only 模型来标记主题（参见第 5 章）。</li>
+</ul>
+</li>
+<li>构建一个用于检索和查看相关文档的系统
+<ul>
+<li>语言模型系统的一大重要特性是能够整合外部信息资源。使用语义搜索，我们可以构建系统，让 LLM 轻松访问和查找信息（参见第 8 章）。还可以通过创建或微调自定义嵌入模型来改进系统（参见第 12 章）。</li>
+</ul>
+</li>
+<li>构建一个能利用外部资源（如工具和文档）的 LLM 聊天机器人
+<ul>
+<li>这一应用是多种技术的组合，展示了如何通过外部组件来发挥 LLM 的真正潜力。提示工程（参见第 6 章）、RAG（参见第 8 章）和微调 LLM（参见第 12 章）等方法都是LLM 拼图的一部分。</li>
+</ul>
+</li>
+<li>构建一个能够根据冰箱中的食材图片生成食谱的 LLM
+<ul>
+<li>这是一个多模态任务，LLM 需要输入图像并对所看到的图像进行推理（参见第 9 章）。LLM 正在被扩展到视觉等其他模态，这带来了各种有趣的用例。</li>
+</ul>
+</li>
+</ul>
+<p>创建 LLM 应用是极具吸引力的，因为在一定程度上，这些应用的能力仅仅受限于你的想<br>
+象力。</p>
+<h3 id="1-3-3-LLM-伦理">1.3.3 LLM 伦理</h3>
+<p>LLM 的广泛应用已经带来深远的影响，且这种影响很可能越来越显著。在我们探索 LLM 令人难以置信的能力时，我们应该牢记它们的社会和伦理影响。以下是几个需要考虑的关键点。</p>
+<ul>
+<li>偏见和公平性
+<ul>
+<li>LLM 在训练时使用了大量可能包含偏见的数据。模型可能会从这些偏见中学习，再现乃至放大这些偏见。由于训练 LLM 的数据集很少公开，除非亲自尝试，否则很难明确它们可能包含哪些偏见。</li>
+</ul>
+</li>
+<li>透明度和问责制
+<ul>
+<li>由于 LLM 具有令人难以置信的能力，在与之交互时，我们并不总是能清楚分辨是在与人类还是模型对话。因此，当没有人类参与时，在人机交互中使用 LLM 可能会产生意想不到的后果。例如，在医疗领域使用的基于 LLM 的应用可能会被归类为医疗设备，因为它们可能会影响患者的健康。</li>
+</ul>
+</li>
+<li>有害内容
+<ul>
+<li>LLM 生成的内容不一定是真实的，且它们可能“自信地”输出错误的文本。此外，它们还可能被用于生成假新闻、文章和其他具有误导性的信源。</li>
+</ul>
+</li>
+<li>知识产权
+<ul>
+<li>LLM 输出内容的知识产权应该归属于你，还是模型创造者？当输出与训练数据中的某个短语相似时，知识产权是否属于该短语的作者？由于大多数情况下我们无法访问训练数据，我们很难确定模型何时使用了受版权保护的材料。</li>
+</ul>
+</li>
+<li>监管
+<ul>
+<li>由于 LLM 的巨大影响力，各国政府开始对商业应用进行监管。例如欧盟《人工智能法案》，该法案对包括 LLM 在内的基础模型的开发和部署进行监管。</li>
+</ul>
+</li>
+</ul>
+<p>我们要强调在开发和使用 LLM 时道德规范的重要性，敦促你多了解如何安全、负责任地使用 LLM 和人工智能系统。</p>
+<h3 id="1-3-4-LLM-分类">1.3.4 LLM 分类</h3>
+<p>专有模型是闭源模型的一种。闭源 LLM 是指不向公众公开其权重和架构的模型。专有模<br>
+型由特定组织开发，其底层代码保密。此类模型的例子包括 OpenAI 的 GPT-4 和 Anthropic 的 Claude。</p>
+<p>专有模型通常有强大的商业支持，并已在其服务中进行了开发和集成。你可以通过一个与 LLM 通信的 <em>应用程序接口</em>（application program interface，API）来访问这些模型，如图 1-31 所示。例如，要在 Python 中使用 ChatGPT，你可以使用 OpenAI 的软件包来与服务交互，而无须直接访问它。</p>
+<p>优点：</p>
+<ul>
+<li>用户无须拥有强大的 GPU 就能使用 LLM。服务提供商负责托管和运行模型，而且通常拥有更多的计算资源。</li>
+<li>用户也无须具备托管和使用模型的专业知识，这显著降低了使用门槛。</li>
+<li>由于相关组织的大量投资，专有模型往往比开源模型性能更强。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>LLM API 服务可能成本较高。</li>
+<li>由于无法直接访问模型的权重，用户也无法自行微调模型。</li>
+<li>用户的数据会与提供商共享，在许多常见的应用场景中，这可能是用户不希望发生的，比如共享患者数据。</li>
+</ul>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337502.png" srcset="/img/loading.gif" lazyload alt="词袋模型1" width="500" height="">
-    <br>
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337128.png" srcset="/img/loading.gif" lazyload alt="闭源模型" width="500" height="">
     <br>
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337800.png" srcset="/img/loading.gif" lazyload alt="开源模型" width="500" height="">
@@ -887,6 +1069,58 @@
     </span>
   </div>
 </div>
+<p>开源 LLM 是指向公众共享其权重和架构的模型。它们仍然由特定组织开发，但通常会共<br>
+享用于创建或本地运行模型的代码。开源 LLM 具有不同级别的许可方式，有的允许模型<br>
+的商业使用，有的不允许。Cohere 的 Command R、Mistral 系列模型、微软的 Phi 和 Meta 的 Llama 系列模型都是开源模型。</p>
+<p>优点：</p>
+<ul>
+<li>用户可以完全控制模型。
+<ul>
+<li>你可以在不依赖 API 连接的情况下使用模型</li>
+<li>可以对其进行微调，并通过它处理敏感数据。</li>
+<li>你不依赖于任何服务，并且可以完全透明地了解模型产生输出的过程。</li>
+</ul>
+</li>
+</ul>
+<p>大型社区的支持进一步突出了这一优势，比如 Hugging Face，展示了基于开源模型开展社区合作的可能性。</p>
+<p>缺点：</p>
+<ul>
+<li>需要强大的硬件来运行，在训练或微调时甚至需要更强大的硬<br>
+件。</li>
+<li>配置和使用这些模型需要特定的知识。</li>
+</ul>
+<p>我们通常倾向于尽可能使用开源 LLM。这种方式带来了更高的自由度，可以尝试各种选<br>
+项、探索模型的内部工作原理以及本地使用模型，可以说，比使用闭源 LLM 好处更多。</p>
+<p>本书以直观理解为先的理念是这一过程的重要一环。如果你不仅对 LLM 有直观的理解，还熟悉常见框架的使用，那么转向其他框架应该是比较简单的。具体来说，我们专注于后端软件包。这些是没有 GUI（graphical user interface，图形用户界面）的软件包，专门用于在你的设备上高效加载和运行 LLM，比如 llama.cpp、LangChain，以及许多框架的核心 Hugging Face Transformers。</p>
+<h3 id="1-3-5-牛刀小试">1.3.5 牛刀小试</h3>
+<p>当我们在使用 LLM 时，需要在本地加载两个模型：</p>
+<ul>
+<li>生成模型本身</li>
+<li>其底层的分词器（tokenizer）</li>
+</ul>
+<p>分词器负责在将输入文本送入生成模型之前，将其分割成 token。你可以在 Hugging Face 网站上找到分词器和模型，只需传入相应的 ID 即可。在本例中，我们使用 microsoft/Phi-3-mini-4k-instruct 作为模型的主路径。我们可以使用 transformers 来加载分词器和模型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> AutoModelForCausalLM, AutoTokenizer<br><span class="hljs-comment"># 加载模型和分词器</span><br>model = AutoModelForCausalLM.from_pretrained( <br> <span class="hljs-string">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span>, <br> device_map=<span class="hljs-string">&quot;cuda&quot;</span>,<br> torch_dtype=<span class="hljs-string">&quot;auto&quot;</span>, <br> trust_remote_code=<span class="hljs-literal">True</span>,<br>)<br>tokenizer = AutoTokenizer.from_pretrained(<span class="hljs-string">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>然后使用 transformers 的 pipeline 方法创建一个 LLM 对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> pipeline<br><span class="hljs-comment"># 创建流水线</span><br>generator = pipeline( <br>  <span class="hljs-string">&quot;text-generation&quot;</span>,<br>  model=model, <br>  tokenizer=tokenizer,<br>  return_full_text=<span class="hljs-literal">False</span>, <br>  max_new_tokens=<span class="hljs-number">500</span>, <br>  do_sample=<span class="hljs-literal">False</span><br>)<br></code></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li><code>&quot;text-generation&quot;</code> 是流水线的名称，表示生成文本。</li>
+<li><code>model</code> 是加载的模型。</li>
+<li><code>tokenizer</code> 是加载的分词器。</li>
+<li><code>return_full_text</code> 表示是否返回完整的文本。如果为 False，则只返回生成的文本，不包含提示词。</li>
+<li><code>max_new_tokens</code> 表示生成文本的最大 token 数。</li>
+<li><code>do_sample</code> 表示是否使用采样生成文本。如果为 False，则使用贪心搜索（始终选择概率最高的）生成文本。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 提示词（用户输入/查询）</span><br>messages = [<br> &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Create a funny joke about chickens.&quot;</span>&#125;<br>]<br><span class="hljs-comment"># 生成输出</span><br>output = generator(messages) <br><span class="hljs-built_in">print</span>(output[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;generated_text&quot;</span>])<br></code></pre></td></tr></table></figure>
+<p>运行上述代码，将生成一个笑话，并打印出来。</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">Why don<span class="hljs-symbol">&#x27;t</span> chickens like <span class="hljs-keyword">to</span> go <span class="hljs-keyword">to</span> the gym? Because they can<span class="hljs-symbol">&#x27;t</span> crack the egg-sistence <span class="hljs-keyword">of</span> it!<br></code></pre></td></tr></table></figure>
+<p>笑点解析：egg-sistence 通 existence，crack the existence of sth 表示看透、接受某事。</p>
+<p>所以上面意为，</p>
+<ul>
+<li>鸡为啥不爱去健身房？</li>
+<li>因为它们根本没法接受这件事的 “蛋实”（现实）！</li>
+</ul>
+
                 
               </div>
             
@@ -953,7 +1187,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>大语言模型简介</div>
-      <div>http://dbqdss.github.io/2026/07/13/个人学习笔记/AI Notes/LLM/Hands-On LLMs/HandsOn-LLMs-Lec01/</div>
+      <div>http://dbqdss.github.io/2026/07/21/个人学习笔记/AI Notes/LLM/Hands-On LLMs/HandsOn-LLMs-Lec01/</div>
     </div>
     <div class="license-meta">
       
@@ -965,7 +1199,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年7月13日</div>
+          <div>2026年7月21日</div>
         </div>
       
       
@@ -997,18 +1231,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/07/19/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Reinforcement%20Learning/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86/MathFoundationRL-Ch02/" title="强化学习的数学基础 - Chapter 2">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">强化学习的数学基础 - Chapter 2</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/05/06/%E4%B9%92%E4%B9%93%E7%90%83%E4%B8%8E%E5%81%A5%E8%BA%AB/%E4%B9%92%E4%B9%93%E7%90%83%E6%8A%80%E6%88%98%E6%9C%AF%E5%90%88%E9%9B%86/" title="乒乓球🏓技战术整理">
-                        <span class="hidden-mobile">乒乓球🏓技战术整理</span>
+                      <a href="/2026/07/20/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Reinforcement%20Learning/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86/MathFoundationRL-Ch03/" title="强化学习的数学基础 - Chapter 3">
+                        <span class="hidden-mobile">强化学习的数学基础 - Chapter 3</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
