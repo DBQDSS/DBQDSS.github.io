@@ -1,0 +1,1363 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="失去理想的獾">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="何为是 LLM？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大语言模型简介">
+<meta property="og:url" content="http://dbqdss.github.io/2026/07/13/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Lec01/index.html">
+<meta property="og:site_name" content="失去理想的獾 の Blog">
+<meta property="og:description" content="何为是 LLM？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
+<meta property="article:published_time" content="2026-07-13T01:13:50.000Z">
+<meta property="article:modified_time" content="2026-07-20T12:57:10.105Z">
+<meta property="article:author" content="失去理想的獾">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>大语言模型简介 - 失去理想的獾 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/mouse.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/equation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbqdss.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1, h2, h3, h4, h5, h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="失去理想的獾 の Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>失去理想的獾 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/cv/my-cv.pdf" target="_self">
+                    <i class="iconfont icon-addrcard"></i>
+                    <span>简历</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://raw.githubusercontent.com/DBQDSS/Blog_img/banner-index/202607202056088.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="读书笔记。"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        失去理想的獾
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-13 09:13" pubdate>
+          2026年7月13日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">读书笔记。</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月20日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>参考书目：《图解大模型: 生成式 AI 原理与实战》Jay Alammar Maarten Grootendorst 著；李博杰译</p>
+<p>此为读书笔记，准确来说是原书省流版摘抄与批注。</p>
+<p>背景来自 XHS woomo</p>
+</blockquote>
+<h2 id="1-1-何为人工智能">1.1 何为人工智能</h2>
+<p>AI 学科创始人之一 John McCarthy 给出的正式定义（“What is Artificial Intelligence?”，2007）</p>
+<blockquote>
+<p>（人工智能）是制造智能机器，特别是智能计算机程序的科学和工程。它与使用计算机理解人类智能的任务相似，但人工智能不必局限于生物学上可观察到的那些方法。</p>
+</blockquote>
+<p>语言人工智能是人工智能的一个子领域，专注于开发能够理解、处理和生成人类语言的技<br>
+术。随着机器学习方法在解决语言处理问题方面取得持续成功，语言人工智能这个术语与<br>
+自然语言处理（natural language processing，NLP）经常可以互换使用。</p>
+<h2 id="1-2-GPT及其之前的语言人工智能发展史">1.2 GPT及其之前的语言人工智能发展史</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131007084.png" srcset="/img/loading.gif" lazyload alt="GPT及其之前的语言人工智能发展史" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    GPT及其之前的语言人工智能发展史
+    </span>
+  </div>
+</div>
+<ol>
+<li><strong>统计表示时代</strong>：聚焦于&quot;如何表示语言&quot;
+<ul>
+<li>2000：<strong>词袋模型</strong>（Bag of Words）
+<ul>
+<li>NLP 领域的基本方法</li>
+<li><strong>原理</strong>：将文本视为词的无序集合，仅统计词频而完全忽略语法结构和词序，用高维稀疏向量表示文本。优点是简单高效，缺点是丢失了语义和上下文信息。</li>
+</ul>
+</li>
+<li>2013：<strong>Word2Vec</strong>
+<ul>
+<li>作者/团队：Tomas Mikolov 等，Google，</li>
+<li>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></li>
+<li><strong>原理</strong>：提出两种神经网络架构——<strong>CBOW</strong>（用上下文预测中心词）和<strong>Skip-gram</strong>（用中心词预测上下文）。通过大规模语料训练，将高维稀疏的one-hot词向量映射到低维密集的连续向量空间，使得语义相近的词在向量空间中距离相近。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>深度学习架构时代</strong>：聚焦于&quot;如何理解上下文&quot;
+<ul>
+<li>2017：<strong>注意力机制</strong>（Attention / Transformer）
+<ul>
+<li>作者/团队：Ashish Vaswani 等，Google Brain</li>
+<li>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></li>
+<li><strong>原理</strong>：在论文《Attention Is All You Need》中提出 <strong>自注意力机制</strong>（Self-Attention）。通过计算 Query、Key、Value 三个矩阵的相似度，为序列中每个位置分配不同的注意力权重，从而捕捉长距离依赖。彻底摒弃了 RNN/CNN，完全基于注意力构建 <strong>Transformer</strong> 架构，奠定了后续几乎所有大模型的基础。</li>
+</ul>
+</li>
+<li>2018：<strong>BERT</strong>
+<ul>
+<li><strong>作者/团队</strong>：Jacob Devlin 等，Google</li>
+<li>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></li>
+<li><strong>原理</strong>：基于 Transformer<strong>编码器</strong>（Encoder）。采用 <strong>双向预训练</strong>：通过掩码语言模型（MLM，随机遮挡词语让模型预测）和下一句预测（NSP）进行训练。能够同时利用词语的左右上下文信息，在理解类任务上表现卓越。</li>
+</ul>
+</li>
+<li>2018：<strong>GPT（Generative Pre-trained Transformer）</strong>
+<ul>
+<li><strong>作者/团队</strong>：Alec Radford 等，OpenAI</li>
+<li>论文链接：<a target="_blank" rel="noopener" href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a></li>
+<li><strong>原理</strong>：基于Transformer<strong>解码器</strong>（Decoder）。采用 <strong>自回归语言建模</strong>——给定前文预测下一个词，通过大规模无监督预训练+下游任务微调（Fine-tuning）的模式，开创了生成式预训练的新范式。</li>
+</ul>
+</li>
+<li>2019：<strong>GPT-2</strong>
+<ul>
+<li><strong>作者/团队</strong>：Alec Radford 等，<strong>OpenAI</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a></li>
+<li><strong>原理</strong>：GPT的规模化延续（15亿参数）。验证了 <strong>“大力出奇迹”</strong>——通过在海量多样化数据上训练，模型无需微调即可展现出<strong>零样本</strong> （Zero-shot）能力，能完成摘要、翻译、问答等任务。</li>
+</ul>
+</li>
+<li>2019：<strong>DistilBERT</strong>
+<ul>
+<li><strong>作者/团队</strong>：Victor Sanh 等，<strong>Hugging Face</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.01108">https://arxiv.org/abs/1910.01108</a></li>
+<li><strong>原理</strong>：对 BERT 进行 <strong>知识蒸馏</strong>（Knowledge Distillation）。让小模型（DistilBERT）学习大模型（BERT）的输出分布，在保留约 97% 性能的同时，减少 40% 参数量、提升 60% 推理速度，开创了模型压缩与高效部署的先河。</li>
+</ul>
+</li>
+<li>2019：<strong>RoBERTa</strong>
+<ul>
+<li><strong>作者/团队</strong>：Yinhan Liu 等，<strong>Facebook AI</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1907.11692">https://arxiv.org/abs/1907.11692</a></li>
+<li><strong>原理</strong>：对BERT训练策略的 <strong>鲁棒优化</strong>（Robustly optimized）。移除了效果不佳的 NSP 任务，采用更大批次、更多数据、更长的训练时间，并动态调整掩码模式。证明BERT的潜力尚未被完全挖掘，通过更优的训练方案即可显著提升性能。</li>
+</ul>
+</li>
+<li>2020：<strong>T5（Text-to-Text Transfer Transformer）</strong>
+<ul>
+<li><strong>作者/团队</strong>：Colin Raffel 等，<strong>Google</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10683">https://arxiv.org/abs/1910.10683</a></li>
+<li><strong>原理</strong>：提出 <strong>&quot;文本到文本&quot;统一框架</strong>——将所有 NLP 任务（分类、翻译、摘要、问答等）都转换为输入文本-输出文本的格式。采用完整的 <strong>编码器-解码器</strong> （Encoder-Decoder）架构，用同样的目标函数训练所有任务，实现了任务范式的统一。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>大模型与对齐时代</strong>：聚焦于&quot;如何规模化&quot;以及&quot;如何对齐人类意图&quot;
+<ul>
+<li>2020：<strong>GPT-3</strong>
+<ul>
+<li><strong>作者/团队</strong>：Tom B. Brown 等，<strong>OpenAI</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a></li>
+<li><strong>原理</strong>：将规模推向极致（1750亿参数）。核心突破是 <strong>上下文学习</strong>（In-context Learning）：无需更新模型参数，仅通过在输入提示（Prompt）中放置少量示例，模型就能理解任务模式并生成相应输出，展现出强大的少样本（Few-shot）和零样本能力。</li>
+</ul>
+</li>
+<li>2021：<strong>Switch Transformer</strong>
+<ul>
+<li><strong>作者/团队</strong>：William Fedus 等，<strong>Google</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2101.03961">https://arxiv.org/abs/2101.03961</a></li>
+<li><strong>原理</strong>：引入 <strong>稀疏专家混合</strong>（Mixture of Experts, MoE）架构。将模型划分为多个&quot;专家&quot;子网络，通过门控机制为每个输入 token 只激活部分专家（如1.6万亿参数中仅使用约5%）。在保持计算成本可控的前提下，将模型规模推向万亿级别，验证了稀疏激活路线的可行性。</li>
+</ul>
+</li>
+<li>2022：<strong>FLAN-T5</strong>
+<ul>
+<li><strong>作者/团队</strong>：Hyung Won Chung 等，<strong>Google</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.11416">https://arxiv.org/abs/2210.11416</a></li>
+<li><strong>原理</strong>：在 T5 基础上进行 <strong>指令微调</strong>（Instruction Tuning）。将大量 NLP 数据集改写为指令格式进行训练，使模型学会&quot;如何遵循人类指令&quot;而非仅学习特定任务。显著提升了模型的泛化能力和对用户意图的理解，是后续 ChatGPT 指令对齐技术的重要前身。</li>
+</ul>
+</li>
+<li>2023：<strong>ChatGPT</strong>
+<ul>
+<li><strong>作者/团队</strong>：<strong>OpenAI</strong></li>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.02155">https://arxiv.org/abs/2203.02155</a></li>
+<li><strong>原理</strong>：基于GPT-3.5/GPT-4架构，核心创新在于 <strong>RLHF</strong>（人类反馈强化学习）对齐技术。先通过有监督微调（SFT）学习对话模式，再通过奖励模型（Reward Model）评估人类偏好，最后用PPO等强化学习算法优化策略。使模型不仅能生成流畅文本，更能遵循人类价值观、理解复杂指令并进行多轮连贯对话。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131007226.png" srcset="/img/loading.gif" lazyload alt="语言人工智能的作用" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    语言人工智能的作用
+    </span>
+  </div>
+</div>
+<p>语言文本的本质是非结构化的（有内在含义），如果单纯用 0-1 此类结构化文本进行表示，则难以建模全部语义信息。在语言模型的统计表示时代（词袋模型、Word2Vec等），人们主要聚焦于如何将语言文本表示为结构化数据。</p>
+<h3 id="1-2-1-词袋模型">1.2.1 词袋模型</h3>
+<p>词袋模型的工作原理如下。</p>
+<p>假设我们有两个句子需要创建数值表示。词袋模型的第一步是<strong>分词</strong>（tokenization），即将句子拆分成单个词或子词（词元，token）。最常见的分词方法是通过空格分割来把句子分割成词。然而，这种方法也有其缺点，因为某些语言（如汉语）的词之间没有空格。</p>
+<p>分词之后，我们将每个句子中所有不同的词组合起来，创建一个可用于表示句子的<strong>词表</strong>（vocabulary）。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131007066.png" srcset="/img/loading.gif" lazyload alt="词袋模型1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131007534.png" srcset="/img/loading.gif" lazyload alt="词袋模型2" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131111094.png" srcset="/img/loading.gif" lazyload alt="词袋模型3" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    词袋模型
+    </span>
+  </div>
+</div>
+<p>使用词表，我们只需计算每个句子中词出现的次数，就创建了一个词袋。因此，词袋模型旨在以数字形式创建文本的表示（representation），也称为向量或向量表示。</p>
+<p>词袋模型虽然简洁，但其仅把语言视为一个几乎字面意义上的“词袋”，而忽略了文本的语义特性和含义。</p>
+<h3 id="1-2-2-Word2Vec">1.2.2 Word2Vec</h3>
+<p>word2vec（词向量）于 2013 年发布，是首批成功利用 <strong>嵌入</strong>（embedding）这个概念来捕捉文本含义的技术之一。</p>
+<h4 id="词嵌入">词嵌入</h4>
+<p>嵌入是数据的向量表示，试图捕捉数据的含义。为此，word2vec 通过在大量文本数据（如整个维基百科）上训练来学习词的语义表示。</p>
+<p>为了生成这些语义表示，word2vec 利用了神经网络（neural network）技术，观察在给定句子中哪些词倾向于出现在其他词旁边，进而据此生成词嵌入。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131111767.png" srcset="/img/loading.gif" lazyload alt="词嵌入1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131111998.png" srcset="/img/loading.gif" lazyload alt="词嵌入2" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    词嵌入的基本原理
+    </span>
+  </div>
+</div>
+<p>我们首先为词表中的每个词分配一个向量嵌入，比如说每个词有 50 个随机初始化的值。然后在每个训练步骤中，我们从训练数据中取出词对（pairs of words），用模型尝试预测它们是否可能在句子中相邻。</p>
+<p>在训练过程中，word2vec 会学习词与词之间的关系，并将这些信息提炼到词嵌入中。如果两个词各自的 <strong>相邻词集合</strong> 有更大的交集，它们的 <strong>词嵌入向量</strong> 就会更接近，反之亦然。</p>
+<p>词嵌入可以用多种属性来表示一个词的含义。由于 <strong>嵌入向量的大小是固定的</strong>，这些属性需要 <strong>经过精心选择</strong>，以构建用来代表词的抽象表示。</p>
+<blockquote>
+<p>在 Lec02 中，我们将深入探讨 word2vec 的训练过程。</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131111508.png" srcset="/img/loading.gif" lazyload alt="词嵌入的表征1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131111090.png" srcset="/img/loading.gif" lazyload alt="词嵌入的表征2" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    词嵌入的表征能力
+    </span>
+  </div>
+</div>
+<p>如何体现上述过程训练出的词嵌入能够捕捉词的含义？这主要通过 <strong>表示词的属性</strong> 来实现。</p>
+<ul>
+<li>baby 在 newborn、human 上的得分可能很高</li>
+<li>apple newborn、human 上的得分可能很低，而在 fruit 上得分较高</li>
+</ul>
+<p>在实践中，这些分类属性通常相当抽象，很少与单一属性或人类可识别的概念相关。然而，这些属性组合在一起对计算机来说是有意义的。</p>
+<p>词嵌入非常有用，因为它使我们能够衡量两个词的语义相似度。使用各种距离度量方法，我们可以判断一个词与另一个词的接近程度。</p>
+<blockquote>
+<p>在 Lec05 中，我们将探讨如何将这些词嵌入压缩到 n 维空间。</p>
+</blockquote>
+<h4 id="嵌入的类型">嵌入的类型</h4>
+<p>按嵌入类型，语言模型中的嵌入方法主要分为：</p>
+<ol>
+<li><strong>文档嵌入</strong> = 把整篇文档当作一个整体来理解</li>
+<li><strong>句子嵌入</strong> = 把一句话当作一个整体来理解</li>
+<li><strong>词嵌入</strong> = 把每个词当作基本单位</li>
+<li><strong>词元嵌入</strong> = 把文本拆成更小的 token，逐个理解后再组合</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131546038.png" srcset="/img/loading.gif" lazyload alt="嵌入的类型" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    嵌入的类型
+    </span>
+  </div>
+</div>
+<ol>
+<li>
+<p>文档嵌入（Document Embedding）</p>
+<ul>
+<li><strong>含义</strong>：将整个文档（可能包含多个段落、多句话）压缩成一个<strong>固定维度的向量</strong>。这个向量代表了整篇文档的主题、语义和核心内容。</li>
+<li>使用场景：文档分类、文档聚类、文档检索/推荐、重复检测</li>
+<li><strong>典型方法</strong>：词袋模型（Bag-of-Words）、TF-IDF、Doc2Vec</li>
+</ul>
+</li>
+<li>
+<p>句子嵌入（Sentence Embedding）</p>
+<ul>
+<li><strong>含义</strong>：将<strong>单个句子</strong>压缩成一个固定维度的向量。它捕捉了整句话的语义，而不是单个词的含义。</li>
+<li>使用场景：语义相似度、语义搜索（用句子查询找意思相近的句子或文档）、文本摘要、句子分类（情感分析、意图识别）、机器翻译评估（判断译文和原文语义是否一致）</li>
+<li><strong>典型方法</strong>：Sentence-BERT（SBERT）、SimCSE、E5</li>
+</ul>
+</li>
+<li>
+<p>词嵌入（Word Embedding）</p>
+<ul>
+<li><strong>含义</strong>：将<strong>单个词</strong>（如&quot;cat&quot;、“cute”）映射为一个向量。语义相近的词在向量空间中距离也相近。</li>
+<li>使用场景：
+<ul>
+<li><strong>词类比</strong>：king - man + woman ≈ queen</li>
+<li><strong>词相似度</strong>：计算&quot;happy&quot;和&quot;joyful&quot;的相似程度</li>
+<li><strong>作为上层模型的输入</strong>：将词向量输入到 RNN/LSTM/Transformer 中</li>
+<li><strong>传统NLP任务</strong>：命名实体识别、词性标注</li>
+</ul>
+</li>
+<li><strong>典型方法</strong>：Word2Vec、GloVe、FastText</li>
+</ul>
+</li>
+<li>
+<p>词元嵌入（Token Embedding）</p>
+<ul>
+<li><strong>含义</strong>：将 <em>词元</em>（token）映射为向量。Token 是比&quot;词&quot;更细粒度的单位——它可能是一个完整的词，也可能是一个词的片段（子词），甚至是标点符号。</li>
+</ul>
+<blockquote>
+<p>图中的 “#ization” 是 “vocalization” 被拆分后的子词片段，带#号表示它是词的前缀/后缀部分。</p>
+</blockquote>
+<ul>
+<li>使用场景：
+<ul>
+<li><strong>现代大模型的输入层</strong>：GPT、BERT、T5等模型接收的都是 token 序列，每个 token 先转为 embedding 再进入模型</li>
+<li><strong>处理未登录词（OOV）</strong>：对于罕见词或新词，可以拆成子词来表示（如&quot;unhappiness&quot; -&gt; “un” + “happiness”）</li>
+<li><strong>多语言模型</strong>：统一处理不同语言的文本</li>
+</ul>
+</li>
+<li><strong>典型方法</strong>：WordPiece（BERT）、BPE（GPT）、SentencePiece</li>
+</ul>
+</li>
+</ol>
+<h4 id="利用注意力机制解码编码上下文">利用注意力机制解码编码上下文</h4>
+<p>word2vec 的训练过程会创建 <strong>静态的、可下载的</strong> 词嵌入。但静态带来的问题就是，有些词是多义词，需要根据上下文来确定其具体含义。</p>
+<p>例如，bank 无论在什么上下文中使用，都会有相同的词嵌入。然而，bank 既可以指银行，也可以指河岸。它的含义应该根据上下文而变化，因此它的嵌入也应该根据上下文而变化。</p>
+<p>使用 <em>RNN</em>（recurrent neural network，循环神经网络）可以将序列作为补充输入进行建模。为此，这些 RNN 被用于两个任务：</p>
+<ol>
+<li>编码，也就是表示输入句子；</li>
+<li>解码，也就是生成输出句子。</li>
+</ol>
+<p>下图展示了如何将“I love llamas”（我喜欢美洲驼）翻译成荷兰语“Ik hou van lama’s”。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547077.png" srcset="/img/loading.gif" lazyload alt="RNN 用于机器翻译" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547479.png" srcset="/img/loading.gif" lazyload alt="生成过程" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    RNN 用于机器翻译的整体框架与生成过程
+    </span>
+  </div>
+</div>
+<p>该架构中的每个步骤都是自回归（auto-regressive）的：在生成下一个词时，该架构需要使用所有先前生成的词作为输入。</p>
+<p>上述编码步骤旨在尽可能准确地表示输入，以嵌入的形式生成上下文，作为解码器的输入。为了生成这种表示，它将嵌入作为词的输入，这意味着我们可以使用 word2vec 作为初始表示。在图 1-13 中，我们可以观察到这个过程。请注意输入是如何按顺序一次处理一个词的，输出也是如此。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547166.png" srcset="/img/loading.gif" lazyload alt="加入嵌入的 RNN 机器翻译模型" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    加入嵌入的 RNN 机器翻译模型
+    </span>
+  </div>
+</div>
+<blockquote>
+<p>RNN 的标准记法是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>RNN</mtext><mo stretchy="false">(</mo><mtext>input</mtext><mo separator="true">,</mo><mtext>hidden_state</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{RNN}(\text{input}, \text{hidden\_state})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord text"><span class="mord">input</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">hidden_state</span></span><span class="mclose">)</span></span></span></span></p>
+</blockquote>
+<ol>
+<li>将 I、love、llamas 使用 word2vec 分别生成词嵌入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">v_1, v_2, v_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>将词嵌入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">v_1, v_2, v_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 按顺序输入编码器 RNN 中：
+<ol>
+<li>读取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">v_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，初始化隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_1 = \text{RNN}(v_1, h_0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>（此处的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">h_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是编码器的初始隐藏状态）</li>
+<li>读取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">v_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，更新隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>2</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_2 = \text{RNN}(v_2, h_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>读取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">v_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，更新隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>3</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>v</mi><mn>3</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_3 = \text{RNN}(v_3, h_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+<li>将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">h_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 作为上下文嵌入（context embedding）输入到解码器 RNN 中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><msub><mi>h</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">s_0 = h_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>按照顺序生成输出：
+<ol>
+<li>计算隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>1</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>S</mi><mi>O</mi><mi>S</mi></mrow></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s_1 = \text{RNN}(e_{SOS}, s_0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">SOS</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>=</mo><mtext>Softmax</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y_1 = \text{Softmax}(s_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>（其中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mi>S</mi><mi>O</mi><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{SOS}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">SOS</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是开始序列标记 Start-of-Sequence 的 word embedding）</li>
+<li>更新隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>2</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>e</mi><msub><mi>y</mi><mn>1</mn></msub></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s_2 = \text{RNN}(e_{y_1}, s_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>=</mo><mtext>Softmax</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y_2 = \text{Softmax}(s_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>更新隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>3</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>e</mi><msub><mi>y</mi><mn>2</mn></msub></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s_3 = \text{RNN}(e_{y_2}, s_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>3</mn></msub><mo>=</mo><mtext>Softmax</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>3</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y_3 = \text{Softmax}(s_3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+</ol>
+<p>然而，这种上下文嵌入方式存在局限性，因为它仅用一个嵌入向量来表示整个输入，使得处理较长的句子变得困难。2014 年，Dzmitry Bahdanau 等人提出了 <em>注意力机制</em>（attention），大大改进了原始架构。注意力机制允许模型 <strong>关注输入序列中彼此相关</strong>（相互“注意”）的部分，并 <strong>放大它们的信号</strong>，如图 1-14 所示。注意力机制通过选择性地聚焦于句子中最关键的词，来突出其重要性。</p>
+<blockquote>
+<p>Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio. “Neural Machine Translation by Jointly Learning to Align and Translate”（ICLR 2015 Oral）arXiv：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a></p>
+<p>我之前一直以为注意力机制要到 Transformer 问世才发明 🤯</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547921.png" srcset="/img/loading.gif" lazyload alt="词袋模型" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547861.png" srcset="/img/loading.gif" lazyload alt="词袋模型2" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    注意力机制
+    </span>
+  </div>
+</div>
+<ol>
+<li>将 I、love、llamas 使用 word2vec 分别生成词嵌入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">v_1, v_2, v_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>将词嵌入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">v_1, v_2, v_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 按顺序输入编码器 RNN，计算所有隐藏状态：
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_1 = \text{RNN}(v_1, h_0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>2</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_2 = \text{RNN}(v_2, h_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>3</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><msub><mi>v</mi><mn>3</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_3 = \text{RNN}(v_3, h_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+<li>将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">h_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 作为解码器 RNN 的初始隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><msub><mi>h</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">s_0 = h_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，按顺序生成输出。解码器每一步都先对 <strong>所有编码器隐藏状态</strong> 计算注意力，得到 <strong>动态上下文向量</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">c_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：
+<ol>
+<li>生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">y_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：
+<ol>
+<li>计算注意力分数：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mn>1</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>=</mo><mtext>score</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e_{1,i} = \text{score}(s_0, h_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">score</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">i=1,2,3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span></span></span></span></li>
+<li>注意力权重：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mrow><mn>1</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>=</mo><mtext>softmax</mtext><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mn>1</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\alpha_{1,i} = \text{softmax}(e_{1,i})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord text"><span class="mord">softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>（Softmax 函数的性质：较大的分数信号会放大）</li>
+<li>上下文向量：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>=</mo><msub><mi>α</mi><mrow><mn>1</mn><mo separator="true">,</mo><mn>1</mn></mrow></msub><msub><mi>h</mi><mn>1</mn></msub><mo>+</mo><msub><mi>α</mi><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn></mrow></msub><msub><mi>h</mi><mn>2</mn></msub><mo>+</mo><msub><mi>α</mi><mrow><mn>1</mn><mo separator="true">,</mo><mn>3</mn></mrow></msub><msub><mi>h</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">c_1 = \alpha_{1,1}h_1 + \alpha_{1,2}h_2 + \alpha_{1,3}h_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>更新隐藏状态：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>1</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mtext>&lt;SOS&gt;</mtext><mo separator="true">;</mo><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false">]</mo><mo separator="true">,</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s_1 = \text{RNN}([\text{&lt;SOS&gt;}; c_1], s_0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">([</span><span class="mord text"><span class="mord">&lt;SOS&gt;</span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo separator="true">;</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[;]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mclose">]</span></span></span></span> 表示向量拼接</li>
+<li>生成输出：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>=</mo><mtext>Output</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y_1 = \text{Output}(s_1, c_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Output</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+<li>生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">y_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：
+<ol>
+<li>计算注意力分数：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mn>2</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>=</mo><mtext>score</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e_{2,i} = \text{score}(s_1, h_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">score</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>注意力权重：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mrow><mn>2</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>=</mo><mtext>softmax</mtext><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mn>2</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\alpha_{2,i} = \text{softmax}(e_{2,i})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord text"><span class="mord">softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>上下文向量：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>2</mn></msub><mo>=</mo><msub><mi>α</mi><mrow><mn>2</mn><mo separator="true">,</mo><mn>1</mn></mrow></msub><msub><mi>h</mi><mn>1</mn></msub><mo>+</mo><msub><mi>α</mi><mrow><mn>2</mn><mo separator="true">,</mo><mn>2</mn></mrow></msub><msub><mi>h</mi><mn>2</mn></msub><mo>+</mo><msub><mi>α</mi><mrow><mn>2</mn><mo separator="true">,</mo><mn>3</mn></mrow></msub><msub><mi>h</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">c_2 = \alpha_{2,1}h_1 + \alpha_{2,2}h_2 + \alpha_{2,3}h_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>更新隐藏状态：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>2</mn></msub><mo>=</mo><mtext>RNN</mtext><mo stretchy="false">(</mo><mo stretchy="false">[</mo><msub><mi>y</mi><mn>1</mn></msub><mo separator="true">;</mo><msub><mi>c</mi><mn>2</mn></msub><mo stretchy="false">]</mo><mo separator="true">,</mo><msub><mi>s</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s_2 = \text{RNN}([y_1; c_2], s_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">RNN</span></span><span class="mopen">([</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>生成输出：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>2</mn></msub><mo>=</mo><mtext>Output</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>c</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y_2 = \text{Output}(s_2, c_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Output</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+<li>生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">y_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>（仿上）</li>
+<li>生成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">y_4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>（仿上）</li>
+</ol>
+</li>
+</ol>
+<p>例如，输出词 lama’s 是荷兰语中 llamas（美洲驼）的意思，因此两者之间的 attention 权重很高。反之，lama’s 和 I 这两个词之间的 attention 权重较低，因为它们的相关性不大。</p>
+<blockquote>
+<p>在 Lec03 中，我们将深入讨论注意力机制。</p>
+</blockquote>
+<p>通过在解码步骤中添加这些注意力机制，RNN 可以为输入序列中的每个词生成与潜在输出相关的信号。这并不仅仅是将上下文嵌入传递给解码器，而是传递所有输入词的隐藏状态。因此，在生成 “Ik hou van lama’s” 的过程中，RNN 会追踪它在进行翻译时主要关注的词。</p>
+<p>相比 word2vec，基于注意力的 RNN 架构可以通过 “关注” <strong>整个句子</strong>，更好地表征文本的序列特性及其上下文。但是，这种序列特性 <strong>不利于</strong> 模型训练过程中的 <strong>并行化</strong>。</p>
+<h3 id="1-2-3-Attention-Is-All-You-Need">1.2.3 Attention Is All You Need</h3>
+<blockquote>
+<p>Ashish Vaswani et al. “Attention is All You Need.”NeurIPS 2017.</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a></p>
+</blockquote>
+<p>Attention is All You Need 首次探讨了注意力机制的真正威力，以及驱动 LLM 展现出惊人能力的核心所在。作者提出了一种被称为 Transformer 的网络架构，它完全基于注意力机制，摒弃了此前提到的 RNN。与 RNN 相比，Transformer 支持并行训练，这大大加快了训练速度。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547857.png" srcset="/img/loading.gif" lazyload alt="Transformer 整体架构简介" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Transformer 整体架构简介
+    </span>
+  </div>
+</div>
+<p>在 Transformer 中，编码和解码组件相互堆叠，如图 1-16 所示。这种架构仍然是自回归的，每个新生成的词都被模型用于生成下一个词。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547922.png" srcset="/img/loading.gif" lazyload alt="Transformer 编码块示意图" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Transformer 编码块示意图
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547591.png" srcset="/img/loading.gif" lazyload alt="自注意力机制" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    自注意力机制
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547234.png" srcset="/img/loading.gif" lazyload alt="Transformer 解码块示意图" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Transformer 解码块示意图
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131547700.png" srcset="/img/loading.gif" lazyload alt="自注意力机制2" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    自注意力机制2
+    </span>
+  </div>
+</div>
+<h3 id="1-2-4-Encoder-Only">1.2.4 Encoder-Only</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548749.png" srcset="/img/loading.gif" lazyload alt="BERT 基座模型架构" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    BERT 基座模型架构
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548063.png" srcset="/img/loading.gif" lazyload alt="使用掩码语言建模方法的 BERT 模型1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548462.png" srcset="/img/loading.gif" lazyload alt="使用掩码语言建模方法的 BERT 模型2" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    使用掩码语言建模方法的 BERT 模型
+    </span>
+  </div>
+</div>
+<h3 id="1-2-5-Decoder-Only">1.2.5 Decoder-Only</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548794.png" srcset="/img/loading.gif" lazyload alt="GPT-1 架构" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    GPT-1 架构
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548032.png" srcset="/img/loading.gif" lazyload alt="GPT 的规模" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    GPT 的规模：0.1B -> 1.5B -> 175B
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548312.png" srcset="/img/loading.gif" lazyload alt="LLM 的问答机制" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607131548936.png" srcset="/img/loading.gif" lazyload alt="上下文长度" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    LLM 的问答机制
+    </span>
+  </div>
+</div>
+<h3 id="1-2-6-生成式-AI-元年">1.2.6 生成式 AI 元年</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337759.png" srcset="/img/loading.gif" lazyload alt="生成式 AI 的发展" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    生成式 AI 的发展
+    </span>
+  </div>
+</div>
+<h2 id="1-3-LLM-的训练范式与应用">1.3 LLM 的训练范式与应用</h2>
+<h3 id="1-3-1-LLM-的训练范式">1.3.1 LLM 的训练范式</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337418.png" srcset="/img/loading.gif" lazyload alt="LLM 的训练范式1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337502.png" srcset="/img/loading.gif" lazyload alt="LLM 的训练范式2" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    LLM 的训练范式
+    </span>
+  </div>
+</div>
+<h3 id="1-3-2-LLM-的应用">1.3.2 LLM 的应用</h3>
+<h3 id="1-3-3-LLM-的分类">1.3.3 LLM 的分类</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337502.png" srcset="/img/loading.gif" lazyload alt="词袋模型1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337128.png" srcset="/img/loading.gif" lazyload alt="闭源模型" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607132337800.png" srcset="/img/loading.gif" lazyload alt="开源模型" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    闭源模型和开源模型
+    </span>
+  </div>
+</div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">个人学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/" class="category-chain-item">AI Notes</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/LLM/" class="category-chain-item">LLM</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/LLM/Hands-On-LLMs/" class="category-chain-item">Hands-On LLMs</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>大语言模型简介</div>
+      <div>http://dbqdss.github.io/2026/07/13/个人学习笔记/AI Notes/LLM/Hands-On LLMs/HandsOn-LLMs-Lec01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>失去理想的獾</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/19/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Reinforcement%20Learning/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86/MathFoundationRL-Ch02/" title="强化学习的数学基础 - Chapter 2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">强化学习的数学基础 - Chapter 2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/06/%E4%B9%92%E4%B9%93%E7%90%83%E4%B8%8E%E5%81%A5%E8%BA%AB/%E4%B9%92%E4%B9%93%E7%90%83%E6%8A%80%E6%88%98%E6%9C%AF%E5%90%88%E9%9B%86/" title="乒乓球🏓技战术整理">
+                        <span class="hidden-mobile">乒乓球🏓技战术整理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+    
+      <article id="comments" lazyload>
+        
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
+      
+        
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="waifu" id="waifu" style="z-index: 1000;"> <div class="waifu-tips" style="opacity: 1;"></div> <canvas id="live2d" width="280" height="250" class="live2d"></canvas> <div class="waifu-tool"> <span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span> </div> </div> <script src="/assets/live2d.min.js"></script> <script src="/assets/waifu-tips.js"></script> <script type="text/javascript"> initModel() </script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-copyright"></i>
+<a href="https://github.com/DBQDSS" target="_blank" rel="nofollow noopener"><span>失去理想的獾</span></a>
+|  Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+<div style="font-size: 0.85rem">
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script src="/vvd_js/duration.js"></script>
+  <br>
+  <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    本页总阅读量 <span id="busuanzi_page_pv">加载中...</span> 次
+  <!-- 不蒜子统计图标代码 如果更换域名记得替换Start -->
+    <a href="https://www.busuanzi.cc/count.php?search=blog.cyaml.top" title="不蒜子统计" target="_blank">
+        <img style="width:85px;height:25px;" src="https://www.busuanzi.cc/static/images/bsz-tongji.png" srcset="/img/loading.gif" lazyload>
+    </a>
+  <!-- 不蒜子统计图标代码 End -->
+</div>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="/js/yinghua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
