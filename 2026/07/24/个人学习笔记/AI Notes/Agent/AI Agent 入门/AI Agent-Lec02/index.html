@@ -1,0 +1,1556 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="失去理想的獾">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LLM 是如何进行深度思考（Reasoning）的？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Agent Lec 02">
+<meta property="og:url" content="http://dbqdss.github.io/2026/07/24/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Agent/AI%20Agent%20%E5%85%A5%E9%97%A8/AI%20Agent-Lec02/index.html">
+<meta property="og:site_name" content="失去理想的獾 の Blog">
+<meta property="og:description" content="LLM 是如何进行深度思考（Reasoning）的？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/AI_Agent_Lec_02.png">
+<meta property="article:published_time" content="2026-07-24T10:54:04.000Z">
+<meta property="article:modified_time" content="2026-07-24T11:11:03.180Z">
+<meta property="article:author" content="失去理想的獾">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/AI_Agent_Lec_02.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>AI Agent Lec 02 - 失去理想的獾 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/mouse.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/equation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbqdss.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1, h2, h3, h4, h5, h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="失去理想的獾 の Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>失去理想的獾 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/cv/my-cv.pdf" target="_self">
+                    <i class="iconfont icon-addrcard"></i>
+                    <span>简历</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://raw.githubusercontent.com/DBQDSS/Blog_img/banner-index/202607241909471.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="🥰 Thanks you，李宏毅老师！🥰"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        失去理想的獾
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-24 18:54" pubdate>
+          2026年7月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">🥰 Thanks you，李宏毅老师！🥰</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年7月24日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>以下内容来自于 NTU 李宏毅 2025 Fall 的课程 <a target="_blank" rel="noopener" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php">[传送门]</a></p>
+</blockquote>
+<blockquote>
+<p>背景来自 XHS 小满 Summer</p>
+</blockquote>
+<hr>
+<h2 id="引入">引入</h2>
+<p>使用了深度思考的模型：ChatGPT o1/o3/o4、DeepSeek r1、Gemini 2 Flash Thinking、Claude 3.7 Sonnet (Extended Thinking) ……</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231625148.png" srcset="/img/loading.gif" lazyload alt="DeepSeek r1" width="500" height="">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231626634.png" srcset="/img/loading.gif" lazyload alt="DeepSeek r1" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    以 DeepSeek r1 为例，蓝色鲸鱼的内心小剧场。
+    </span>
+  </div>
+</div>
+<p>上述思考过程通通会打包在 <code>&lt;think&gt; ... &lt;/think&gt;</code> 中，方便界面显示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231629954.png" srcset="/img/loading.gif" lazyload alt="推理（Reasoning）" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    “深度思考”语言模型的特色：推理（Reasoning）
+    </span>
+  </div>
+</div>
+<p>在思考过程中，模型通常会有以下行为：</p>
+<ul>
+<li>验证：验证自己的答案是否正确？</li>
+<li>探索：尝试思考是否有其他的可能性？思考是否有其他的方法？</li>
+<li>规划：完成这个任务需要哪些步骤？</li>
+</ul>
+<blockquote>
+<p>注：此处 Reasoning 意为 “推理”，但模型推理的 Inference 意思<strong>完全不同</strong>！</p>
+<p>Reasoning 是指：模型在 inference 的过程中，会产生特别长的思考过程！</p>
+</blockquote>
+<p><strong>Test-time Compute：</strong> 如果在测试阶段投入了大量的计算资源，则可能会得到更好的结果。</p>
+<blockquote>
+<p>也即：深度不够，长度来凑！</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231638111.png" srcset="/img/loading.gif" lazyload alt="在 AlphaGo 时代，实际已经在使用 Test-Time Compute了" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    在 AlphaGo 时代，实际已经在使用 Test-Time Compute 了
+    </span>
+  </div>
+</div>
+<p>AlphaGo 在训练阶段会同时训练两个网络：</p>
+<ul>
+<li>Policy Network：负责决定下一步下在哪儿</li>
+<li>Value Network：决定当前局势赢面有多大</li>
+</ul>
+<p>在测试阶段</p>
+<ul>
+<li>AlphaGo 并不是直接使用 Policy Network 的输出进行落子的！</li>
+<li>它会将 Policy Network 的输出作为参考，提供几个备选项，再使用 Monte Carlo Tree Search（MCTS）选出最优下法。</li>
+</ul>
+<p>这里用到的 MCTS 是一种非常消耗算力的方法：AlphaGo 会先脑内小剧场，思考后面几步的下法，再选择赢面最大的。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231651563.png" srcset="/img/loading.gif" lazyload alt="思考越多结果越好" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    思考越多，往往结果越好：思考领域的 Scaling Laws。
+    </span>
+  </div>
+</div>
+<blockquote>
+<p>章北海，要多想。🤣</p>
+</blockquote>
+<p>如上图上的表格：如果我们在测试阶段消耗更多算力，则结果往往越好。</p>
+<p>两种方法最后可以得到差不多的效果：</p>
+<ul>
+<li>如果在训练的时候投注较多算力，则在测试阶段就可以投注较少算力</li>
+<li>如果在训练的时候投注较少算力，则在测试阶段就可以投注较多算力</li>
+</ul>
+<p>但是横轴（训练）所耗算力资源（1e13-1e16）比纵轴（测试）所耗算力资源（1e6-1e9）要多的多，所以<span style="color:lightgreen">把算力资源投注到测试阶段是更经济的方法！</span></p>
+<p>打造「推理」语言模型的方法（四种）：</p>
+<ul>
+<li>不用微调参数
+<ul>
+<li><strong>更强的思维链</strong> (Chain-of-Thought, CoT)：这要求模型性能得比较强</li>
+<li><strong>给模型推理工作流程</strong>：就算模型比较弱，也可以大幅提高输出质量</li>
+</ul>
+</li>
+<li>需要微调参数
+<ul>
+<li><strong>教模型推理过程</strong> (Imitation Learning)</li>
+<li><strong>以结果为导向学习推理</strong> (Reinforcement Learning, RL)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="如何打造推理语言模型？">如何打造推理语言模型？</h2>
+<h3 id="更强的思维链">更强的思维链</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231713831.png" srcset="/img/loading.gif" lazyload alt="CoT" width="350" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    因为现在推理模型的过程往往会很长，因此叫 Long CoT
+    </span>
+  </div>
+</div>
+<p>CoT：让模型先列出解题过程，再给出答案。</p>
+<p>有两种实现方法：</p>
+<ol>
+<li>Few-shot CoT：先给出一些范例（问题-解法-答案 pairs），然后再问模型问题。这样模型会根据范例，知道要先写过程再写答案。</li>
+<li>Zero-shot CoT：根本不需要给范例！🤣 告诉模型“Let’s think step by step!”，模型自会列出解题过程。</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231714045.png" srcset="/img/loading.gif" lazyload alt="GPT4o" width="" height="150">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231714669.png" srcset="/img/loading.gif" lazyload alt="GPT4o" width="" height="150">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231714994.png" srcset="/img/loading.gif" lazyload alt="GPT4o" width="" height="150">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Surervised CoT：在 prompt 里面明确告诉模型要如何 think step by step
+    </span>
+  </div>
+</div>
+<p>其实只要把 prompt 写的长一些，给模型更多更精确的指示，模型自会进行 CoT！</p>
+<blockquote>
+<p>但这也与模型能力有关，不是所有的模型都有能力根据复杂指令做 Long CoT！李宏毅老师亲测 Llama 3 不行 😂</p>
+</blockquote>
+<h3 id="给模型推理工作流程">给模型推理工作流程</h3>
+<h4 id="力大砖飞疯狂抽卡">力大砖飞疯狂抽卡</h4>
+<blockquote>
+<p>想法来源：无限猴子定理——无限个猴子用无穷长的时间打字，总能枚举出莎士比亚全集</p>
+</blockquote>
+<ul>
+<li>如何让模型输出正确答案？</li>
+<li>让他尝试几千几万个方法就可以了！</li>
+<li>如何让大模型每次用不同的方法尝试？</li>
+<li>最简单的方法就是让他多次回答同一个问题，LLM 每次的方法都会不太一样。</li>
+</ul>
+<p>让语言模型不断去解同一个问题，不断产生不同的答案，他迟早会做对！</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231736025.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程1" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    横轴是模型解题次数（1-1e4），纵轴是对正确答案覆盖率，每条线代表不同模型。
+    </span>
+  </div>
+</div>
+<ul>
+<li>模型越大，&quot;猴子打字&quot;效率越高：大模型用更少的样本就能覆盖正确答案</li>
+<li>愚者千虑，必有一得。小模型也能通过&quot;堆样本&quot;弥补：Pythia-1B（粉色）虽然弱，但样本足够多时也能有一定覆盖率</li>
+<li>存在明显的&quot;规模效应&quot;：70B 模型与 70M 模型之间的差距巨大，说明模型能力本身仍是基础</li>
+</ul>
+<p>但是进行了多次生成，如何得知模型哪一次会得到正确答案？</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231736611.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程2" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    使用 Majority Vote（多数投票）或者 Confidence（置信度）来选出答案。
+    </span>
+  </div>
+</div>
+<p>把答案放到 <code>&lt;answer&gt;...&lt;/answer&gt;</code> 标签中</p>
+<ul>
+<li>Majority Vote（多数投票）
+<ul>
+<li><strong>原理</strong>：
+<ol>
+<li>让模型对同一个问题生成多条推理链（Chain-of-Thought）</li>
+<li>提取每条推理链的最终答案</li>
+<li><strong>选择出现次数最多的答案</strong>作为最终结果</li>
+</ol>
+</li>
+<li><strong>为什么有效</strong>：
+<ul>
+<li>语言模型的推理过程存在随机性，不同采样路径可能得到不同答案</li>
+<li>正确的推理路径往会收敛到 <strong>相同答案</strong></li>
+<li>错误的推理路径则 <strong>分散在各种错误答案上</strong></li>
+</ul>
+</li>
+<li><strong>关键洞察</strong>：Self-Consistency 本质上是用<strong>统计一致性</strong>来替代<strong>完美的验证器</strong>——不需要知道正确答案是什么，只需要看哪个答案&quot;最一致&quot;。</li>
+</ul>
+</li>
+<li>Confidence（置信度）
+<ul>
+<li><strong>原理</strong>：
+<ol>
+<li>不依赖外部提示，而是通过分析模型<strong>解码过程中的置信度</strong>来选择答案</li>
+<li>选择 <strong>模型最&quot;自信&quot;的答案</strong></li>
+</ol>
+</li>
+<li><strong>为什么有效</strong>：
+<ul>
+<li>模型在生成正确答案时，往往表现出更高的 <strong>token概率</strong>（更&quot;确定&quot;）</li>
+<li>通过比较不同输出路径中答案部分的置信度，可以筛选出更可靠的答案</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231736315.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程3" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    在 Llama 3.2 1B 使用 Majority Vote 的方法，虽然还是没有赶上 8B 模型，但已经远超 1B 的自己。
+    </span>
+  </div>
+</div>
+<h4 id="加入验证机制">加入验证机制</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231736452.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="190">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231737358.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="190">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Best of N：训练一个 Verifier 模型，用于验证模型输出的答案（打分），哪个最大就选哪个当作正确答案。
+    </span>
+  </div>
+</div>
+<ul>
+<li>如何训练验证器模型？（上面右图）</li>
+<li>利用 Q-A pairs，用 LLM 产生多个 outputs，再凭借 ground-truth 给输出打标签，用以训练验证器。</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231737420.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231737380.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    除了并行采样，也可以串行采样，甚至还可以二者结合使用。
+    </span>
+  </div>
+</div>
+<blockquote>
+<p>串行和并行采样如何结合最有效率，见图中论文。</p>
+</blockquote>
+<p>但是现在的深度思考模型往往在中间输出过程就会进行验证！（如果等全部过程与结果输出之后再验证，会很浪费资源与时间）</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231743640.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744483.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：DeepSeek 会在解题途中进行验证！
+    <br>
+    右图：可以添加一个过程验证器（Process Verifier）进行打分
+    </span>
+  </div>
+</div>
+<p>让 LLM 并行生成多个 outputs，而且只生成第一步，立刻使用 process verifier 进行打分，抛弃错误过程。</p>
+<h4 id="如何训练验证器？">如何训练验证器？</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744599.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744766.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744449.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    上图：通过 prompt 的方式，让模型把解题过程分为多个步骤。一旦看到 < /step> 就停止生成，然后 process verifier 进行打分……
+    <br>
+    下图（左）：生成 process verifier 的训练数据。上方过程从 step 1 出发的正确率是 2/3；下方过程从 step 2 出发的正确率是 1/3。
+    </span>
+  </div>
+</div>
+<ul>
+<li>如何训练 process verifier 模型？（上面右图）</li>
+<li>利用 Q-A pairs，用 LLM 并行产生多个 outputs（step 数可以不同），再凭借 ground-truth 给 ans 打标签，得到每个 step 下的 <strong>得到正确答案的概率</strong>，用以这个正确率训练 process verifier。</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744151.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="240">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744322.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="240">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Beam Search：每次保留最好的 N 条路径（也有变形：比如，保留最好的前 25% 路径）示例中是 N=2。
+    <br>
+    实验证明：Beam Search > Best-of-N > Majority Vote。搭配上 Beam Search，1B 的模型甚至可以超越 8B 模型的效果！
+    </span>
+  </div>
+</div>
+<p>Beam Search 的过程：</p>
+<ul>
+<li>首先，对 step1 处输入 process verifier，保留 2 条最好路径</li>
+<li>然后，让留下的每个 step1 都产生若干个 step2，这样就得到了许多条 step1-step2 路径</li>
+<li>将 step1-step2 输入到 process verifier 中，再次保留 2 条最好路径！（也即，每个 step 永远只能留 2条）</li>
+<li>……</li>
+</ul>
+<blockquote>
+<p>上图的 DVTS 是 Beam Search 的一种变形。</p>
+<p>其主要想法：在保留路径的时候，我们尽量保留两条不那么像的路径！</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231744920.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+     各类搜索算法，这些方法全部可以套用到刚刚的 Beam Search 框架下。
+    </span>
+  </div>
+</div>
+<h3 id="教模型推理过程">教模型推理过程</h3>
+<blockquote>
+<p>模仿学习，Imitation Learning</p>
+<p>这一方法可以是监督学习（Supervised Learning），也可以是强化学习（Reinforcement learning）</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231756428.png" srcset="/img/loading.gif" lazyload alt="教模型推理过程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231756636.png" srcset="/img/loading.gif" lazyload alt="教模型推理过程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    生成训练数据：问题-推理过程-答案 pairs
+    </span>
+  </div>
+</div>
+<p>合成训练数据：</p>
+<ul>
+<li>通过 Prompt 让 LLM 进行 CoT，生成一系列 reasoning process 与 answer</li>
+<li>用 ground-truth 对 answer 进行检查，选取正确答案对应的 reasoning procee 作为训练数据。</li>
+<li>如果问题没有标准答案，则可以引入另一个 LLM/人 作为 Verifier 对答案进行评估！</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231756909.png" srcset="/img/loading.gif" lazyload alt="教模型推理过程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231756155.png" srcset="/img/loading.gif" lazyload alt="教模型推理过程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    利用 process verifier 来合成高质量数据
+    </span>
+  </div>
+</div>
+<p>但是最终答案正确，并不意味着推理过程也正确！</p>
+<p>我们的做法：</p>
+<ul>
+<li>在 LLM 生成答案的每一步，都使用先前的 process verifier 方法进行检查，这样可以确保过程是相对正确的。
+<ul>
+<li>然后利用这些数据进行微调，这种情况类似监督学习。</li>
+</ul>
+</li>
+<li>但也可以对绿色 step 施加 reward，对蓝色 step 施加 punish，这种情况类似强化学习。
+<blockquote>
+<p>注：这里是在意 reasoning process 的，因此与后面的 DeepSeek-R1 采用的方法不同！</p>
+</blockquote>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231756045.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    GPT4-o3 示例：推理过程不正确也无妨，只要能找到自己的问题就能正确！
+    </span>
+  </div>
+</div>
+<p>因此，我们甚至不需要训练数据全部是正确的推理过程。</p>
+<p>如果训练数据中的推理过程全部正确，模型也会认为自己的推理过程一定不会出错，进而无法获得 <strong>知错能改</strong> 的能力。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231757861.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231757062.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：要教会模型犯错之后如何改正，否则只会错上加错。
+    <br>
+    Stream of Search：使用 DFS 的想法，故意走一些错误的路。
+    </span>
+  </div>
+</div>
+<ul>
+<li>主要想法：从树状结构中得到一些包含错误答案的 reasoning process</li>
+<li>流程：
+<ol>
+<li>先深度优先搜索，把错误的 process 也放入训练数据中</li>
+<li>为了防止模型输出前言不搭后语，在回溯时（上图右），加入一些 verifier 的反馈</li>
+</ol>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231757988.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="650" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    另一篇文章也发现了这个问题：Shortcut Learning 只会顺风局，而 Journey Learning 才可以纠正自身
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231803262.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231803899.png" srcset="/img/loading.gif" lazyload alt="给模型推理工作流程" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    知识蒸馏：学习教师 Reasoning 模型的 reasoning process
+    </span>
+  </div>
+</div>
+<p>以 DeepSeek-R1 作为老师，来教不同的 foundation model 学习 reasoning process，在数学和代码 benchmark（和推理有关）上的指标得到大幅提高！</p>
+<h3 id="以结果为导向学习推理">以结果为导向学习推理</h3>
+<blockquote>
+<p>DeepSeek-R1 系列的做法</p>
+</blockquote>
+<h4 id="DeepSeek-R1-的训练过程">DeepSeek-R1 的训练过程</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240945493.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="220">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240945593.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="220">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：不关注推理过程，只关注最后答案——答案对了给奖励，答案错了给惩罚！
+    <br>
+    右图：蓝色/绿色分别表示 DeepSeek-R1 和 GPT4-o1 回答 1 次问题的正确率；
+    <br>
+    右图：红色/梅红色分别表示 DeepSeek-R1 和 GPT4-o1 在使用 Majority Vote 下的正确率。
+    </span>
+  </div>
+</div>
+<p>以 DeepSeek-v3-base 作为基座模型，以模型回答问题的正确率作为 reward 进行后训练（纯粹使用 RL），得到 DeepSeek-R1-Zero。它使用的是 <strong>基于规则的奖励系统</strong>（rule-based reward system），而非神经网络奖励模型，该系统主要由以下两部分组成，</p>
+<ol>
+<li>准确性奖励（Accuracy Reward）</li>
+<li>格式奖励（Format Reward）<br>
+强制模型将推理过程（Chain-of-Thought）包裹在 <code>&lt;think&gt;...&lt;/think&gt;</code> 标签内，最终答案放在 <code>&lt;answer&gt;...&lt;/answer&gt;</code> 标签中。这种显式结构化输出既增强了可读性，也便于后续解析与分析。</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240946394.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    在训练 DeekSeek-R1-Zero 时，并没有专门训练其纠错能力，但 RL 带来了涌现现象：模型自发出现自我反思、多路径探索、"Wait"顿悟等高级推理行为（Aha moment）
+    </span>
+  </div>
+</div>
+<p>但 DeepSeek-R1-Zero 并不好用，因为其推理过程可读性极差且多语言混杂——因为在训练的时候我们根本就没有关注其推理过程</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240946931.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    成也 RL，败也 RL，DeepSeek-R1-Zero 的推理过程不是人读的
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240946143.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240946023.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    如何从 DeepSeek-R1-Zero 得到最终的 DeepSeek-R1
+    </span>
+  </div>
+</div>
+<p>训练 DeepSeek-R1 的流程：</p>
+<ol>
+<li>
+<p>训练 DeepSeek-R1-Zero</p>
+</li>
+<li>
+<p>造数据</p>
+<ol>
+<li>使用 DeepSeek-R1-Zero 对 <span style="color:lightgreen;">问题（主要是数学和代码问题）</span>产生 Reasoning 过程，然后使用大量人力去修正 Zero 的 Reasoning 过程（人工标注）</li>
+<li>另外，他们还从其他模型处得到数据
+<ul>
+<li>用其他模型以 Few-shot CoT 的方法，产生一些带有 reasoning 的数据</li>
+<li>用 Prompting 的方法，让模型产生带有详细的、带有反思和验证的 answer</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>这一步造出的数据量较少，原文上是 “thousands of”。也确实，这是人工标注的，不会太多。</li>
+</ul>
+</li>
+<li>
+<p>将上述两类数据作为训练数据，使用 Imitation Learning 从 DeepSeek-v3-base 中训练出 Model A</p>
+<ul>
+<li>性能：Model A &gt; DeepSeek-R1-Zero</li>
+</ul>
+</li>
+<li>
+<p>Model A 进一步做 RL（以正确率和语言一致性作为 reward）训练出 Model B</p>
+<ul>
+<li>性能：Model B &lt; Model A（略微下降，毕竟是做了约束）</li>
+</ul>
+</li>
+<li>
+<p>造数据</p>
+<ol>
+<li>在问题中加入 <span style="color:lightgreen;">各式各样的任务</span>（包括一些没有标准答案的问题），然后使用 DeekSeek-v3 作为 verifier 来判断 Model B 得到 answer 的好坏。
+<ul>
+<li>以规则的方式，去掉 Model B 生成的一些糟糕的 reasoning 过程</li>
+<li>在这一步骤，生成了 600k 的数据！</li>
+</ul>
+</li>
+<li>使用 DeepSeek-v3 做 self-output 生成了 200k 个数据。</li>
+</ol>
+</li>
+<li>
+<p>将上面数据对作训练集，再次使用 Imitation Learning 从 DeepSeek-v3-base 中训练出 Model C</p>
+</li>
+<li>
+<p>Model C 再做一次 RL 得到 DeepSeek-R1</p>
+<ul>
+<li>这一步主要强化模型 safety 和 helpfulness 的能力</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>技术报告中提到：DeepSeek-R1 也试过加入 process verifier 和 MTCS 来提高模型能力，但最终并没有好的结果</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240946694.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    DeepSeek-R1 在推理发癫中
+    </span>
+  </div>
+</div>
+<p>彩蛋：因为 DeepSeek-R1 的训练资料中有相当一部分是 AI 生成的，所以推理过程中会出现一些奇怪的东西。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240946629.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="180">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240950017.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="" height="180">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：以 RL 训练是否成功，这与基座模型有很大的关系！
+    <br>
+    右图：事实上，DeepSeek-v3 本来就会 Aha 和 Wait，RL 只是对能力进行强化。
+    </span>
+  </div>
+</div>
+<ul>
+<li>以 DeepSeek-R1-Zero 的训练方式来训练 Qwen-32B，和 QwQ-32B-Preview 相比，提升并不显著</li>
+<li>但是知识蒸馏却可以大幅强化 Qwen-32B</li>
+</ul>
+<p><span style="color:lightgreen;">RL 运作的本质：提升模型产生正确答案的概率，降低模型产生错误答案的概率。</span></p>
+<ul>
+<li>想要做 RL 的前提是，你先要具有产生一定数量正确答案的能力！</li>
+<li>如果想用 RL 强化模型 Reasoning 的能力，那么模型本身得先具有 Reasoning 的能力！</li>
+</ul>
+<h4 id="DeepSeek-R1-冗长的思考">DeepSeek-R1 冗长的思考</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240952965.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="150">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240952686.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="150">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    planing + verification
+    </span>
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240952085.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="150">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240953826.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="150">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    用到了 explore
+    </span>
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240953654.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="120">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240953023.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="120">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240953358.png" srcset="/img/loading.gif" lazyload alt="DeepSeek 示例" width="" height="150">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    DeepSeek-R1 用到了上文讲的各类方法，但是思考过程太长了
+    </span>
+  </div>
+</div>
+<p>过度的思考过于浪费时间资源和算力资源</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607240953128.png" srcset="/img/loading.gif" lazyload alt="以结果为导向学习推理" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    能不能在需要 Reasoning 的地方再 Reasoning？
+    </span>
+  </div>
+</div>
+<hr>
+<h2 id="如何避免过度思考？">如何避免过度思考？</h2>
+<h3 id="推理越长，并不意味着正确率越高">推理越长，并不意味着正确率越高</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512009.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    推理长度与正确率之间是负相关的
+    </span>
+  </div>
+</div>
+<p>从上面的图表中我们可以得知，并不是推理长度越长，模型的正确率就越高。</p>
+<blockquote>
+<p>但也不能说是因为推理长度变长导致正确率变低。决定推理长度与正确率的因素还有很多，比如题目难度、输入长度等等。</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512391.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512203.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    比较严谨的实验：让模型对同一问题回答 5 次，然后按 推理长度 分类。
+    <br>
+    左图：不同 group 内推理过程的长度（单位为 token）
+    <br>
+    右图：越长的答案，并不意味着正确率越高（group5 往往还会比 group1 更差）
+    </span>
+  </div>
+</div>
+<p>上面的实验说明了，推理长度对正确率并不一定有帮助。</p>
+<p>最好的工程师不是把事情做到完美，而是在有限资源下把事情做到最好！人工智能也是一样。</p>
+<h3 id="如何避免模型想太多">如何避免模型想太多</h3>
+<blockquote>
+<p>下面我们就针对上面的 4 类建立 reasoning 的方法，分别列举一些能够避免过度思考的方法</p>
+</blockquote>
+<h4 id="对-CoT-方法">对 CoT 方法</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512234.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    右侧图表：CoD 大幅减少了推理过程开销，性能相较于 CoT 没有明显下降，甚至在一些测试上还优于 CoT
+    </span>
+  </div>
+</div>
+<p>从 Prompt 上控制 CoT 的长度：</p>
+<ul>
+<li>原本：think step by step</li>
+<li>现在：think step by step，但生成的每一条草稿都不要超过 5 个字</li>
+</ul>
+<h4 id="对-Explore-方法">对 Explore 方法</h4>
+<p>sampling 时，少采一点：</p>
+<ul>
+<li>Beam Search 的时候选择小一点的 beam</li>
+<li>在 MCTS 的时候，生成小一些的树</li>
+</ul>
+<h4 id="对-IL-方法">对 IL 方法</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512900.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512476.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：在模仿学习时，考虑推理长度的问题；右图：逐步缩短推理长度，渐进式地训练。
+    </span>
+  </div>
+</div>
+<p>对模仿学习方法：</p>
+<ul>
+<li>用同一个问题问教师模型很多次，选择其输出正确答案中推理长度最短的那个作为训练数据，这样可以 train 出推理长度较短的模型</li>
+<li>可以逐步减少训练数据中 CoT 的长度以训练隐式 CoT 的模型
+<ul>
+<li>如果直接从 stage1，移除全部 CoT 过程，直接用 input-answer pairs 训练，一定学不到 CoT。为了方便模型学习，我们要逐步移除 CoT 过程（stage1 -&gt; stage2 -&gt; … -&gt; stage6）</li>
+<li>最后得到的 Implicit CoT 模型在一些简单问题上，与原来的 Explicit CoT 模型性能差不多，但它并不产生 CoT 的过程。</li>
+</ul>
+</li>
+</ul>
+<h4 id="对-RL-方法">对 RL 方法</h4>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512685.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512420.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    随着 RL 的不断进行，模型的输出会越来越长，这是因为我们没有对 推理长度 做惩罚。
+    </span>
+  </div>
+</div>
+<p>直觉上：可以设置模型推理长度超过 某一阈值（比如 1k）就给惩罚</p>
+<ul>
+<li>但这不好！如果问题比较难，会需要较长的推理，所以强制的给一个一刀切的阈值并不好。</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241512247.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241513101.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：根据问题难度，制定一个推理长度的“相对标准”。
+    <br>
+    右图：设置 reward 让模型对 Prompt 中的推理长度敏感
+    </span>
+  </div>
+</div>
+<p>如何制定一个相对标准？</p>
+<ul>
+<li>让模型多次回答同一个问题，然后统计平均推理长度。</li>
+<li>在做 RL 的过程中，在答对的情况下：如果推理长度比平均长，那就给惩罚；比平均短，那就给奖励。</li>
+</ul>
+<p>在 RL 中，还可以控制推理的长度：以 <span style="color:lightgreen">正确率、目标长度和实际推理长度的差异</span> 为标准，设计 reward。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241513665.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607241513005.png" srcset="/img/loading.gif" lazyload alt="让不要模型过度思考" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：模型是在数学问题集上训练的。在 In Domain 的情况下，模型经 RL 后，可以较好控制推理长度；在 Out of Domain 的情况下，模型在一定程度上学到了控制推理长度的能力。
+    <br>
+    右图：Our Methods 是通过 RL 训练得到的可以控制推理长度的模型。其他模型是正常的基座模型（S1略有改动）。可以看到：RL 并没有使模型的推理能力受到太大的影响.
+    </span>
+  </div>
+</div>
+<p>S1 是从 Gemini 知识蒸馏得到的，而且加入了控制推理长度的机制：如果模型讲的太长，超过阈值就直接终止；如果模型讲太短，就把终止符换成 wait，继续推理过程。</p>
+<ul>
+<li>从图上看：强行约束对模型性能的损害较大。</li>
+</ul>
+<p>Our Methods 的简要说明：</p>
+<ul>
+<li>L1 - Exact：如果 Prompt 中指定了一个阈值，则只有 <code>模型推理长度=阈值</code> 是好的，凡是不等于阈值都是不好的。</li>
+<li>L1 - Max：如果 Prompt 中指定了一个阈值，则只有 <code>模型推理长度&lt;=阈值</code> 是好的，凡是大于阈值都是不好的。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">个人学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/" class="category-chain-item">AI Notes</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/Agent/" class="category-chain-item">Agent</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/Agent/AI-Agent-%E5%85%A5%E9%97%A8/" class="category-chain-item">AI Agent 入门</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI Agent Lec 02</div>
+      <div>http://dbqdss.github.io/2026/07/24/个人学习笔记/AI Notes/Agent/AI Agent 入门/AI Agent-Lec02/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>失去理想的獾</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/22/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Reinforcement%20Learning/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86/MathFoundationRL-Ch04/" title="强化学习的数学基础 - Chapter 4">
+                        <span class="hidden-mobile">强化学习的数学基础 - Chapter 4</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+    
+      <article id="comments" lazyload>
+        
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
+      
+        
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="waifu" id="waifu" style="z-index: 1000;"> <div class="waifu-tips" style="opacity: 1;"></div> <canvas id="live2d" width="280" height="250" class="live2d"></canvas> <div class="waifu-tool"> <span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span> </div> </div> <script src="/assets/live2d.min.js"></script> <script src="/assets/waifu-tips.js"></script> <script type="text/javascript"> initModel() </script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-copyright"></i>
+<a href="https://github.com/DBQDSS" target="_blank" rel="nofollow noopener"><span>失去理想的獾</span></a>
+|  Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+<div style="font-size: 0.85rem">
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script src="/vvd_js/duration.js"></script>
+  <br>
+  <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    本页总阅读量 <span id="busuanzi_page_pv">加载中...</span> 次
+  <!-- 不蒜子统计图标代码 如果更换域名记得替换Start -->
+    <a href="https://www.busuanzi.cc/count.php?search=blog.cyaml.top" title="不蒜子统计" target="_blank">
+        <img style="width:85px;height:25px;" src="https://www.busuanzi.cc/static/images/bsz-tongji.png" srcset="/img/loading.gif" lazyload>
+    </a>
+  <!-- 不蒜子统计图标代码 End -->
+</div>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="/js/yinghua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
