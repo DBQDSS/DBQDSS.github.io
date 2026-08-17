@@ -1,0 +1,1368 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="失去理想的獾">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="驾驭工程（Harness Engineering）简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Agent Lec 04">
+<meta property="og:url" content="http://dbqdss.github.io/2026/08/17/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Agent/AI%20Agent%20%E5%85%A5%E9%97%A8/AI%20Agent-Lec04/index.html">
+<meta property="og:site_name" content="失去理想的獾 の Blog">
+<meta property="og:description" content="驾驭工程（Harness Engineering）简介">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/AI_Agent_Lec_04.png">
+<meta property="article:published_time" content="2026-08-17T13:06:04.000Z">
+<meta property="article:modified_time" content="2026-08-17T13:06:55.785Z">
+<meta property="article:author" content="失去理想的獾">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/AI_Agent_Lec_04.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>AI Agent Lec 04 - 失去理想的獾 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/mouse.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/equation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbqdss.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1, h2, h3, h4, h5, h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="失去理想的獾 の Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>失去理想的獾 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/cv/my-cv.pdf" target="_self">
+                    <i class="iconfont icon-addrcard"></i>
+                    <span>简历</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://raw.githubusercontent.com/DBQDSS/Blog_img/banner-index/202607241915943.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="🥰 Thanks you，李宏毅老师！🥰"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        失去理想的獾
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-17 21:06" pubdate>
+          2026年8月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">🥰 Thanks you，李宏毅老师！🥰</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年8月17日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>以下内容来自于 NTU 李宏毅 2026 Spring 的课程 <a target="_blank" rel="noopener" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php">[传送门]</a></p>
+</blockquote>
+<blockquote>
+<p>背景来自 XHS 小满 Summer</p>
+</blockquote>
+<hr>
+<h2 id="引入">引入</h2>
+<p>gemma-4-E2B-it 是一个 2B 参数的小模型，将它用于代码修复任务上。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142158001.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142158573.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    使用 gemma-4-E2B-it 模型驱动 AI Agent
+    </span>
+  </div>
+</div>
+<p>可以看到，gemma-4-E2B-it 模型甚至不知道要读取文件夹下的待修改代码，而是直接自己编写了 <a target="_blank" rel="noopener" href="http://parse.py">parse.py</a> 和 <a target="_blank" rel="noopener" href="http://verify.py">verify.py</a>。但我们可以通过一定的辅助来告诉它：</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142158210.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142158699.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    加入一定的指示后，AI Agent 可以成功完成任务。
+    </span>
+  </div>
+</div>
+<p>这说明：有时候模型无法完成既定任务，不一定是模型智力的问题，也有可能是我们指令不够完善。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171604536.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    可以从 harness 入手来提升 AI Agent 的性能
+    </span>
+  </div>
+</div>
+<hr>
+<h2 id="Harness">Harness</h2>
+<h3 id="概念内容">概念内容</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171604788.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171604621.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171604475.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    从 prompt 到 context 再到 harness，侧重点不同
+    </span>
+  </div>
+</div>
+<ul>
+<li>Prompt Engineering：LLM 的本质就是在做文字接龙，所以不同的 input 就会产生不同的 output。
+<ul>
+<li>过去的 LLM 性能比较弱，所以同一个问题换一种问法，可能答案天差地别</li>
+<li>人们的着力点在于，如何下 prompt 才能让模型发挥性能。由此产生了一堆神秘咒语。
+<ul>
+<li>最知名的咒语：think step by step</li>
+</ul>
+</li>
+<li>随着模型性能的增强，这些神奇咒语越来越没有用。</li>
+</ul>
+</li>
+<li>Context Engineering：LLM 没有回答正确答案，可能不是能力不行，而是因为模型本身确实没有相关知识。
+<ul>
+<li>构造一个系统为 LLM 搜集需要的信息，和 prompt 一并丢给 LLM</li>
+<li>可以说是一种更加自动化的 prompt engineering 的方式</li>
+</ul>
+</li>
+<li>Harness Engineering：LLM 在执行任务的时，往往不再只是一问一答，而是 <strong>多轮对话</strong>，而且可能会用到其他 tools 的输出。
+<ul>
+<li>如何有效管理这些不同的输入输出，让 LLM 在多轮对话中也能把任务做好，这就是 harness engineering 所考虑的问题。</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171604000.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    几种控制 LLM 工作的手段
+    </span>
+  </div>
+</div>
+<h3 id="控制认知框架">控制认知框架</h3>
+<blockquote>
+<p>Natural Language Harness</p>
+</blockquote>
+<p>首先，我们可以通过用人类语言写成的规则来控制 LLM 的行为。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171608266.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142202539.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    让 LLM 在做每件事之前都先把提前写好的规则放入 prompt 中
+    </span>
+  </div>
+</div>
+<p>但就像不是每个人都能遵守法律一样，LLM 也有可能不遵守我们写好的规则，这不是具有 100% 强制力的！</p>
+<p>下面是一些针对 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 作用的实验。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142202480.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142202341.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：AGENTS.md 可以影响 LLM 完成任务的速度
+    <br>
+    右图：AGENTS.md 可以影响 LLM 完成任务的质量
+    </span>
+  </div>
+</div>
+<ul>
+<li>左图：<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 可以用更少的时间、更少的 tokens 完成任务（主要体现在 edge case 上）
+<ul>
+<li>但这个实验只计算了完成速度，并没有计算任务完成的质量。</li>
+</ul>
+</li>
+<li>右图：统计了 LLM 在不同情况下对任务的完成质量
+<ul>
+<li>图例
+<ul>
+<li>None：没有 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a></li>
+<li>LLM：有 LLM 自己写的 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a></li>
+<li>Human：有人类写的 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a></li>
+</ul>
+</li>
+<li>实验结果
+<ul>
+<li>在比较强的模型（Sonnet-4.5）上，<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 并没有发挥作用</li>
+<li>但在比较弱模型（Qwen3-30B）上，<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 的效果比较好。</li>
+</ul>
+</li>
+<li>所以我们写的 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 并不总是会发挥作用</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142202743.png" srcset="/img/loading.gif" lazyload alt="图片" width="400" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    AGENTS.md 不能够太长
+    </span>
+  </div>
+</div>
+<ul>
+<li>Claude 曾尝试把所有模型需要知道的知识、所有需要遵守的规则都塞入 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 中，最后发现模型性能大幅下降。
+<ul>
+<li>可以理解，因为百科全书式的 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 会大量挤占 context 空间</li>
+<li><a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 应该要像一张地图
+<ul>
+<li>告诉模型：<strong>如果想知道什么内容，应该去何处寻找。</strong></li>
+<li>而不是把所有信息全部塞入 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="限制能力边界">限制能力边界</h3>
+<p>可以通过控制 LLM 调用工具来限制 AI Agent 的行为。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142202820.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    现在的一些 harness 会要求 LLM 在读取/上传文件时，先得到人类的确认（程序硬性要求）
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142202862.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142205144.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    工具除了可以限制模型的能力边界，还会影响模型的能力。
+    </span>
+  </div>
+</div>
+<p>SWE-agent 发现：</p>
+<ul>
+<li>给模型不同的工具，会大幅影响模型的能力</li>
+<li>适合人类的工具，并不一定适应模型
+<ul>
+<li>对搜索的实验：
+<ul>
+<li>三个工具
+<ul>
+<li>无搜索工具（原生 Linux 命令行工具）</li>
+<li>类似浏览器的需要翻页的搜索工具</li>
+<li>带摘要的搜索工具</li>
+</ul>
+</li>
+<li>结果：带摘要的最好，翻页式的最差</li>
+</ul>
+</li>
+<li>对编辑的实验：
+<ul>
+<li>三个工具
+<ul>
+<li>无编辑工具（原生 Linux 命令行工具）</li>
+<li>块编辑工具：可以指定修改程序的第几至几行。但模型甚至会出现括号匹配这类低级错误</li>
+<li>块编辑 + Linting 工具（Linting 用以检查语法问题，如果有错误则继续修改）</li>
+</ul>
+</li>
+<li>结果：Linting 最好，用原生最差</li>
+</ul>
+</li>
+<li>因此，给 AI Agent 趁手的工具是十分重要的！</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142205688.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    AI Agent 更喜欢 Command Line 而不是 GUI！
+    </span>
+  </div>
+</div>
+<h3 id="制定工作流程">制定工作流程</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171609836.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Anthropic blog 中的工作流程
+    </span>
+  </div>
+</div>
+<ul>
+<li>planner 先规划任务，然后分发给多个 generator</li>
+<li>generator 在正式生成开始之前，会先生成一个 contract 给 evaluator，看后者是否接受
+<ul>
+<li>evalutor 如果接受，则 generator 开始生成</li>
+<li>这是为了确保 evaluator 在 generator 生成完毕后的审查标准一致</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142205098.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142206145.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Ralph Loop：横冲直撞地产生一连串 feedback
+    <br>
+    把每一个 round 压缩为一个 summary 供后续使用
+    </span>
+  </div>
+</div>
+<ul>
+<li>对于 LLM 来说，生成是容易的，所以我们只需根据 feedback 一路生成下去就能提升回答质量
+<ul>
+<li>此处的 evaluator 可以是一个 LLM，也可以是 compiler 等等</li>
+<li>潜在问题：每轮对话都会产生 output 和 feedback，这会迅速挤占 context 容量
+<ul>
+<li>解决方法：采用类似 context engineering 中的手段，把每一个 round 压缩为一个 summary 供后续使用。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142206330.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142206621.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    不同的 LLM 适合不同的 harness
+    </span>
+  </div>
+</div>
+<ul>
+<li>不同的 LLM 可能会适合不同的 harness
+<ul>
+<li>Anthropic 写道，
+<ul>
+<li>Claude Sonnet 比较适合 summary 类型的 harness</li>
+<li>Claude Opus 就无需上述 summary 类型的 harness，直接使用单线程的 harness 即可</li>
+</ul>
+</li>
+<li>因此，harness 不是万用的，应该根据不同 LLM 的能力和特性，可以自行拆解组装！</li>
+</ul>
+</li>
+<li>根据 feedback 来改变 LLM 生成内容的行为也可以理解为一种广义的学习
+<ul>
+<li>严格意义上的学习往往伴随模型参数的变化</li>
+<li>feedback 可以视作是基于 <em>“文本梯度”</em> 的 <em>“学习”</em></li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142209945.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210654.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    选用什么东西作为 feedback 也是有学问的
+    </span>
+  </div>
+</div>
+<ul>
+<li>让 LLM 编写代码生成模拟磁场的动画，LLM 往往可以生成可以执行（无报错）的代码，但并不符合物理常识。
+<ul>
+<li>加一个对最终输出的检查步骤，可以提高生成质量。</li>
+</ul>
+</li>
+<li>右图：
+<ul>
+<li>问题设置：有一些基因和目标，让 LLM 尝试改变一些基因然后达成想要的目标（性状等等）</li>
+<li>不同的区块代表不同的目标，分数越高代表效果越好</li>
+<li>图例
+<ul>
+<li>紫色（ICBR-EF 4.6）：给 LLM 最完整的 feedback</li>
+<li>橙色（Zero-shot 4.6）：完全不给 LLM feedback</li>
+<li>红色（Random FB）：给 LLM 随机 feedback（可能正确、可能错误）</li>
+</ul>
+</li>
+<li>可以看到：紫 &gt; 橙 &gt; 红，这说明 feedback 对 LLM 的输出是有影响的。</li>
+</ul>
+</li>
+</ul>
+<h4 id="过度责备-AI-Agent-可能有害">过度责备 AI Agent 可能有害</h4>
+<p>很多时候人们使用 LLM 都是多轮对话的，实质上是扮演了上述 workflow 中 evaluator 的角色。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210334.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210524.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Anthropic 通过 steering vector 技术证明：过度责备 AI Agent 可能是有害的
+    </span>
+  </div>
+</div>
+<ul>
+<li>steering vector 技术
+<ul>
+<li>例如：给 LLM 输入一个快乐的故事，然后将其中的 representation 拿出来做平均，得到 happy vector</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210817.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210147.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：计算句子与不同情绪向量的相似度
+    <br>
+    右图：让模型去解一个几乎不可能完成的任务，监控模型情绪的变化。
+    </span>
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210943.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142210686.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    “模型情绪”并非表征性（只是出现这个情绪，不会对后续输出造成影响）的，而是功能性的
+    </span>
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142213467.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    LLM 的本质是文字接龙，说到底，辱骂 LLM 会污染上下文
+    </span>
+  </div>
+</div>
+<hr>
+<h2 id="Life-long-AI-Agent">Life-long AI Agent</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142213903.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    如何让 AI Agent 成为人类一辈子的伙伴
+    </span>
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142213417.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142213742.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    Claude Code：让 AI Agent 在空闲时间整理自己过去的记忆（就像睡眠做梦一样）
+    </span>
+  </div>
+</div>
+<p>好的 AI Agent 应该能够持续学习</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142213221.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    我们只能得到一些容易取得的 feedback 来训练模型
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171609467.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171610493.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：可以通过 SKILL.md 来实现自我进化
+    <br>
+    右图：能否通过 harness 来更新 LLM 的参数？
+    </span>
+  </div>
+</div>
+<p>如果只更新 <a target="_blank" rel="noopener" href="http://SKILL.md">SKILL.md</a> 等内容，我们的 AI Agent 的能力上限是被锁死的 —— 能更新 LLM 的参数才可以提高上限</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171610669.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    LLM 如何知道哪句话是可以用于学习的 feedback？
+    </span>
+    <br>
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217735.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217705.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    论文的方法：事后诸葛亮
+    </span>
+  </div>
+</div>
+<ul>
+<li>如何区分哪些是指令，哪些是 feedback?
+<ul>
+<li>例如，“很好，继续”就是指令；而 compiler 的输出就可以作为 feedback</li>
+</ul>
+</li>
+<li>方法：事后诸葛亮
+<ul>
+<li>假设
+<ul>
+<li>1：输入</li>
+<li>2：输出</li>
+<li>3：可能是普通指令，也可能是环境的 feedback</li>
+</ul>
+</li>
+<li>我将 prompt 改为 3 + 1（把 3 放到 1 前面输入），LLM 的输出变为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">2^\prime</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span>
+<ul>
+<li>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">2^\prime</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 之间的差距很大，则说明 3 确实起到了 feedback 的效果！</li>
+</ul>
+</li>
+<li>如果 3 经上面步骤确认为 feedback，我们就把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">2^\prime</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span> 当作 ground truth 微调 LLM</li>
+</ul>
+</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217890.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    使用上述方法，是可以用 feedback 训练模型的
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217074.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    还有一种最简单的 feedback 是没有 feedback
+    </span>
+  </div>
+</div>
+<p>如果没有环境给予 feedback，LLM 事实上也可以通过自己的思考做对。</p>
+<h3 id="测评-AI-Agent-的能力">测评 AI Agent 的能力</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217678.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217549.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    自动化地测评 LLM 的困难
+    </span>
+  </div>
+</div>
+<p>在自动化测评的时候，一般我们会选用 AI 和 AI 对话。但人类的行为往往与 AI 不同：人类说话简短，AI 倾向于把话说详细、全面——因此用 AI 来测评 AI 会高估其分数。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217177.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142217360.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    左图：重做 tau-bench 实验，虚线为人类基准
+    <br>
+    右图：LLM 往往高估了 customer 和 Agent 互动的分数
+    </span>
+  </div>
+</div>
+<p>重做之后发现：如果测评时用聪明的 LLM 会导致分数虚高。</p>
+<h3 id="自主更新-harness">自主更新 harness</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608171610901.png" srcset="/img/loading.gif" lazyload alt="图片" width="500" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    能否让 harness 实现自主更新？
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142244765.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    让 Opus 来教 Haiku 去刷 PinchBench
+    </span>
+  </div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142244005.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608142244058.png" srcset="/img/loading.gif" lazyload alt="图片" width="" height="200">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    实验表明：聪明 AI 确实可以指导笨 AI
+    </span>
+  </div>
+</div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">个人学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/" class="category-chain-item">AI Notes</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/Agent/" class="category-chain-item">Agent</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/Agent/AI-Agent-%E5%85%A5%E9%97%A8/" class="category-chain-item">AI Agent 入门</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI Agent Lec 04</div>
+      <div>http://dbqdss.github.io/2026/08/17/个人学习笔记/AI Notes/Agent/AI Agent 入门/AI Agent-Lec04/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>失去理想的獾</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/11/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Reinforcement%20Learning/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86/MathFoundationRL-Ch10/" title="强化学习的数学基础 - Chapter 10">
+                        <span class="hidden-mobile">强化学习的数学基础 - Chapter 10</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+    
+      <article id="comments" lazyload>
+        
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
+      
+        
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="waifu" id="waifu" style="z-index: 1000;"> <div class="waifu-tips" style="opacity: 1;"></div> <canvas id="live2d" width="280" height="250" class="live2d"></canvas> <div class="waifu-tool"> <span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span> </div> </div> <script src="/assets/live2d.min.js"></script> <script src="/assets/waifu-tips.js"></script> <script type="text/javascript"> initModel() </script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-copyright"></i>
+<a href="https://github.com/DBQDSS" target="_blank" rel="nofollow noopener"><span>失去理想的獾</span></a>
+|  Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+<div style="font-size: 0.85rem">
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script src="/vvd_js/duration.js"></script>
+  <br>
+  <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    本页总阅读量 <span id="busuanzi_page_pv">加载中...</span> 次
+  <!-- 不蒜子统计图标代码 如果更换域名记得替换Start -->
+    <a href="https://www.busuanzi.cc/count.php?search=blog.cyaml.top" title="不蒜子统计" target="_blank">
+        <img style="width:85px;height:25px;" src="https://www.busuanzi.cc/static/images/bsz-tongji.png" srcset="/img/loading.gif" lazyload>
+    </a>
+  <!-- 不蒜子统计图标代码 End -->
+</div>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="/js/yinghua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
