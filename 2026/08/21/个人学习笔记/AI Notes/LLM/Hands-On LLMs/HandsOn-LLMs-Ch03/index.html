@@ -1,0 +1,1308 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="失去理想的獾">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Transformer 的结构、内部原理以及一些变形优化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 3 - LLM 的内部机制">
+<meta property="og:url" content="http://dbqdss.github.io/2026/08/21/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Ch03/index.html">
+<meta property="og:site_name" content="失去理想的獾 の Blog">
+<meta property="og:description" content="Transformer 的结构、内部原理以及一些变形优化。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
+<meta property="article:published_time" content="2026-08-21T14:21:50.000Z">
+<meta property="article:modified_time" content="2026-08-21T14:50:07.677Z">
+<meta property="article:author" content="失去理想的獾">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>Chapter 3 - LLM 的内部机制 - 失去理想的獾 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/mouse.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/equation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dbqdss.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1, h2, h3, h4, h5, h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="失去理想的獾 の Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>失去理想的獾 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/" target="_self">
+                    <i class="iconfont icon-user-fill"></i>
+                    <span>关于我</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/cv/my-cv.pdf" target="_self">
+                    <i class="iconfont icon-addrcard"></i>
+                    <span>简历</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://raw.githubusercontent.com/DBQDSS/Blog_img/banner-index/202608212249317.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从零开始的 LLM 底层知识学习之旅。"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        失去理想的獾
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-21 22:21" pubdate>
+          2026年8月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从零开始的 LLM 底层知识学习之旅。</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年8月21日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>参考书目：《图解大模型: 生成式 AI 原理与实战》Jay Alammar Maarten Grootendorst 著；李博杰译</p>
+<p>此为读书笔记，准确来说是原书省流版摘抄与批注。</p>
+<p>讲的有点太泛了，不够深入，Transformer 的详情见下一节。</p>
+</blockquote>
+<p>背景图片来自《尼尔·机械纪元》</p>
+<hr>
+<h2 id="3-1-Transformer-概述">3.1 Transformer 概述</h2>
+<p>本节会介绍 Transformer 的基本架构和内部原理，包含前向传播、并行处理、KV cache 以及 Transformer 块内部结构。</p>
+<h3 id="3-1-1-输入与输出">3.1.1 输入与输出</h3>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645706.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-1
+    </span>
+  </div>
+</div>
+<p>模型并不是一次性生成所有文本，而是一次生成一个 token。</p>
+<p>图 3-2 展示了响应输入提示词时的四个 token 生成步骤。每个 token 生成步骤都是模型的一次前向传播。</p>
+<blockquote>
+<p>在机器学习中，前向传播指的是输入进入神经网络并流经计算图，最终在另一端产生输出所需的计算过程。</p>
+</blockquote>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645739.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-2
+    </span>
+  </div>
+</div>
+<p>在生成当前 token 后，我们将输出 token 追加到输入提示词的末尾，从而调整下一次生成的输入提示词。我们可以在图 3-3 中看到这一点。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645676.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-3
+    </span>
+  </div>
+</div>
+<h3 id="3-1-2-前向传播的组成">3.1.2 前向传播的组成</h3>
+<p>除了循环之外，前向传播还有两个关键的内部组件：分词器和语言建模头（language modeling head，LM head）。</p>
+<p>图 3-4 展示了这些组件在系统中的位置。在上一章中，我们看到了分词器如何将文本分解成 token ID 序列，然后用作模型的输入。</p>
+<p>分词器之后是神经网络，由一系列 Transformer 块堆叠而成，负责执行所有的处理工作。在这些堆叠的块之后是语言建模头，它将 Transformer 块的输出转换为预测下一个 token 的 <strong>概率分数</strong>。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645615.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-4
+    </span>
+  </div>
+</div>
+<p>分词器包含一个词表，模型为词表中的每个 token 都关联了一个向量表示（token embedding）。图 3-5 展示了一个拥有 50000 个 token 的词表及其对应的 token embedding。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645637.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-5
+    </span>
+  </div>
+</div>
+<p>计算流按照箭头方向从上到下进行。对于每个生成的 token，处理过程会按顺序依次经过堆叠成一列的所有 Transformer 块，然后到达语言建模头，最后输出下一个 token 的概率分布，如图 3-6 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645589.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-6
+    </span>
+  </div>
+</div>
+<p>语言建模头本身是一个简单的神经网络层。它可以连接到堆叠的 Transformer 块上的多种可能的“头”之一，用于构建不同类型的系统。其他类型的 Transformer 头包括序列分类头和 token 分类头。</p>
+<p>我们只需打印模型变量，就可以按顺序显示所有层。对于这个模型，我们得到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python">Phi3ForCausalLM(<br>  (model): Phi3Model(<br>    (embed_tokens): Embedding(<span class="hljs-number">32064</span>, <span class="hljs-number">3072</span>, padding_idx=<span class="hljs-number">32000</span>)<br>    (embed_dropout): Dropout(p=<span class="hljs-number">0.0</span>, inplace=<span class="hljs-literal">False</span>)<br>    (layers): ModuleList(<br>      (<span class="hljs-number">0</span>-<span class="hljs-number">31</span>): <span class="hljs-number">32</span> x Phi3DecoderLayer(<br>        (self_attn): Phi3Attention(<br>          (o_proj): Linear(in_features=<span class="hljs-number">3072</span>, out_features=<span class="hljs-number">3072</span>, bias=<span class="hljs-literal">False</span>)<br>          (qkv_proj): Linear(in_features=<span class="hljs-number">3072</span>, out_features=<span class="hljs-number">9216</span>, bias=<span class="hljs-literal">False</span>)<br>          (rotary_emb): Phi3RotaryEmbedding()<br>        )<br>      (mlp): Phi3MLP(<br>        (gate_up_proj): Linear(in_features=<span class="hljs-number">3072</span>, out_features=<span class="hljs-number">16384</span>, bias=<span class="hljs-literal">False</span>)<br>        (down_proj): Linear(in_features=<span class="hljs-number">8192</span>, out_features=<span class="hljs-number">3072</span>, bias=<span class="hljs-literal">False</span>)<br>        (activation_fn): SiLU()<br>      )<br>      (input_layernorm): Phi3RMSNorm()<br>      (resid_attn_dropout): Dropout(p=<span class="hljs-number">0.0</span>, inplace=<span class="hljs-literal">False</span>)<br>      (resid_mlp_dropout): Dropout(p=<span class="hljs-number">0.0</span>, inplace=<span class="hljs-literal">False</span>)<br>      (post_attention_layernorm): Phi3RMSNorm()<br>      )<br>    )<br>      (norm): Phi3RMSNorm()<br>  )<br>  (lm_head): Linear(in_features=<span class="hljs-number">3072</span>, out_features=<span class="hljs-number">32064</span>, bias=<span class="hljs-literal">False</span>)<br>)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>这个结构展示了模型的各种嵌套层。模型的主要部分标记为 model，随后是 lm_head。</li>
+<li>在 Phi3Model 内部，我们可以看到嵌入矩阵 embed_tokens 及其维度。它有 32064 个词元，每个词元的向量大小为 3072。</li>
+<li>暂时跳过 dropout 层，我们可以看到下一个主要组件是堆叠的 Transformer 解码器层。它包含 32 个 Phi3DecoderLayer 类型的块。</li>
+<li>这些 Transformer 块中的每一个都包含一个注意力层和一个前馈神经网络（也称为 MLP 或多层感知器）。我们将在本章后面详细介绍这些内容。</li>
+<li>最后，我们看到 lm_head 接收一个大小为 3072 的向量，并输出一个大小等于模型所知词元数量的向量。该输出是每个词元的概率分数，帮助我们选择输出词元。</li>
+</ul>
+<h3 id="3-1-3-从分布中采样">3.1.3 从分布中采样</h3>
+<p>在处理结束时，模型会为词表中的每个 token 输出一个概率分数，正如我们在图 3-6 中看到的那样。从概率分布中选择单个 token 的方法称为解码策略。图 3-7 展示了示例是如何选择词元 Dear 的。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645559.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-7
+    </span>
+  </div>
+</div>
+<p>最简单的解码策略就是始终选择概率分数最高的 token。</p>
+<p>但在实践中，对于大多数使用场景来说，这种方法往往无法产生最佳输出。一个更好的方法是引入一些随机性，有时选择概率第二高或第三高的 token。用统计学家的话来说，这种思想就是根据概率分数对概率分布进行采样。</p>
+<p>每次都选择概率分数最高的 token 的策略被称为贪心解码。这就是在 LLM 中将温度（temperature）参数设为零时会发生的情况。我们将在第 6 章讨论温度的概念。</p>
+<h3 id="3-1-4-并行处理与上下文长度">3.1.4 并行处理与上下文长度</h3>
+<p>Transformer 最引人注目的特性之一是，它比之前的语言处理神经网络架构更适合并行计算。</p>
+<p>在文本生成中，观察每个 token 是如何处理的，就能初步了解这一点。我们从上一章知道，分词器会将文本分解成 token。然后每个输入 token 都会流经自己的计算路径（这种直觉有助于我们更轻松地理解）。我们可以在图 3-8 中看到这些独立的计算流（也可以理解为处理路径）。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211645517.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-8
+    </span>
+  </div>
+</div>
+<p>当前的 Transformer 模型对一次可以处理的 token 数量有限制，这个限制被称为模型的上下文长度。一个具有 4K 上下文长度的模型只能处理 4000 个 token，也就是只有 4000 条这样的流。</p>
+<p>每条计算流都从一个输入向量开始（包括嵌入向量和一些位置信息。我们将在本章后面讨论位置嵌入）。在流的末尾，另一个向量作为模型处理的结果出现，如图 3-9 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651485.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-9
+    </span>
+  </div>
+</div>
+<p>对于文本生成来说，只有最后一条计算流的输出结果用于预测下一个 token。当语言建模头计算下一个 token 的概率时，该输出向量是唯一的输入。</p>
+<ul>
+<li>既然最终只用到最后一个 token 的输出，为什么还需要所有的计算流？</li>
+<li>之前的流的计算结果是最终的流所必需的。
+<ul>
+<li>我们不会使用它们的最终输出向量，但会在每个 Transformer 块的注意力机制中使用其早期输出。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-1-5-KV-cache">3.1.5 KV cache</h3>
+<p>回想一下，在生成第二个 token 时，我们只是简单地将输出 token 追加到输入的末尾，然后再次通过模型进行前向传播。如果模型能够缓存之前的计算结果（特别是注意力机制中的一些特定向量），就不需要重复计算之前的流，而只需要计算最后一条流了。这种优化技术被称为 <em>键-值（key-value，KV）缓存</em>，它能显著加快生成过程。键和值是注意力机制的核心组件，我们将在本章后面详细介绍。</p>
+<p>如图 3-10 所示，在生成第二个 token 时，由于我们缓存了之前流的结果，只有一条计算流是活跃的。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651436.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-10
+    </span>
+  </div>
+</div>
+<h3 id="3-1-6-Transformer-块的内部结构">3.1.6 Transformer 块的内部结构</h3>
+<p>现在我们来讨论 Transformer 模型的核心处理单元——Transformer 块。如图 3-11 所示，Transformer LLM 由一系列 Transformer 块组成（在原始 Transformer 论文中约为 6 个，而在许多 LLM 中超过 100 个）。每个块处理其输入，然后将其处理结果传递给下一个块。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651409.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-11
+    </span>
+  </div>
+</div>
+<p>Transformer 块由以下两个首尾相接的组件构成（图 3-12）。</p>
+<ul>
+<li>自注意力层，主要负责整合来自其他输入词元和位置的相关信息。</li>
+<li>前馈神经网络层，包含模型的主要处理能力。</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651355.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-12
+    </span>
+  </div>
+</div>
+<h4 id="前馈神经网络层">前馈神经网络层</h4>
+<p>让我们用一个简单的例子来理解前馈神经网络的工作原理：我们向语言模型输入“The Shawshank”，期望它生成“Redemption”（指 1994 年的电影《肖申克的救赎》）。</p>
+<p>如图 3-13 所示，前馈神经网络（分布在所有模型层中）就是这些信息的来源。当模型在大规模文本数据（包含大量对“The Shawshank Redemption”的引用）上完成训练后，它学习并存储了完成这项任务所需的信息（和行为）。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651384.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-13
+    </span>
+  </div>
+</div>
+<p>要想成功训练一个 LLM，需要让它记住大量信息。但它并不仅仅是一个大型数据库。记忆只是生成出色文本的众多要素之一。模型能够利用相同的机制在数据点之间进行插值，识别更复杂的模式，从而实现泛化，这意味着它能够很好地处理以前从未见过、不在训练数据集中的输入。</p>
+<h4 id="自注意力层">自注意力层</h4>
+<p>上下文对于正确建模语言至关重要。仅仅依靠基于前一个词元的简单记忆和插值是远远不够的。我们能得出这个结论，是因为这是神经网络出现之前构建语言模型的主要方法之一。</p>
+<p>注意力机制帮助模型在处理特定词元时整合上下文信息。考虑以下提示词：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">The dog chased the squirrel because it<br></code></pre></td></tr></table></figure>
+<p>为了预测 it 之后的内容，模型需要知道 it 指代什么，是狗还是松鼠？在已训练的 Transformer LLM 中，注意力机制负责做出这种判断。注意力机制将上下文信息添加到 it 词元的表示中。我们可以在图 3-14 中看到一个简单的示例。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651301.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-14
+    </span>
+  </div>
+</div>
+<p>模型是基于从训练数据集中观察和学习到的模式来实现这一点的。前文中的句子可能提供了更多线索，比如前文中用 she 指代狗，那就表明 it 指代的是松鼠。</p>
+<h4 id="注意力机制的重要性">注意力机制的重要性</h4>
+<p>图 3-15 展示了注意力机制的极简版本。它显示了多个进入自注意力层的词元位置，最后一个是当前正在处理的位置（粉色箭头）。注意力机制作用于该位置的输入向量，它将上下文中的相关信息整合到该位置的输出向量中。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651330.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-15
+    </span>
+  </div>
+</div>
+<p>注意力机制包含以下两个主要步骤。</p>
+<ul>
+<li>对当前处理的词元（粉色箭头所示）与之前输入词元的相关性评分。</li>
+<li>利用这些分数，将不同位置的信息组合成单一的输出向量。</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211651279.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-16
+    </span>
+  </div>
+</div>
+<p>为了赋予 Transformer 更强大的注意力能力，注意力机制被复制多份，并行执行。这些并行的注意力执行过程被称为 <em>注意力头（attention head）</em>。这提高了模型对输入序列中复杂模式的建模能力，使其能够同时关注不同的模式。</p>
+<p>图 3-17 直观地展示了多个注意力头如何并行运行，包括前面的信息分割步骤和后面的所有注意力头的结果合并步骤。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656025.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-17
+    </span>
+  </div>
+</div>
+<h4 id="注意力的计算方式">注意力的计算方式</h4>
+<p>让我们来看看单个注意力头内的注意力是如何计算的。在开始计算之前，我们先观察以下起始状态。</p>
+<ul>
+<li>（生成式 LLM 中的）注意力层正在为单个位置处理注意力。</li>
+<li>该层的输入包括：
+<ul>
+<li>当前位置或词元的向量表示</li>
+<li>前序词元的向量表示</li>
+</ul>
+</li>
+<li>目标是为当前位置生成一个新的表示，其中包含来自前序词元的相关信息。例如，我们正在处理句子“Sarah fed the cat because it”（Sarah 喂了猫，因为它）的最后一个位置，<br>
+我们希望 it 表示那只猫，所以注意力机制会融入来自 cat 词元的“猫的信息”。</li>
+<li>训练过程会产生三个投影矩阵，用于生成参与计算的组件：
+<ul>
+<li>查询投影矩阵（Query）</li>
+<li>键投影矩阵（Key）</li>
+<li>值投影矩阵（Value）</li>
+</ul>
+</li>
+</ul>
+<p>图 3-18 展示了注意力计算开始前这些组件的起始状态。为简单起见，我们只考察一个注意力头，因为其他注意力头进行的是同样的计算，只是使用各自的投影矩阵。</p>
+<p>注意力首先将输入与投影矩阵相乘，得到三个新矩阵，称为查询矩阵、键矩阵和值矩阵。这些矩阵包含了投影到三个不同空间的输入词元信息，用于执行注意力的两个步骤：</p>
+<ul>
+<li>相关性评分</li>
+<li>信息组合</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656986.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-18
+    </span>
+  </div>
+</div>
+<p>图 3-19 展示了这三个新矩阵，以及三个矩阵的最后一行如何与当前位置相关联，而上面的行则与前序位置相关联。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656958.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-19
+    </span>
+  </div>
+</div>
+<h4 id="自注意力：相关性评分">自注意力：相关性评分</h4>
+<p>在生成式 Transformer 中，一次生成一个词元意味着一次处理一个位置。因此，注意力机制在这里只关注这一个位置（当前位置），以及如何从其他位置提取信息来为当前位置提供参考。</p>
+<p>注意力机制的相关性评分步骤是通过将当前位置的 Q向量 与 K矩阵 相乘来实现的。这一操作会产生一组分数，用以衡量当前位置之前的每一个词元的相关性。接下来，通过 softmax 操作对这些分数进行归一化，使它们的和为 1。图 3-20 展示了计算得到的相关性分数。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656928.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-20
+    </span>
+  </div>
+</div>
+<h4 id="自注意力：信息组合">自注意力：信息组合</h4>
+<p>有了相关性分数，我们用每个词元对应的值向量乘以该词元的分数，然后将这些结果向量相加，就得到了注意力步骤的输出，如图 3-21 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656895.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-21
+    </span>
+  </div>
+</div>
+<hr>
+<h2 id="3-2-Transformer-架构的最新改进">3.2 Transformer 架构的最新改进</h2>
+<p>自 Transformer 架构发布以来，已经有大量工作致力于对其进行改进，以提升模型性能和效率。这些改进包括在更大的数据集上进行训练、优化训练过程和学习率，以及对架构本身的调整。</p>
+<h3 id="3-2-1-更高效的注意力机制">3.2.1 更高效的注意力机制</h3>
+<p>Transformer 的自注意力层是学术界最关注的部分。这是因为注意力计算是整个过程中计算开销最大的部分。</p>
+<h4 id="稀疏注意力">稀疏注意力</h4>
+<p>随着 Transformer 规模越来越大，稀疏注意力（参见论文“Generating Long Sequences with Sparse Transformers”）和滑动窗口注意力（参见论文“Longformer: The Long-Document Transformer”）等理念提高了注意力计算的效率。如图 3-22 所示，稀疏注意力限制了模型可以关注的前序词元的上下文。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656866.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-22
+    </span>
+  </div>
+</div>
+<p>GPT-3 就是一个集成了这种机制的模型。但它并不是在所有 Transformer 块中都使用这种机制——如果模型只能看到少量的前序词元，生成质量会大幅下降。GPT-3 架构交替使用全注意力和稀疏注意力的 Transformer 块。因此，Transformer 块在全注意力和稀疏注意力之间交替。</p>
+<p>图 3-23 展示了不同类型的注意力机制的工作方式，其中每张图显示了在处理当前词元（深蓝色）时可以关注哪些前序词元（浅蓝色）。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656836.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-23
+    </span>
+  </div>
+</div>
+<p>图 3-23 的每一行对应正在处理一个词元。颜色编码表示模型在处理深蓝色单元格中的词元时能够关注哪些词元。图 3-24 更清晰地描述了这一点。</p>
+<p>图 3-24 还展示了（构成大多数文本生成模型的）解码器 Transformer 块的自回归特性：它们只能关注前序词元。与此相比，BERT 可以关注两个方向（BERT 中的 B 代表 bidirectional，即“双向”）。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211656800.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-24
+    </span>
+  </div>
+</div>
+<h4 id="多查询注意力和分组查询注意力">多查询注意力和分组查询注意力</h4>
+<p>关于 Transformer 中的注意力，最近一项提高效率的改进是分组查询注意力（grouped-query attention，GQA，参见论文“GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints”），它被 Llama 2 和 Llama 3 等模型使用。图 3-25 展示了这些不同类型的注意力，下一节将进一步解释。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700907.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-25
+    </span>
+  </div>
+</div>
+<p>分组查询注意力建立在多查询注意力（参见“Fast Transformer Decoding: One Write-Head is All You Need”）的基础之上。这些方法通过减小涉及的矩阵的大小来提高大模型推理的可扩展性。</p>
+<h4 id="优化注意力机制：从多头到多查询到分组查询">优化注意力机制：从多头到多查询到分组查询</h4>
+<p>在本章前面，我们展示了 Transformer 的论文如何描述多头注意力。“The Illustrated Transformer” 一文详细讨论了如何使用查询矩阵、键矩阵和值矩阵来进行注意力计算。图 3-26 展示了每个注意力头如何为给定输入计算其独特的查询矩阵、键矩阵和值矩阵。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700875.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-26
+    </span>
+  </div>
+</div>
+<p>多查询注意力通过在所有注意力头之间共享键矩阵和值矩阵来实现优化。如图 3-27 所示，每个注意力头只保留独特的查询矩阵。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700849.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-27
+    </span>
+  </div>
+</div>
+<p>然而，随着模型规模的增长，这种优化可能会带来过大的性能损失，此时我们可以牺牲一些内存来提升模型质量。这就是分组查询注意力的用武之地。它不是将键矩阵和值矩阵的数量减少到各一个，而是允许使用更多的矩阵（但少于注意力头的数量）。图 3-28 展示了这些分组，以及每组注意力头如何共享键矩阵和值矩阵。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700794.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-28
+    </span>
+  </div>
+</div>
+<h4 id="Flash-Attention">Flash Attention</h4>
+<p>Flash Attention 是一种广受欢迎的方法和实现，可以显著提升 GPU 上 Transformer LLM 的训练和推理速度。它通过优化 GPU 共享内存（GPU’s shared memory，SRAM）和高带宽内存（high bandwidth memory，HBM）之间的数据加载和迁移来加速注意力计算。详细内容可参见论文“FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness”以及后续的“FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning”。</p>
+<h3 id="3-2-2-Transformer-块">3.2.2 Transformer 块</h3>
+<p>回顾一下，Transformer 块的两个主要组成部分是自注意力层和前馈神经网络层。如图 3-29 所示，深入 Transformer 块的细节，还能发现残差连接和层归一化操作。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700822.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-29
+    </span>
+  </div>
+</div>
+<p>在撰写本书时，最新的 Transformer 模型仍然保留了主要组件，但进行了一些调整，如图 3-30 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700773.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-30
+    </span>
+  </div>
+</div>
+<p>在这个版本的 Transformer 块中，我们看到的一个区别是归一化发生在自注意力层和前馈神经网络层之前。据称，这种方式可以减少所需的训练时间（参见论文“On Layer Normalization in the Transformer Architecture”）。这里对归一化的另一个改进是使用 RMSNorm，它比原始 Transformer 中使用的 LayerNorm 更简单、更高效（参见论文“Root Mean Square Layer Normalization”）。最后，相比原始 Transformer 的 ReLU 激活函数，现在像 SwiGLU 这样的新变体（参见论文“GLU Variants Improve Transformer”）更为常见。</p>
+<h3 id="3-2-3-位置嵌入">3.2.3 位置嵌入</h3>
+<p>位置嵌入自原始 Transformer 以来一直是关键组件。它们使模型能够跟踪序列 / 句子中词元 / 词的顺序，这是语言中不可或缺的信息来源。在过去几年提出的众多位置编码方案中，旋转位置嵌入（rotary position embedding，RoPE，参见论文“RoFormer: Enhanced Transformer with Rotary Position Embedding”）尤其值得关注。</p>
+<p>原始 Transformer 论文和一些早期变体采用绝对位置嵌入，本质上是将第一个词元标记为位置 1，第二个标记为位置 2，以此类推。这些方法可以是静态的（使用几何函数生成位置向量）或可学习的（模型在训练过程中为它们赋值）。当我们将模型扩展到更大的规模时，这些方法会带来一些挑战，这要求我们找到提高其效率的途径。</p>
+<p>举例来说，在训练长上下文模型时的一个挑战是，训练集中有很多文档的长度都远小于上下文长度。如果为一个只有 10 个词的短句分配整个 4K 的上下文空间，这显然是很低效的。因此在模型训练过程中，多个文档会被一同打包到每个训练批次的上下文中，如图 3-31 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700744.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-31
+    </span>
+  </div>
+</div>
+<p>如需了解更多关于打包的信息，可以参考论文“Efficient Sequence Packing without Cross-Contamination: Accelerating Large Language Models without Impacting Performance”， 以及 “Introducing Packed BERT for 2X Training Speed-up in Natural Language Processing”视频和文章中的精彩可视化内容。</p>
+<p>除了必须适应打包过程，位置嵌入方法还需要考虑实践中的其他因素。如果文档 50 从位置 50 开始，那么告诉模型第一个词元是第 50 个就会误导模型，并影响其性能（因为它会假设存在前文，而实际上前面的词元属于另一个无关的文档，模型应该忽略）。</p>
+<p>与在前向传播开始时添加的静态绝对嵌入不同，旋转位置嵌入是一种以捕获绝对和相对词元位置信息的方式来编码位置信息的方法，其思想的基础是嵌入空间中旋转的向量。在前向传播中，旋转位置嵌入是在注意力步骤中添加的，如图 3-32 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211700723.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-32
+    </span>
+  </div>
+</div>
+<p>在注意力步骤中，我们特意把位置信息混合到查询矩阵和键矩阵中。这个混合过程发生在我们将查询向量和键矩阵相乘，进行相关性评分之前，如图 3-33 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202608211703542.png" srcset="/img/loading.gif" lazyload alt="图片" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 3-33
+    </span>
+  </div>
+</div>
+<h3 id="3-2-4-其他架构">3.2.4 其他架构</h3>
+<p>学术界持续提出和研究了许多 Transformer 的改进方案。论文“A Survey of Transformers”介绍了这些改进方案的一些主要方向。Transformer 架构也在不断适应 LLM 之外的领域。</p>
+<p>计算机视觉是一个有大量 Transformer 架构研究参与的领域（参见论文“Transformers in Vision: A Survey”和“A Survey on Vision Transformer”）。其他领域包括机器人技术（参见论文“Open X-Embodiment: Robotic Learning Datasets and RT-X Models”）和时间序列（参见论文“Transformers in Time Series: A Survey”）。</p>
+<hr>
+<h2 id="3-3-小结">3.3 小结</h2>
+<p>在本章中，我们讨论了 Transformer 的核心工作原理，以及最新的 Transformer LLM 背后的技术进展。我们介绍了许多新概念，下面总结一下本章讨论的关键概念。</p>
+<ul>
+<li>Transformer LLM 每次生成一个词元。</li>
+<li>生成的词元会被追加到提示词中，然后，这个更新后的提示词会再次被输入模型进行下一次前向传播，以生成下一个词元。</li>
+<li>Transformer LLM 的三个主要组件是分词器、一系列 Transformer 块和语言建模头。</li>
+<li>分词器包含模型的词元词表。模型中包含与这些词元相关联的词元嵌入。将文本分解成词元，然后使用这些词元的嵌入向量，是词元生成过程的第一步。</li>
+<li>前向传播会依次经过所有阶段。</li>
+<li>在处理接近尾声时，语言建模头会对下一个可能的词元进行概率评分。解码策略决定了在这一生成步骤中选择哪个实际词元作为输出（有时是概率最高的下一个词元，但并非总是如此）。</li>
+<li>Transformer 表现出色的原因之一是它能够并行处理词元。每个输入词元都流入其独立的计算流（也称为处理路径）。这些流的数量就是模型的“上下文长度”，代表模型可以处理的最大词元数量。</li>
+<li>由于 Transformer LLM 通过循环来一次生成一个词元的文本，因此缓存每个步骤的处理结果是一种很好的策略，这样可以避免重复处理工作（这些结果以各种矩阵的形式存储在层中）。</li>
+<li>大部分处理发生在 Transformer 块中。这些块由两个组件组成，其中一个是前馈神经网络，它能够存储信息，并根据训练数据进行预测和插值。</li>
+<li>Transformer 块的另一个主要组件是自注意力。自注意力整合了上下文信息，使模型能够更好地捕捉语言的细微差别。</li>
+<li>注意力过程分为两个主要步骤：相关性评分；信息组合。</li>
+<li>Transformer 的自注意力层并行执行多个注意力操作，每个操作都发生在注意力头内，它们的输出被聚合成自注意力层的输出。</li>
+<li>通过在所有注意力头或一组注意力头（分组查询注意力）之间共享键矩阵和值矩阵，可以加速注意力计算。</li>
+<li>Flash Attention 等方法通过优化在 GPU 不同显存系统上的操作方式来加速注意力计算。</li>
+</ul>
+<p>Transformer 架构在不断发展和创新，研究人员持续提出改进方案，使其能更好地适应语言模型以及其他领域和应用场景。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">个人学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/" class="category-chain-item">AI Notes</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/LLM/" class="category-chain-item">LLM</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI-Notes/LLM/Hands-On-LLMs/" class="category-chain-item">Hands-On LLMs</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
+      
+        <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Chapter 3 - LLM 的内部机制</div>
+      <div>http://dbqdss.github.io/2026/08/21/个人学习笔记/AI Notes/LLM/Hands-On LLMs/HandsOn-LLMs-Ch03/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>失去理想的獾</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/21/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Ch02/" title="Chapter 2 - 词元与嵌入">
+                        <span class="hidden-mobile">Chapter 2 - 词元与嵌入</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+    
+      <article id="comments" lazyload>
+        
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"DBQDSS/DBQDSS.github.io","repo-id":"R_kgDOMbYRUA","category":"Announcements","category-id":"DIC_kwDOMbYRUM4ChNj5","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":1,"input-position":"top","lang":"zh-CN","theme":"preferred_color_scheme","loading":"lazy"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+      </article>
+      
+        
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="waifu" id="waifu" style="z-index: 1000;"> <div class="waifu-tips" style="opacity: 1;"></div> <canvas id="live2d" width="280" height="250" class="live2d"></canvas> <div class="waifu-tool"> <span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span> </div> </div> <script src="/assets/live2d.min.js"></script> <script src="/assets/waifu-tips.js"></script> <script type="text/javascript"> initModel() </script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-copyright"></i>
+<a href="https://github.com/DBQDSS" target="_blank" rel="nofollow noopener"><span>失去理想的獾</span></a>
+|  Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+<div style="font-size: 0.85rem">
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script src="/vvd_js/duration.js"></script>
+  <br>
+  <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次
+    今日总访客数 <span id="busuanzi_today_uv">加载中...</span> 人
+    本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次
+    本站总访客数 <span id="busuanzi_site_uv">加载中...</span> 人
+    本页总阅读量 <span id="busuanzi_page_pv">加载中...</span> 次
+  <!-- 不蒜子统计图标代码 如果更换域名记得替换Start -->
+    <a href="https://www.busuanzi.cc/count.php?search=blog.cyaml.top" title="不蒜子统计" target="_blank">
+        <img style="width:85px;height:25px;" src="https://www.busuanzi.cc/static/images/bsz-tongji.png" srcset="/img/loading.gif" lazyload>
+    </a>
+  <!-- 不蒜子统计图标代码 End -->
+</div>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+<script src="/js/yinghua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

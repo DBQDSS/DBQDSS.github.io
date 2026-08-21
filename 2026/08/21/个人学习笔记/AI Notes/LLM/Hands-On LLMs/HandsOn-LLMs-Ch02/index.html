@@ -22,13 +22,13 @@
     <meta name="description" content="LLM 的分词与词元、文本等各类型的嵌入。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter 2 - 词元与嵌入">
-<meta property="og:url" content="http://dbqdss.github.io/2026/07/22/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Ch02/index.html">
+<meta property="og:url" content="http://dbqdss.github.io/2026/08/21/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Ch02/index.html">
 <meta property="og:site_name" content="失去理想的獾 の Blog">
 <meta property="og:description" content="LLM 的分词与词元、文本等各类型的嵌入。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/HandsOn-LLMs.png">
-<meta property="article:published_time" content="2026-07-21T16:03:50.000Z">
-<meta property="article:modified_time" content="2026-08-05T16:02:07.938Z">
+<meta property="article:published_time" content="2026-08-20T16:03:50.000Z">
+<meta property="article:modified_time" content="2026-08-21T08:34:37.247Z">
 <meta property="article:author" content="失去理想的獾">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
@@ -288,8 +288,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-07-22 00:03" pubdate>
-          2026年7月22日 凌晨
+        <time datetime="2026-08-21 00:03" pubdate>
+          2026年8月21日 凌晨
         </time>
       </span>
     
@@ -300,7 +300,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          6.2k 字
         
       </span>
     
@@ -311,7 +311,7 @@
         
         
         
-          23 分钟
+          52 分钟
         
       </span>
     
@@ -362,7 +362,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2026年8月6日 凌晨
+                    本文最后更新于 2026年8月21日 下午
                   
                 
               </p>
@@ -378,7 +378,7 @@
 <p>词元和嵌入是使用 LLM 的两个核心概念。正如我们在第 1 章所见，它们对理解语言人工智能的历史至关重要，而且如图 2-1 所示，如果没有对词元和嵌入的深入理解，我们就无法清楚地了解 LLM 的工作原理、构建方式及其未来的发展方向。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211746202.png" srcset="/img/loading.gif" lazyload alt="图1" width="600" height="">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211746202.png" srcset="/img/loading.gif" lazyload alt="图 2-1" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     token 在语言模型工作中的作用
@@ -600,7 +600,7 @@
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231600169.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    BERT 2
+    GPT-2
     </span>
   </div>
 </div>
@@ -615,7 +615,7 @@
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231600104.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    BERT 2
+    FLAN-T5
     </span>
   </div>
 </div>
@@ -630,7 +630,7 @@
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231600757.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    BERT 2
+    GPT-4
     </span>
   </div>
 </div>
@@ -645,126 +645,243 @@
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607231600246.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    BERT 2
+    StarCoder2
     </span>
   </div>
 </div>
 <h3 id="2-1-6-分词器的属性">2.1.6 分词器的属性</h3>
+<p>分词器的分词行为是由什么决定的？</p>
+<ul>
+<li>分词方法
+<ul>
+<li>例如 BPE 等等</li>
+</ul>
+</li>
+<li>用于初始化分词器的参数
+<ul>
+<li>词表大小、特殊词元（<code>&lt;s&gt;</code>、<code>&lt;CLS&gt;</code>、<code>&lt;MASK&gt;</code> 等等）、大小写处理策略……</li>
+</ul>
+</li>
+<li>训练分词器的目标数据
+<ul>
+<li>面向文本场景：可能会对缩进空格进行分词</li>
+<li>面向代码场景：可能会对 <code>def</code> <code>return</code> 等关键字进行分词</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h2 id="2-2-词元嵌入">2.2 词元嵌入</h2>
+<p>语言是词元的序列，如果我们在足够大的词元集上训练一个足够好的模型，它就会开始捕捉训练数据集中出现的复杂模式：</p>
+<ul>
+<li>如果训练数据包含大量英语文本，通过这些模式，模型就能够表示和生成英语；</li>
+<li>如果训练数据包含事实性信息（例如维基百科），模型就会具备生成一些事实性信息的能力。</li>
+</ul>
+<p>解决这个难题的下一步是为这些词元找到最佳的数值表示，使模型能够计算并正确建模文本中的模式。这些模式呈现给我们的，是模型在特定语言上的连贯性、编码能力或我们期望语言模型具备的任何其他能力。</p>
 <h3 id="2-2-1-为分词器的词表保存嵌入">2.2.1 为分词器的词表保存嵌入</h3>
+<p>分词器经过初始化和训练，就会在其关联的语言模型的训练过程中使用。这就是为什么预训练语言模型与其分词器绑定，在未经训练的情况下不能使用不同的分词器。</p>
+<p>如图 2-7 所示，语言模型为分词器词表中的每个词元都保存了一个嵌入向量。当我们下载预训练语言模型时，模型的一部分就是保存所有这些向量的嵌入矩阵。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211750953.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图7
+    图 2-7
     </span>
   </div>
 </div>
+<p>训练开始之前，这些向量会像模型的其他权重一样被随机初始化，但训练过程会为它们分配值，使其能够执行有意义的行为。</p>
+<h3 id="2-2-2-创建上下文相关的词嵌入">2.2.2 创建上下文相关的词嵌入</h3>
+<p>我们已经介绍了作为语言模型输入的词元嵌入，接下来让我们看看语言模型如何创建更好的词元嵌入。这是使用语言模型进行文本表示的主要方式之一，为 <em>命名实体识别（named entity recognition，NER）</em>、抽取式文本摘要等应用提供了支持。</p>
+<blockquote>
+<p>注：抽取式文本摘要是指通过突出显示文本中最重要的部分来对长文本进行摘要提炼，而不是生成新的摘要文本。</p>
+</blockquote>
+<p>与使用静态向量表示每个词元或词不同，语言模型会创建与上下文相关（contextualized）的词嵌入（如图 2-8 所示）。所谓上下文相关，就是根据词元在上下文中的含义使用不同的表示方式。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211750866.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图8
+    图 2-8
     </span>
   </div>
 </div>
-<h3 id="2-2-2-创建上下文相关的词嵌入">2.2.2 创建上下文相关的词嵌入</h3>
+<p>这些向量可以被其他系统用于各种任务。除了我们在上一段中提到的文本应用外，这些与上下文相关的向量还为 Stable Diffusion 等 AI 图像生成系统提供了支持。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211751393.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图9
+    图 2-9
     </span>
   </div>
 </div>
 <hr>
 <h2 id="2-3-文本嵌入">2.3 文本嵌入</h2>
+<p>虽然词元嵌入是 LLM 运作的关键，但许多 LLM 应用需要处理完整的句子、段落甚至文本文档，这催生了一些特殊的语言模型，它们能够生成 <strong>文本嵌入</strong>——用单个向量来表示长度超过一个词元的文本片段。</p>
+<p>我们可以这样理解文本嵌入模型：它接收一段文本，最终生成单个向量，这个向量以某种形式表示该文本并捕捉其含义。图 2-10 展示了这个过程。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211751367.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图10
-    </span>
-  </div>
-</div>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752871.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
-    <br>
-    <span style="color: lightpink; font-size: 16px;">
-    图11
-    </span>
-  </div>
-</div>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752546.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
-    <br>
-    <span style="color: lightpink; font-size: 16px;">
-    图12
+    图 2-10
     </span>
   </div>
 </div>
 <hr>
 <h2 id="2-4-LLM-之外的词嵌入">2.4 LLM 之外的词嵌入</h2>
-<h3 id="2-4-1-使用预训练词嵌入">2.4.1 使用预训练词嵌入</h3>
-<h3 id="2-4-2-word2vec-算法与对比训练">2.4.2 word2vec 算法与对比训练</h3>
+<p>嵌入不仅在文本和语言生成方面有用。事实证明，嵌入（即为对象分配有意义的向量表示）在许多领域都很有用，包括推荐引擎和机器人技术。</p>
+<p>在本节中，我们将学习如何使用预训练的 word2vec 嵌入，并简要介绍 word2vec 是如何创建词嵌入的。了解 word2vec 的训练方式将为第 10 章学习对比训练做好准备。在下一节中，我们将看到这些嵌入如何用于推荐系统。</p>
+<h3 id="2-4-1-word2vec-算法与对比训练">2.4.1 word2vec 算法与对比训练</h3>
+<p>与 LLM 一样，word2vec 也是在从文本生成的样本上进行训练的。假设我们有 Frank Herbert 的小说 Dune 中的一段文本：“Thou shalt not make a machine in the likeness of a human mind”。该算法使用滑动窗口来生成训练样本。比如，我们可以设置窗口大小为 2，<br>
+即考虑中心词两侧各两个相邻词。</p>
+<p>嵌入向量是通过分类任务生成的。这种任务用于训练神经网络，以预测词是否经常出现在相同的上下文中（这里的 <strong>上下文</strong> 指的是我们建模的训练数据集中的多个句子）。我们可以将其理解为一个神经网络，它接收两个词作为输入，如果这两个词倾向于出现在相同的上下文中则输出 1，否则输出 0。</p>
+<p>在滑动窗口的第一个位置，我们可以生成四个训练样本，如图 2-11 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752871.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 2-11
+    </span>
+  </div>
+</div>
+<p>在每个生成的训练样本中，中心词作为第一个输入，在各个训练样本中，其相邻词分别作为第二个输入。我们期望最终训练好的模型能够对这种相邻关系进行分类，当接收到的两个输入词是相邻词时输出 1。这些训练样本如图 2-12 所示。</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="margin: 10px;text-align: center;">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752546.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
+    <br>
+    <span style="color: lightpink; font-size: 16px;">
+    图 2-12
+    </span>
+  </div>
+</div>
+<p>然而，如果我们的数据集中只有目标值为 1 的样本（正例），那么模型可能会投机取巧，通过一直输出 1 来获得完美表现。为了解决这个问题，我们需要用非典型相邻词的样本来丰富训练数据集。这些被称为负例，如图 2-13 所示。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752594.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图13
+    图 2-13
     </span>
   </div>
 </div>
+<p>事实证明，在选择负例时并不需要过于严谨。仅仅是借助从随机生成的样本中检测正例的能力，就能得到很多有用的模型 [ 这受到了噪声对比估计（noise-contrastive estimation）这一重要概念的启发，详见论文“Noise-Contrastive Estimation: A New Estimation Principle for Unnormalized Statistical Models”]。因此在这种情况下，我们随机获取一些词，将它们添加到数据集中，并将其标注为非相邻词（模型看到它们时应该输出 0）。</p>
+<p>至此，我们已经了解了 word2vec 的两个主要概念（见图 2-14）：skip-gram，选择相邻词的方法；负采样（negative sampling），通过从数据集中随机采样来添加负例。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752094.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图14
+    图 2-14
     </span>
   </div>
 </div>
+<p>我们可以从连续文本中生成数百万甚至数十亿个这样的训练样本。在开始用这个数据集训练神经网络之前，我们需要做一些分词策略：包括如何处理大小写和标点符号，以及词表中包含多少 token。然后，我们为每个词元创建一个嵌入向量并随机初始化，如图 2-15 所示。在实践中，这是一个矩阵，其维度为：<code>词表大小 × 嵌入向量的维度</code>。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752270.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图15
+    图 2-15
     </span>
   </div>
 </div>
-<hr>
-<h2 id="2-5-推荐系统中的嵌入">2.5 推荐系统中的嵌入</h2>
-<h3 id="2-5-1-基于嵌入的歌曲推荐">2.5.1 基于嵌入的歌曲推荐</h3>
+<p>接下来，我们在每个样本上训练模型，输入两个嵌入向量并预测它们是否相邻。这个过程如图 2-16 所示。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752481.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图16
+    图 2-16
     </span>
   </div>
 </div>
-<h3 id="2-5-2-训练歌曲嵌入模型">2.5.2 训练歌曲嵌入模型</h3>
+<p>根据模型预测正确与否，典型的机器学习训练步骤会调整嵌入向量，以便模型在下次遇到这两个向量时，更准确地进行预测。在训练过程结束时，词表中的所有词元获得了更好的词嵌入表示。</p>
+<p>这种接收两个向量并预测它们是否具有某种关系的模型思想，是机器学习中最强大的思想之一，并且在语言模型中屡试不爽。这就是为什么我们要在第 10 章专门讨论这个概念，以及它如何优化语言模型来完成特定任务（如句子嵌入和检索）。</p>
+<p>这个思想也是连接文本和图像等不同模态的核心，这对 AI 图像生成模型来说至关重要，我们将在第 9 章详细讨论多模态模型。在多模态形式中，模型会接收一张图片和一段描述文本，然后预测该文本是否描述了这张图片。</p>
+<hr>
+<h2 id="2-5-推荐系统中的嵌入">2.5 推荐系统中的嵌入</h2>
+<p>在本节中，我们将使用 word2vec 算法，利用人工创建的音乐播放列表来嵌入歌曲。想象一下，我们把每首歌曲都当作一个词或词元来处理，把每个播放列表当作一个句子，这些嵌入就可以用来推荐经常出现在同一个播放列表中的歌曲。</p>
+<h3 id="2-5-1-基于嵌入的歌曲推荐">2.5.1 基于嵌入的歌曲推荐</h3>
+<p>我们将使用的 Playlist 数据集是由康奈尔大学的 Shuo Chen 收集的。它包含了来自美国数百个广播电台的播放列表。图 2-17 展示了这个数据集的形式。</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
     <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202607211752197.png" srcset="/img/loading.gif" lazyload alt="图4" width="600" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
-    图17
+    图 2-17
     </span>
   </div>
 </div>
+<p>在深入了解其构建方式之前，让我们先演示一下最终的效果。我们从 Michael Jackson 的“Billie Jean”（歌曲 ID 为 3822）开始：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 我们将在下面详细定义和探索这个函数</span><br>print_recommendations(<span class="hljs-number">3822</span>)<br></code></pre></td></tr></table></figure>
+<p>输出：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>标题</th>
+<th>艺术家</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4181</td>
+<td>Kiss</td>
+<td>Prince &amp; The Revolution</td>
+</tr>
+<tr>
+<td>12749</td>
+<td>Wanna Be Startin’ Somethin’</td>
+<td>Michael Jackson</td>
+</tr>
+<tr>
+<td>1506</td>
+<td>The Way You Make Me Feel</td>
+<td>Michael Jackson</td>
+</tr>
+<tr>
+<td>3396</td>
+<td>Holiday</td>
+<td>Madonna</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Don’t Stop 'Til You Get Enough</td>
+<td>Michael Jackson</td>
+</tr>
+</tbody>
+</table>
+<p>看起来很合理，Madonna、Prince 的歌曲，以及 Michael Jackson 的其他歌曲是最近邻。</p>
+<h3 id="2-5-2-训练歌曲嵌入模型">2.5.2 训练歌曲嵌入模型</h3>
+<p>首先加载包含歌曲播放列表的数据集，以及每首歌曲的元数据，如标题和艺术家：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> urllib <span class="hljs-keyword">import</span> request<br><span class="hljs-comment"># 获取播放列表数据集文件</span><br>data = request.urlopen(<span class="hljs-string">&#x27;https://storage.googleapis.com/maps-premium/data set/yes_</span><br><span class="hljs-string">complete/train.txt&#x27;</span>)<br><span class="hljs-comment"># 解析播放列表数据集文件。跳过前两行，因为它们只包含元数据</span><br>lines = data.read().decode(<span class="hljs-string">&quot;utf-8&quot;</span>).split(<span class="hljs-string">&#x27;\n&#x27;</span>)[<span class="hljs-number">2</span>:]<br><span class="hljs-comment"># 删除只有一首歌的播放列表</span><br>playlists = [s.rstrip().split() <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> lines <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(s.split()) &gt; <span class="hljs-number">1</span>]<br><span class="hljs-comment"># 加载歌曲元数据</span><br>songs_file = request.urlopen(<span class="hljs-string">&#x27;https://storage.googleapis.com/maps-premium/data </span><br><span class="hljs-string">set/yes_complete/song_hash.txt&#x27;</span>)<br>songs_file = songs_file.read().decode(<span class="hljs-string">&quot;utf-8&quot;</span>).split(<span class="hljs-string">&#x27;\n&#x27;</span>) <br>songs = [s.rstrip().split(<span class="hljs-string">&#x27;\t&#x27;</span>) <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> songs_file]<br>songs_df = pd.DataFrame(data=songs, columns = [<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;artist&#x27;</span>]) <br>songs_df = songs_df.set_index(<span class="hljs-string">&#x27;id&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>现在我们已经保存了，让我们检查一下列表 playlists。其中每个元素都是一个包含一系列歌曲 ID 的播放列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>( <span class="hljs-string">&#x27;Playlist #1:\n &#x27;</span>, playlists[<span class="hljs-number">0</span>], <span class="hljs-string">&#x27;\n&#x27;</span>) <br><span class="hljs-built_in">print</span>( <span class="hljs-string">&#x27;Playlist #2:\n &#x27;</span>, playlists[<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Playlist #1: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;, ..., &#x27;43&#x27;]<br>Playlist #2: [&#x27;78&#x27;, &#x27;79&#x27;, &#x27;80&#x27;, &#x27;3&#x27;, &#x27;62&#x27;, ..., &#x27;210&#x27;]<br></code></pre></td></tr></table></figure>
+<p>让我们训练这个模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> Word2Vec<br><span class="hljs-comment"># 训练我们的word2vec模型</span><br>model = Word2Vec(<br> playlists, vector_size=<span class="hljs-number">32</span>, window=<span class="hljs-number">20</span>, negative=<span class="hljs-number">50</span>, min_count=<span class="hljs-number">1</span>, workers=<span class="hljs-number">4</span><br>)<br></code></pre></td></tr></table></figure>
+<p>训练需要一两分钟的时间，最终会为每首歌曲计算出嵌入向量。现在我们可以像之前处理词语一样，使用这些嵌入向量来寻找相似的歌曲：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">song_id = <span class="hljs-number">2172</span><br><span class="hljs-comment"># 让模型找出与歌曲2172相似的歌曲</span><br>model.wv.most_similar(positive=<span class="hljs-built_in">str</span>(song_id))<br></code></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[(&#x27;2976&#x27;, 0.9977465271949768),<br> (&#x27;3167&#x27;, 0.9977430701255798),<br> (&#x27;3094&#x27;, 0.9975950717926025),<br> (&#x27;2640&#x27;, 0.9966474175453186),<br> (&#x27;2849&#x27;, 0.9963167905807495)]<br></code></pre></td></tr></table></figure>
+<p>这是与歌曲 2172 具有最相似的嵌入表示的歌曲列表。<br>
+在这个例子中，这首歌是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(songs_df.iloc[<span class="hljs-number">2172</span>])<br></code></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">title Fade To Black<br>artist Metallica<br>Name: 2172, dtype: object<br></code></pre></td></tr></table></figure>
 <hr>
 <h2 id="2-6-小结">2.6 小结</h2>
+<p>在本章中，我们介绍了 LLM 词元、分词器以及使用词元嵌入的实用方法。这为我们下一章深入研究语言模型做好了准备，同时也为我们学习如何在语言模型之外使用 embedding 打开了大门。</p>
+<p>我们探讨了分词器如何作为处理 LLM 输入的第一步，将原始文本输入转换为词元 ID。常见的分词方案包括将文本分解为词、子词、字符或字节，具体取决于特定应用的要求。</p>
+<p>通过对现实世界预训练分词器（从 BERT 到 GPT-2、GPT-4 和其他模型）的探索，我们了解了某些分词器在某些方面表现更好（例如，保留大小写、换行符或其他语言的词元等信息）；而在其他方面，分词器之间仅存在差异（例如，它们如何分解某些词），并无优劣之分。</p>
+<p>分词器设计中有三个主要决策点：分词器算法（如 BPE、WordPiece、SentencePiece）、分词参数（包括词表大小、特殊词元、大小写处理策略和不同语言的处理）以及用于训练分词器的数据集。</p>
+<p>语言模型能够生成高质量与上下文相关的词元嵌入，这种嵌入改进了原始的静态嵌入。这些与上下文相关的词元嵌入可以用于命名实体识别、抽取式文本摘要和文本分类等任务。</p>
+<p>除了生成词元嵌入，语言模型还可以生成涵盖整个句子甚至文档的文本嵌入。这为本书第二部分将要展示的众多语言模型应用提供了强大支持。在 LLM 之前，word2vec、GloVe 和 fastText 等词嵌入方法非常流行。在语言处理中，这些方法已经在很大程度上被语言模型产生的与上下文相关的词嵌入所取代。word2vec 算法依赖两个主要思想：skip-gram 模型和负采样。它还使用了与我们将在第 10 章看到的类似的对比训练方法。</p>
+<p>从根据播放列表构建音乐推荐系统的例子中我们看到，嵌入对于创建和改进推荐系统非常有用。</p>
+<p>在下一章中，我们将深入探讨分词后的处理过程：LLM 如何处理这些词元并生成文本？我们将探讨使用 Transformer 架构的 LLM 的主要工作原理。</p>
 
                 
               </div>
@@ -832,7 +949,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Chapter 2 - 词元与嵌入</div>
-      <div>http://dbqdss.github.io/2026/07/22/个人学习笔记/AI Notes/LLM/Hands-On LLMs/HandsOn-LLMs-Ch02/</div>
+      <div>http://dbqdss.github.io/2026/08/21/个人学习笔记/AI Notes/LLM/Hands-On LLMs/HandsOn-LLMs-Ch02/</div>
     </div>
     <div class="license-meta">
       
@@ -844,7 +961,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年7月22日</div>
+          <div>2026年8月21日</div>
         </div>
       
       
@@ -871,6 +988,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/21/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/LLM/Hands-On%20LLMs/HandsOn-LLMs-Ch03/" title="Chapter 3 - LLM 的内部机制">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Chapter 3 - LLM 的内部机制</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/19/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/AI%20Notes/Agent/AI%20Agent%20%E5%85%A5%E9%97%A8/AI%20Agent-Lec05/" title="AI Agent Lec 05">
+                        <span class="hidden-mobile">AI Agent Lec 05</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
