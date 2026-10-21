@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/20250615Python.png">
 <meta property="article:published_time" content="2026-10-19T12:11:52.000Z">
-<meta property="article:modified_time" content="2026-10-19T12:23:55.888Z">
+<meta property="article:modified_time" content="2026-10-19T12:27:29.193Z">
 <meta property="article:author" content="失去理想的獾">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Linux">
@@ -786,7 +786,7 @@
 </blockquote>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
   <div style="margin: 10px;text-align: center;">
-    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202610192023553.jpg" srcset="/img/loading.gif" lazyload alt="SSH 反向转发的网络架构图" width="" height="250">
+    <img src="https://raw.githubusercontent.com/DBQDSS/Blog_img/study/202610192023553.jpg" srcset="/img/loading.gif" lazyload alt="SSH 反向转发的网络架构图" width="450" height="">
     <br>
     <span style="color: lightpink; font-size: 16px;">
     SSH 反向转发的网络架构图
@@ -813,8 +813,7 @@
 <li>Linux 服务器代理端口是 17890</li>
 <li>lab-server 是连接 SSH 的远程主机名</li>
 </ul>
-<p>如果 SSH 登录验证通过，且命令没有报错、PowerShell 一直保持运行，通常表示隧道已经建立成功。<br>
-不要关闭这个 PowerShell 窗口。关闭后 SSH 隧道会断开，远程 Codex 可能随之无法联网。</p>
+<p>如果 SSH 登录验证通过，且命令没有报错、PowerShell 一直保持运行，通常表示隧道已经建立成功。<strong>不要关闭</strong>这个 PowerShell 窗口。关闭后 SSH 隧道会断开，远程 Codex 可能随之无法联网。</p>
 <p>如果命令报告 administratively prohibited 或端口转发被拒绝，需要检查实验室服务器是否允许 TCP 端口转发，不能通过本地参数绕过服务器的管理限制。</p>
 <h4 id="验证-Linux-服务器能否通过隧道访问-OpenAI">验证 Linux 服务器能否通过隧道访问 OpenAI</h4>
 <p>回到 VS Code，连接 SSH: lab-server。打开远程终端，执行：</p>
