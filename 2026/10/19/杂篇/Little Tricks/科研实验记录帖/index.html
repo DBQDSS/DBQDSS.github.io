@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://dbqdss.github.io/images/index-stack/20250615Python.png">
 <meta property="article:published_time" content="2026-10-19T12:11:52.000Z">
-<meta property="article:modified_time" content="2026-10-19T12:27:29.193Z">
+<meta property="article:modified_time" content="2026-10-24T03:06:21.846Z">
 <meta property="article:author" content="失去理想的獾">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Linux">
@@ -301,7 +301,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          5.3k 字
         
       </span>
     
@@ -363,7 +363,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2026年10月19日 晚上
+                    本文最后更新于 2026年10月24日 上午
                   
                 
               </p>
@@ -806,17 +806,17 @@
 <p>如果能返回 HTTP 状态响应（如 200、301、403 等），且没有出现代理连接失败或 TLS 错误，说明本机代理基本可用。返回 403 不代表 Codex 的全部服务一定可用，但可以说明已经建立了 HTTP 通信。</p>
 <h4 id="建立-SSH-反向隧道">建立 SSH 反向隧道</h4>
 <p>仍然在 Windows PowerShell 中，打开一个新的终端窗口。输入：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">ssh <span class="hljs-literal">-N</span> <span class="hljs-literal">-T</span> <span class="hljs-literal">-o</span> ExitOnForwardFailure=yes <span class="hljs-literal">-R</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">17890</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7897</span> lab<span class="hljs-literal">-server</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 服务器</span><br>ssh <span class="hljs-literal">-N</span> <span class="hljs-literal">-T</span> <span class="hljs-literal">-o</span> ExitOnForwardFailure=yes <span class="hljs-literal">-R</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">17890</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7897</span> lab<span class="hljs-literal">-server</span><br><br><span class="hljs-comment"># 工位电脑</span><br>ssh <span class="hljs-literal">-N</span> <span class="hljs-literal">-T</span> <span class="hljs-literal">-o</span> ExitOnForwardFailure=yes <span class="hljs-literal">-R</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">17890</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7897</span> office<span class="hljs-literal">-pc</span><br></code></pre></td></tr></table></figure>
 <p>这里参数的说明：</p>
 <ul>
 <li>Windows 本机 Clash 使用的是 7897 端口</li>
-<li>Linux 服务器代理端口是 17890</li>
-<li>lab-server 是连接 SSH 的远程主机名</li>
+<li>Linux 服务器/主机的代理端口是我人为设置的，在这里就用 17890（用其他的也可以）</li>
+<li>lab-server / office-pc 是连接 SSH 的远程主机名</li>
 </ul>
 <p>如果 SSH 登录验证通过，且命令没有报错、PowerShell 一直保持运行，通常表示隧道已经建立成功。<strong>不要关闭</strong>这个 PowerShell 窗口。关闭后 SSH 隧道会断开，远程 Codex 可能随之无法联网。</p>
 <p>如果命令报告 administratively prohibited 或端口转发被拒绝，需要检查实验室服务器是否允许 TCP 端口转发，不能通过本地参数绕过服务器的管理限制。</p>
 <h4 id="验证-Linux-服务器能否通过隧道访问-OpenAI">验证 Linux 服务器能否通过隧道访问 OpenAI</h4>
-<p>回到 VS Code，连接 SSH: lab-server。打开远程终端，执行：</p>
+<p>回到 VS Code，连接 SSH: lab-server / office-pc。打开远程终端，执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -I --connect-timeout 8 --max-time 20 \<br>  -x http://127.0.0.1:17890 \<br>  https://chatgpt.com<br></code></pre></td></tr></table></figure>
 <p>注意，这一次使用的是 17890，而不是 7897。如果获得有效的 HTTP 响应，说明请求已经经过 SSH 隧道，到达 Windows 本机的 Clash 代理。</p>
 <p>至此，网络转发的关键部分就配置好了。</p>
